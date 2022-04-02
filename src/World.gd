@@ -1,21 +1,31 @@
 extends Node2D
 
 onready var score = $Camera2D/RichTextLabel
+onready var player = $Player
+
 var scoreText = 0
 var displayText = 0
 var startedGame = false
 
-var Plat = preload("res://src/Platform.tscn")
+#var Plat = preload("res://src/Platform.tscn")
 var pastYlevel = 488
 var ylevel = 0
+
 const totalVariations = 7
 const absoluteVariations = 3
 const snapHeight = 16
 const highestPossible = 424
 const lowestPossible = 536
 
+var gameStart = false
+
 func _physics_process(delta):
-	scoreText += delta * 10
+	if Input.is_action_just_pressed("ui_up") and not gameStart:
+		gameStart = true
+	
+	if gameStart:
+		scoreText += delta * 10
+
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "m[/b][/center]")
 
@@ -39,12 +49,15 @@ func rand_ylevel():
 	pastYlevel = ylevel #setting the current Y Level as the past Y Level for the next platform
 	return ylevel #For putting in the Vector2 later
 	
-
+"""
 func Plat_spawn():
 	print("Spawning")
 	var Plat_instance = Plat.instance()
 	Plat_instance.position = Vector2(464, rand_ylevel())
 	add_child(Plat_instance)
+"""
+func Player_dies():
+	player.playerDies()
 
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
