@@ -2,6 +2,7 @@ extends Node2D
 
 onready var score = $Camera2D/RichTextLabel
 onready var player = $Player
+onready var deathScr = $DeathScreen
 
 var scoreText = 0
 var displayText = 0
@@ -18,12 +19,13 @@ const highestPossible = 424
 const lowestPossible = 536
 
 var gameStart = false
+var gameEnd = false
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up") and not gameStart:
 		gameStart = true
 	
-	if gameStart:
+	if gameStart and not gameEnd:
 		scoreText += delta * 10
 
 	displayText = floor(scoreText)
@@ -57,7 +59,10 @@ func Plat_spawn():
 	add_child(Plat_instance)
 """
 func Player_dies():
+	deathScr.fadeIn()
 	player.playerDies()
+	gameStart = false
+	gameEnd = true
 
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
