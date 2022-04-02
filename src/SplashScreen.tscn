@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://tempSplashPage.png" type="Texture" id=1]
+[ext_resource path="res://LOGOS/4.png" type="Texture" id=1]
 [ext_resource path="res://src/SplashScreen.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
@@ -96,9 +96,9 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 320, 744 )
+position = Vector2( 240, 360 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 1 )
-offset = Vector2( -80, -384 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fade = SubResource( 1 )
