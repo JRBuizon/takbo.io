@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://tempSplashPage.png" type="Texture" id=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 72.0
+margin_top = 280.0
+margin_right = 415.0
+margin_bottom = 610.0
+rect_scale = Vector2( 1, 0.5 )
+text = "LENI"
+icon = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 72.0
+margin_top = 480.0
+margin_right = 418.0
+margin_bottom = 810.0
+rect_scale = Vector2( 1, 0.5 )
+text = "KIKO"
+icon = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 224, 136 )
+scale = Vector2( 0.7, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 136.0
+margin_top = 48.0
+margin_right = 320.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( 256, 72 )
+bbcode_enabled = true
+bbcode_text = "[center][b]TAKBO"
+text = "TAKBO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 136.0
+margin_top = 256.0
+margin_right = 320.0
+margin_bottom = 296.0
+rect_pivot_offset = Vector2( 256, 72 )
+bbcode_enabled = true
+bbcode_text = "[center][b]PICK YOUR RUNNER"
+text = "PICK YOUR RUNNER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
