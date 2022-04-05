@@ -1,0 +1,213 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://BUTTONS/4.png" type="Texture" id=2]
+[ext_resource path="res://LOGOS/3.png" type="Texture" id=3]
+[ext_resource path="res://LOGOS/2.png" type="Texture" id=4]
+[ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FadeIn"
+length = 0.7
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TransitionPlaceholder:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TransitionPlaceholder:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("TransitionPlaceholder:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("TransitionPlaceholder:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.7 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeOut"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TransitionPlaceholder:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TransitionPlaceholder:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("TransitionPlaceholder:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("TransitionPlaceholder:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TransitionPlaceholder:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TransitionPlaceholder:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("TransitionPlaceholder:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("TransitionPlaceholder:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LENI" type="Button" parent="."]
+margin_left = -129.6
+margin_top = 384.0
+margin_right = 382.4
+margin_bottom = 890.0
+rect_scale = Vector2( 0.4, 0.4 )
+rect_pivot_offset = Vector2( 256, 0 )
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KIKO" type="Button" parent="."]
+margin_left = 248.0
+margin_top = 384.0
+margin_right = 760.0
+margin_bottom = 890.0
+rect_scale = Vector2( 0.4, 0.4 )
+icon = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PickRunner" type="RichTextLabel" parent="."]
+margin_left = 144.0
+margin_top = 352.0
+margin_right = 328.0
+margin_bottom = 368.0
+bbcode_enabled = true
+bbcode_text = "[center][b]PICK YOUR RUNNER"
+text = "PICK YOUR RUNNER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Highscore" type="RichTextLabel" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 24.0
+bbcode_enabled = true
+bbcode_text = "[b]HIGHSCORE: "
+text = "HIGHSCORE: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TAKBO" type="Sprite" parent="."]
+position = Vector2( 248, 190.4 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 2 )
+
+[node name="TransitionPlaceholder" type="Sprite" parent="."]
+position = Vector2( 240, 360 )
+scale = Vector2( 33, 47 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "FadeIn"
+anims/FadeIn = SubResource( 1 )
+anims/FadeOut = SubResource( 3 )
+anims/RESET = SubResource( 2 )
+
+[connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]
+[connection signal="button_down" from="KIKO" to="." method="_on_KIKO_button_down"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

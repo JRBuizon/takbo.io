@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Takbo"
-run/main_scene="res://src/SplashScreen.tscn"
+run/main_scene="res://src/Scenes/SplashScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://src/Scripts/Global.gd"
 
 [display]
 

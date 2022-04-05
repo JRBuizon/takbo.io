@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/Platform.gd" type="Script" id=1]
+[ext_resource path="res://src/Scripts/Platform.gd" type="Script" id=1]
 [ext_resource path="res://placeHolderWhite.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -19,7 +19,6 @@ texture = ExtResource( 2 )
 
 [node name="PlatColl" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 90 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="PlatHitBox" type="Area2D" parent="."]

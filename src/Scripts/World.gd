@@ -2,11 +2,13 @@ extends Node2D
 
 onready var score = $Camera2D/RichTextLabel
 onready var player = $Player
-onready var deathScr = $DeathScreen
+onready var deathScr = $Camera2D/DeathScreen
+onready var animation = $AnimationPlayer
 
 var scoreText = 0
 var displayText = 0
 var startedGame = false
+var scenePath
 
 #var Plat = preload("res://src/Platform.tscn")
 var pastYlevel = 488
@@ -22,12 +24,16 @@ const lowestPossible = 536
 var gameStart = false
 var gameEnd = false
 
+func _ready():
+	animation.play("FadeIn")
+
+
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up") and not gameStart:
 		gameStart = true
 	
 	if gameStart and not gameEnd:
-		scoreText += delta * 10
+		scoreText += delta * 7
 
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "m[/b][/center]")
@@ -60,6 +66,8 @@ func Plat_spawn():
 	add_child(Plat_instance)
 """
 func Player_dies():
+	if displayText > Global.highscore:
+		Global.highscore = displayText
 	deathScr.fadeIn()
 	player.playerDies()
 	gameStart = false
@@ -67,7 +75,17 @@ func Player_dies():
 
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
-		print("Resetting")
+		#print("Resetting")
 		area.get_parent().position = Vector2(464, rand_ylevel())
 		#area.get_parent().queue_free()
 		#Plat_spawn()
+
+func exitScreen(SCENE_PATH):
+	animation.play("FadeOut")
+	scenePath = SCENE_PATH
+	
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "FadeOut":
+		get_tree().change_scene(scenePath)
