@@ -1,9 +1,13 @@
 extends Node2D
 
-onready var score = $Camera2D/RichTextLabel
+onready var score = $Camera2D/Score
 onready var player = $Player
 onready var deathScr = $Camera2D/DeathScreen
 onready var animation = $AnimationPlayer
+
+onready var friendScore = $Camera2D/friendScore
+onready var friendName = $Camera2D/friendName
+onready var progressBar = $Camera2D/toFriendScore
 
 var scoreText = 0
 var displayText = 0
@@ -25,6 +29,14 @@ var gameStart = false
 var gameEnd = false
 
 func _ready():
+	if Global.friendName:
+		friendName.set_bbcode("Beat " + Global.friendName + "!")
+		friendScore.set_bbcode("[right]" + str(Global.friendScore) + "m")
+		progressBar.set_max(Global.friendScore)
+	
+	else:
+		progressBar.visible = false
+	
 	animation.play("FadeIn")
 
 
@@ -34,6 +46,8 @@ func _physics_process(delta):
 	
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
+		if Global.friendName:
+			progressBar.set_value(scoreText)
 
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "m[/b][/center]")
@@ -65,6 +79,7 @@ func Plat_spawn():
 	Plat_instance.position = Vector2(464, rand_ylevel())
 	add_child(Plat_instance)
 """
+
 func Player_dies():
 	if displayText > Global.highscore:
 		Global.highscore = displayText

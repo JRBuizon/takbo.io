@@ -3,8 +3,11 @@ extends Node2D
 var highscore = 0 setget setHighscore
 var Leni = true
 const filePath = "user://highscore.data"
+var friendName = "Donny"
+var friendScore = 143
 
 func _ready():
+	#getQueryParams()
 	loadHighscore()
 
 func loadHighscore():
@@ -24,3 +27,12 @@ func saveHighscore():
 func setHighscore(newVal):
 	highscore = newVal
 	saveHighscore()
+
+func getQueryParams():
+	"""
+	var searchP = JavaScript.eval("window.location.search")
+	if searchP:
+		print("Search ", searchP)
+		return searchP
+	"""
+
