@@ -31,8 +31,8 @@ var gameEnd = false
 func _ready():
 	if Global.friendName:
 		friendName.set_bbcode("Beat " + Global.friendName + "!")
-		friendScore.set_bbcode("[right]" + str(Global.friendScore) + "m")
-		progressBar.set_max(Global.friendScore)
+		friendScore.set_bbcode("[right]" + Global.friendScore + "m")
+		progressBar.set_max(int(Global.friendScore))
 	
 	else:
 		progressBar.visible = false
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
-		if Global.friendName:
+		if Global.friendName and not scoreText > int(Global.friendScore):
 			progressBar.set_value(scoreText)
 
 	displayText = floor(scoreText)
