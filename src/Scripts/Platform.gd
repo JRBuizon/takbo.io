@@ -7,7 +7,7 @@ var baseSpeed = -2.0
 func _physics_process(delta):
 	position += Vector2(Speed, 0.0)
 	
-	if Input.is_action_just_pressed("ui_up") and not gameStart:
+	if Input.is_action_just_pressed("tap") and not gameStart:
 		Speed = baseSpeed
 		gameStart = true
 

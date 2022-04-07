@@ -48,11 +48,11 @@ func _physics_process(delta):
 	if alive:
 		if floorCast.is_colliding() or is_on_floor():
 			#Play Run animation
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_just_pressed("tap"):
 				motion.y = jumpVelo
 		else:
 			#Play Jump animation
-			if Input.is_action_just_released("ui_up") and motion.y < jumpVelo/2:
+			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
 				motion.y = jumpVelo/2
 	
 	motion = move_and_slide(motion, Vector2.UP)

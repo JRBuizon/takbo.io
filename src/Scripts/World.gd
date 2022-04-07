@@ -41,7 +41,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_up") and not gameStart:
+	if Input.is_action_just_pressed("tap") and not gameStart:
 		gameStart = true
 	
 	if gameStart and not gameEnd:
