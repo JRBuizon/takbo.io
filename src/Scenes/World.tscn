@@ -1,12 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Scripts/World.gd" type="Script" id=3]
 [ext_resource path="res://src/Scenes/DeathScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
-[ext_resource path="res://placeHolderWhite.png" type="Texture" id=6]
-[ext_resource path="res://placeHolderRed.png" type="Texture" id=7]
+[ext_resource path="res://src/Assets/progressBarBG.png" type="Texture" id=6]
+[ext_resource path="res://src/Assets/SFXunmuted.png" type="Texture" id=7]
 [ext_resource path="res://src/Assets/Parallax/Daytime/1.png" type="Texture" id=8]
 [ext_resource path="res://src/Assets/Parallax/Daytime/4.png" type="Texture" id=9]
 [ext_resource path="res://src/Assets/Parallax/Daytime/2.png" type="Texture" id=10]
@@ -17,6 +17,8 @@
 [ext_resource path="res://src/Assets/Parallax/Daytime/6.png" type="Texture" id=15]
 [ext_resource path="res://src/Assets/Parallax/Daytime/3.png" type="Texture" id=16]
 [ext_resource path="res://src/Assets/Parallax/Daytime/10.png" type="Texture" id=17]
+[ext_resource path="res://src/Assets/Exit.png" type="Texture" id=18]
+[ext_resource path="res://src/Assets/progressBarFill.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 200 )
@@ -162,9 +164,8 @@ RAILINGS_SPEED = -50.0
 GROUND_SPEED = -50.0
 
 [node name="DT" type="ParallaxBackground" parent="."]
-offset = Vector2( 0, 670 )
-scale = Vector2( 0.4, 0.4 )
-transform = Transform2D( 0.4, 0, 0, 0.4, 0, 670 )
+offset = Vector2( 0, 360 )
+transform = Transform2D( 1, 0, 0, 1, 0, 360 )
 
 [node name="Background" type="ParallaxLayer" parent="DT"]
 
@@ -220,95 +221,99 @@ motion_mirroring = Vector2( 5461, 0 )
 texture = ExtResource( 8 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 488 )
+position = Vector2( -60, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Platform2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 88, 488 )
+position = Vector2( 60, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Platform3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 136, 488 )
+position = Vector2( 180, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Platform4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 184, 488 )
+position = Vector2( 300, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Platform5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 232, 488 )
+position = Vector2( 420, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Platform6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 280, 488 )
-
-[node name="Platform7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 328, 488 )
-
-[node name="Platform8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 376, 488 )
-
-[node name="Platform9" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424, 488 )
+position = Vector2( 540, 420 )
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 232, 520 )
+position = Vector2( 130, 500 )
+scale = Vector2( 2.5, 2.5 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 272, 456 )
-current = true
-zoom = Vector2( 0.4, 0.4 )
-
-[node name="Score" type="RichTextLabel" parent="Camera2D"]
-margin_left = -104.0
-margin_top = -72.0
-margin_right = 104.0
-margin_bottom = -48.0
+[node name="Score" type="RichTextLabel" parent="."]
+margin_left = 150.0
+margin_top = 160.0
+margin_right = 340.0
+margin_bottom = 200.0
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="friendName" type="RichTextLabel" parent="Camera2D"]
-margin_left = -96.0
-margin_top = -104.0
-margin_right = 24.0
-margin_bottom = -80.0
+[node name="friendName" type="RichTextLabel" parent="."]
+margin_left = 90.0
+margin_top = 80.0
+margin_right = 240.0
+margin_bottom = 110.0
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="friendScore" type="RichTextLabel" parent="Camera2D"]
-margin_left = -56.0
-margin_top = -104.0
-margin_right = 96.0
-margin_bottom = -80.0
+[node name="friendScore" type="RichTextLabel" parent="."]
+margin_left = 290.0
+margin_top = 80.0
+margin_right = 400.0
+margin_bottom = 110.0
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="toFriendScore" type="TextureProgress" parent="Camera2D"]
-margin_left = -96.0
-margin_top = -120.0
-margin_right = -80.0
-margin_bottom = -104.0
-rect_scale = Vector2( 12, 1 )
+[node name="toFriendScore" type="TextureProgress" parent="."]
+anchor_right = 1.0
+margin_left = 84.0
+margin_top = 34.0
+margin_right = 399.0
+margin_bottom = 69.0
 texture_under = ExtResource( 6 )
-texture_progress = ExtResource( 7 )
+texture_progress = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeathScreen" parent="Camera2D" instance=ExtResource( 4 )]
-position = Vector2( 0, -16 )
+[node name="DeathScreen" parent="." instance=ExtResource( 4 )]
+position = Vector2( 240, 310 )
+
+[node name="SfXunmuted" type="Sprite" parent="."]
+position = Vector2( 413, 24 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Exit" type="Sprite" parent="."]
+position = Vector2( 18, 24 )
+texture = ExtResource( 18 )
+centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( -24, 402 )
+position = Vector2( -160, 420 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 24, 46 )
 shape = SubResource( 1 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
-position = Vector2( 272, 456 )
-scale = Vector2( 14, 20 )
+visible = false
+position = Vector2( 245, 360 )
+scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -317,5 +322,6 @@ anims/FadeIn = SubResource( 2 )
 anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
+[connection signal="button_pressed" from="DeathScreen" to="." method="_on_DeathScreen_button_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

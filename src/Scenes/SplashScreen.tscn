@@ -185,7 +185,6 @@ texture = ExtResource( 1 )
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 246.017, 360 )
 rotation = 0.174533
-scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( -6.469, 3.682 )
 

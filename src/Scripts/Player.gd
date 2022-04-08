@@ -3,10 +3,11 @@ extends KinematicBody2D
 
 onready var collision = $PlayerColl
 onready var hitBox = $PlayerHitBox
+onready var hitBoxCol = $PlayerHitBox/CollisionShape2D
 onready var sprite = $PlayerSprite
 onready var floorCast = $floorRayCast
 
-var jumpHeight = 48.0
+var jumpHeight = 130.0
 var jumpTUp = 0.25
 var jumpTDown = 0.2
 
@@ -24,6 +25,7 @@ var alive = true
 func _ready():
 	collision.disabled = false
 	hitBox.monitoring = true
+	hitBoxCol.disabled = false
 	setSprite()
 
 func det_grav() -> float:
@@ -33,6 +35,7 @@ func playerDies():
 	#Play death animation
 	collision.disabled = true
 	hitBox.monitoring = false
+	hitBoxCol.disabled = true
 	alive = false
 	pass
 

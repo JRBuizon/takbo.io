@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Comic Frame.png" type="Texture" id=2]
-[ext_resource path="res://LOGOS/3.png" type="Texture" id=3]
-[ext_resource path="res://LOGOS/2.png" type="Texture" id=4]
+[ext_resource path="res://src/Assets/Leni Frame.png" type="Texture" id=3]
 [ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
-[ext_resource path="res://src/Assets/Leni Frame.png" type="Texture" id=6]
 [ext_resource path="res://src/Assets/Kiko Frame.png" type="Texture" id=7]
 [ext_resource path="res://src/Assets/Background.png" type="Texture" id=8]
 [ext_resource path="res://src/Assets/TakboLogo.png" type="Texture" id=9]
@@ -163,25 +161,27 @@ rotation = 0.148353
 texture = ExtResource( 9 )
 offset = Vector2( 0.98, 3.682 )
 
+[node name="LeniFrame" type="Sprite" parent="."]
+position = Vector2( 232, 400 )
+texture = ExtResource( 3 )
+
 [node name="LENI" type="Button" parent="."]
-margin_left = -129.6
-margin_top = 384.0
-margin_right = 382.4
-margin_bottom = 890.0
+modulate = Color( 1, 1, 1, 0.364706 )
+margin_left = -26.0
+margin_top = 312.0
+margin_right = 474.0
+margin_bottom = 692.0
 rect_scale = Vector2( 0.4, 0.4 )
 rect_pivot_offset = Vector2( 256, 0 )
-icon = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KIKO" type="Button" parent="."]
-margin_left = 248.0
-margin_top = 384.0
-margin_right = 760.0
-margin_bottom = 890.0
-rect_scale = Vector2( 0.4, 0.4 )
-icon = ExtResource( 4 )
+margin_left = 152.0
+margin_top = 488.0
+margin_right = 664.0
+margin_bottom = 994.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -214,11 +214,8 @@ __meta__ = {
 position = Vector2( 240, 592 )
 texture = ExtResource( 7 )
 
-[node name="LeniFrame" type="Sprite" parent="."]
-position = Vector2( 240, 408 )
-texture = ExtResource( 6 )
-
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
+visible = false
 position = Vector2( 240, 360 )
 scale = Vector2( 33, 47 )
 texture = ExtResource( 5 )

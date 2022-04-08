@@ -2,7 +2,8 @@ extends StaticBody2D
 
 var Speed = 0.0
 var gameStart = false
-var baseSpeed = -2.0
+var baseSpeed = -5.0
+
 
 func _physics_process(delta):
 	position += Vector2(Speed, 0.0)
@@ -13,6 +14,4 @@ func _physics_process(delta):
 
 func _on_PlatHitBox_area_entered(area):
 	if area.name == "PlayerHitBox":
-		get_parent().call_deferred("Player_dies")
-		#get_tree().reload_current_scene()
-		pass
+		get_parent().call_deferred("player_dies")

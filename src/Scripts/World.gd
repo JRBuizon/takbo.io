@@ -1,13 +1,13 @@
 extends Node2D
 
-onready var score = $Camera2D/Score
+onready var score = $Score
 onready var player = $Player
-onready var deathScr = $Camera2D/DeathScreen
+onready var deathScr = $DeathScreen
 onready var animation = $AnimationPlayer
 
-onready var friendScore = $Camera2D/friendScore
-onready var friendName = $Camera2D/friendName
-onready var progressBar = $Camera2D/toFriendScore
+onready var friendScore = $friendScore
+onready var friendName = $friendName
+onready var progressBar = $toFriendScore
 
 #Parallax Layers
 onready var DTClouds = $DT/Clouds
@@ -30,18 +30,18 @@ export(float) var GROUND_SPEED = -20
 var scoreText = 0
 var displayText = 0
 var startedGame = false
-var scenePath
+var scenePath = ""
 
 #var Plat = preload("res://src/Platform.tscn")
-var pastYlevel = 488
+var pastYlevel = 420
 var ylevel = 0
 
 const totalVariations = 6
 const absoluteVariationsD = 3
 const absoluteVariationsU = 2
-const snapHeight = 16
-const highestPossible = 424
-const lowestPossible = 536
+const snapHeight = 40
+const highestPossible = 260
+const lowestPossible = 540
 
 var gameStart = false
 var gameEnd = false
@@ -85,8 +85,10 @@ func rand_ylevel():
 	
 	if pastYlevel == ylevel: #If current Y Level is the same as the last Y Level
 		var choice = randi() % 2 #Randomly pick 1 or 0
+		print("repeating")
 		if choice > 0: #If 0 go up and shuffle
 			ylevel = pastYlevel-((randi() % absoluteVariationsU + 1) * snapHeight)
+	
 		else: #If not go down and shuffle
 			ylevel = pastYlevel+((randi() % absoluteVariationsD + 1) * snapHeight)
 		
@@ -95,19 +97,12 @@ func rand_ylevel():
 	
 	if ylevel > lowestPossible: #If below lowest Possible Y level go up and shuffle
 		ylevel = pastYlevel-((randi()%absoluteVariationsU + 1)*snapHeight)
-	
+		
+
 	pastYlevel = ylevel #setting the current Y Level as the past Y Level for the next platform
 	return ylevel #For putting in the Vector2 later
-	
-"""
-func Plat_spawn():
-	print("Spawning")
-	var Plat_instance = Plat.instance()
-	Plat_instance.position = Vector2(464, rand_ylevel())
-	add_child(Plat_instance)
-"""
 
-func Player_dies():
+func player_dies():
 	if displayText > Global.highscore:
 		Global.highscore = displayText
 	deathScr.displayDeathScr()
@@ -117,16 +112,11 @@ func Player_dies():
 
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
-		#print("Resetting")
-		area.get_parent().position = Vector2(464, rand_ylevel())
-		#area.get_parent().queue_free()
-		#Plat_spawn()
+		area.get_parent().position = Vector2(530, rand_ylevel())
 
-func exitScreen(SCENE_PATH):
+func _on_DeathScreen_button_pressed(scene_path):
 	animation.play("FadeOut")
-	scenePath = SCENE_PATH
-	
-
+	scenePath = scene_path
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":

@@ -16,10 +16,6 @@ func _process(delta):
 	time += delta * speed
 	logo.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
 
-func _on_LENI_button_down():
-	Global.Leni = true
-	animation.play("FadeOut")
-
 
 func _on_KIKO_button_down():
 	Global.Leni = false
@@ -29,3 +25,7 @@ func _on_KIKO_button_down():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
 		get_tree().change_scene("res://src/Scenes/World.tscn")
+
+func _on_LENI_button_down():
+	Global.Leni = true
+	animation.play("FadeOut")
