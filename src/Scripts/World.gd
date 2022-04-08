@@ -10,20 +10,18 @@ onready var friendName = $Camera2D/friendName
 onready var progressBar = $Camera2D/toFriendScore
 
 #Parallax Layers
-onready var DTClouds = $ParallaxBackground/Clouds
-onready var DTFurthest = $ParallaxBackground/Furthest
-onready var DTMiddle = $ParallaxBackground/Middle
-onready var DTBuildings = $ParallaxBackground/BuildingsMountains
-onready var DTDarkest = $ParallaxBackground/DarkestLayers
-onready var DTCars = $ParallaxBackground/Cars
-onready var DTRailings = $ParallaxBackground/RailingsBushes
-onready var DTGround = $ParallaxBackground/Ground
+onready var DTClouds = $DT/Clouds
+onready var DTFar = $DT/FarSprites
+onready var DTMid = $DT/MidSprites
+onready var DTNear = $DT/NearSprites
+onready var DTCars = $DT/Cars
+onready var DTRailings = $DT/Railings
+onready var DTGround = $DT/Ground
 
 export(float) var CLOUD_SPEED = -20
-export(float) var FURTHEST_SPEED = -20
-export(float) var MIDDLE_SPEED = -20
-export(float) var BUILDINGS_SPEED = -20
-export(float) var DARKEST_SPEED = -20
+export(float) var FAR_SPEED = -20
+export(float) var MID_SPEED = -20
+export(float) var NEAR_SPEED = -20
 export(float) var CARS_SPEED = -20
 export(float) var RAILINGS_SPEED = -20
 export(float) var GROUND_SPEED = -20
@@ -61,10 +59,9 @@ func _ready():
 
 func _process(delta):
 	DTClouds.motion_offset.x += CLOUD_SPEED * delta
-	DTFurthest.motion_offset.x += FURTHEST_SPEED * delta
-	DTMiddle.motion_offset.x += MIDDLE_SPEED * delta
-	DTBuildings.motion_offset.x += BUILDINGS_SPEED * delta
-	DTDarkest.motion_offset.x += DARKEST_SPEED * delta
+	DTFar.motion_offset.x += FAR_SPEED * delta
+	DTMid.motion_offset.x += MID_SPEED * delta
+	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	DTRailings.motion_offset.x += RAILINGS_SPEED * delta
 	DTGround.motion_offset.x += GROUND_SPEED * delta

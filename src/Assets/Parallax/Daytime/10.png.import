@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MenuBox.png-e965c88b776fa8c37bb3d707e76d6c7a.stex"
+path="res://.import/10.png-7c049f46e4a877cb69e1315123a8f7f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/MenuBox.png"
-dest_files=[ "res://.import/MenuBox.png-e965c88b776fa8c37bb3d707e76d6c7a.stex" ]
+source_file="res://src/Assets/Parallax/Daytime/10.png"
+dest_files=[ "res://.import/10.png-7c049f46e4a877cb69e1315123a8f7f4.stex" ]
 
 [params]
 

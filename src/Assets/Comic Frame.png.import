@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/9.png-b2514bb9e7d1cec9c9093c2cd37482d8.stex"
+path="res://.import/Comic Frame.png-71e3a2916994a3e2cf2aabc0c8261b50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Parallax/Daytime/9.png"
-dest_files=[ "res://.import/9.png-b2514bb9e7d1cec9c9093c2cd37482d8.stex" ]
+source_file="res://src/Assets/Comic Frame.png"
+dest_files=[ "res://.import/Comic Frame.png-71e3a2916994a3e2cf2aabc0c8261b50.stex" ]
 
 [params]
 

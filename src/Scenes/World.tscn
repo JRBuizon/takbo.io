@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/Assets/Parallax/Daytime/9.png" type="Texture" id=14]
 [ext_resource path="res://src/Assets/Parallax/Daytime/6.png" type="Texture" id=15]
 [ext_resource path="res://src/Assets/Parallax/Daytime/3.png" type="Texture" id=16]
+[ext_resource path="res://src/Assets/Parallax/Daytime/10.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 200 )
@@ -153,88 +154,69 @@ tracks/3/keys = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-CLOUD_SPEED = -50.0
-FURTHEST_SPEED = -53.0
-MIDDLE_SPEED = -55.0
-BUILDINGS_SPEED = -60.0
-DARKEST_SPEED = -60.0
-CARS_SPEED = -80.0
-RAILINGS_SPEED = -80.0
-GROUND_SPEED = -80.0
+CLOUD_SPEED = -5.0
+FAR_SPEED = -15.0
+NEAR_SPEED = -30.0
+CARS_SPEED = -45.0
+RAILINGS_SPEED = -50.0
+GROUND_SPEED = -50.0
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2( 0, 540 )
-scale = Vector2( 0.27, 0.27 )
-transform = Transform2D( 0.27, 0, 0, 0.27, 0, 540 )
+[node name="DT" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, 670 )
+scale = Vector2( 0.4, 0.4 )
+transform = Transform2D( 0.4, 0, 0, 0.4, 0, 670 )
 
-[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0, 1 )
+[node name="Background" type="ParallaxLayer" parent="DT"]
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Background"]
-texture = ExtResource( 14 )
+[node name="Sprite" type="Sprite" parent="DT/Background"]
+texture = ExtResource( 17 )
 
-[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="Clouds" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Clouds"]
+[node name="Sprite2" type="Sprite" parent="DT/Clouds"]
 texture = ExtResource( 13 )
 
-[node name="Furthest" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.1, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="Sprite" type="Sprite" parent="DT/Clouds"]
+texture = ExtResource( 14 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Furthest"]
+[node name="FarSprites" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
+
+[node name="Sprite" type="Sprite" parent="DT/FarSprites"]
 texture = ExtResource( 12 )
 
-[node name="Middle" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.15, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="MidSprites" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Middle"]
+[node name="Sprite" type="Sprite" parent="DT/MidSprites"]
 texture = ExtResource( 15 )
 
-[node name="BuildingsMountains" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="NearSprites" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/BuildingsMountains"]
+[node name="Sprite" type="Sprite" parent="DT/NearSprites"]
 texture = ExtResource( 11 )
 
-[node name="DarkestLayers" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.25, 1 )
-motion_mirroring = Vector2( 8192, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/DarkestLayers"]
+[node name="Reflections" type="Sprite" parent="DT/NearSprites"]
 texture = ExtResource( 9 )
 
-[node name="Cars" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.68, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="Cars" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Cars"]
+[node name="Sprite" type="Sprite" parent="DT/Cars"]
 texture = ExtResource( 16 )
 
-[node name="RailingsBushes" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2( 0.7, 1 )
-motion_mirroring = Vector2( 8192, 0 )
+[node name="Railings" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/RailingsBushes"]
+[node name="Sprite" type="Sprite" parent="DT/Railings"]
 texture = ExtResource( 10 )
 
-[node name="Ground" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_mirroring = Vector2( 8192, 0 )
+[node name="Ground" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Ground"]
+[node name="Sprite" type="Sprite" parent="DT/Ground"]
 texture = ExtResource( 8 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
