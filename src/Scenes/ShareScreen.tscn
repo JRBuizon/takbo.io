@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://BUTTONS/1.png" type="Texture" id=1]
-[ext_resource path="res://src/Scenes/ShareScreen.gd" type="Script" id=2]
+[ext_resource path="res://src/Scripts/ShareScreen.gd" type="Script" id=2]
 [ext_resource path="res://placeHolderWhite.png" type="Texture" id=3]
 
 [node name="ShareScreen" type="Node2D"]
@@ -36,6 +36,7 @@ __meta__ = {
 [node name="FirstPanel" type="Node2D" parent="."]
 
 [node name="USERNAME" type="TextEdit" parent="FirstPanel"]
+visible = false
 margin_left = 112.0
 margin_top = 264.0
 margin_right = 360.0

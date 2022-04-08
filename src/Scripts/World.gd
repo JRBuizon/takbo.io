@@ -113,7 +113,7 @@ func Plat_spawn():
 func Player_dies():
 	if displayText > Global.highscore:
 		Global.highscore = displayText
-	deathScr.fadeIn()
+	deathScr.displayDeathScr()
 	player.playerDies()
 	gameStart = false
 	gameEnd = true

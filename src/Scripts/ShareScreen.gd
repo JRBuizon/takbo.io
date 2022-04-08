@@ -5,7 +5,9 @@ onready var nameInput = $FirstPanel/USERNAME
 
 onready var link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.highscore)
 
-	
+func _ready():
+	var inputField = JavaScript.create_object("input")
+	inputField.set_attribute("type", "text")
 
 
 func _on_SHARE_button_down():

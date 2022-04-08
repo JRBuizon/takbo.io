@@ -1,10 +1,12 @@
 extends Node2D
 
-onready var animation = $AnimationPlayer
+onready var tween = $Tween
 
-func fadeIn():
-	animation.play("popIn")
-
+func displayDeathScr():
+	tween.interpolate_property(self, "scale",
+		Vector2(0, 0), Vector2(0.5, 0.5), 0.7,
+		10, Tween.EASE_OUT)
+	tween.start()
 
 
 func _on_SHARE_button_down():

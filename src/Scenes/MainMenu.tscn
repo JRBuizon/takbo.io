@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://BUTTONS/4.png" type="Texture" id=2]
 [ext_resource path="res://LOGOS/3.png" type="Texture" id=3]
 [ext_resource path="res://LOGOS/2.png" type="Texture" id=4]
 [ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
+[ext_resource path="res://src/Assets/Leni Frame.png" type="Texture" id=6]
+[ext_resource path="res://src/Assets/Kiko Frame.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -197,7 +199,16 @@ position = Vector2( 248, 190.4 )
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
 
+[node name="KikoFrame" type="Sprite" parent="."]
+position = Vector2( 8, 304 )
+texture = ExtResource( 7 )
+
+[node name="LeniFrame" type="Sprite" parent="."]
+position = Vector2( 120, 488 )
+texture = ExtResource( 6 )
+
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
+visible = false
 position = Vector2( 240, 360 )
 scale = Vector2( 33, 47 )
 texture = ExtResource( 5 )
