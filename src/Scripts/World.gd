@@ -9,6 +9,26 @@ onready var friendScore = $Camera2D/friendScore
 onready var friendName = $Camera2D/friendName
 onready var progressBar = $Camera2D/toFriendScore
 
+#Parallax Layers
+onready var DTClouds = $ParallaxBackground/Clouds
+onready var DTFurthest = $ParallaxBackground/Furthest
+onready var DTMiddle = $ParallaxBackground/Middle
+onready var DTBuildings = $ParallaxBackground/BuildingsMountains
+onready var DTDarkest = $ParallaxBackground/DarkestLayers
+onready var DTCars = $ParallaxBackground/Cars
+onready var DTRailings = $ParallaxBackground/RailingsBushes
+onready var DTGround = $ParallaxBackground/Ground
+
+export(float) var CLOUD_SPEED = -20
+export(float) var FURTHEST_SPEED = -20
+export(float) var MIDDLE_SPEED = -20
+export(float) var BUILDINGS_SPEED = -20
+export(float) var DARKEST_SPEED = -20
+export(float) var CARS_SPEED = -20
+export(float) var RAILINGS_SPEED = -20
+export(float) var GROUND_SPEED = -20
+
+
 var scoreText = 0
 var displayText = 0
 var startedGame = false
@@ -39,6 +59,16 @@ func _ready():
 	
 	animation.play("FadeIn")
 
+func _process(delta):
+	DTClouds.motion_offset.x += CLOUD_SPEED * delta
+	DTFurthest.motion_offset.x += FURTHEST_SPEED * delta
+	DTMiddle.motion_offset.x += MIDDLE_SPEED * delta
+	DTBuildings.motion_offset.x += BUILDINGS_SPEED * delta
+	DTDarkest.motion_offset.x += DARKEST_SPEED * delta
+	DTCars.motion_offset.x += CARS_SPEED * delta
+	DTRailings.motion_offset.x += RAILINGS_SPEED * delta
+	DTGround.motion_offset.x += GROUND_SPEED * delta
+	
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("tap") and not gameStart:
