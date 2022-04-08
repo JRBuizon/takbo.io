@@ -153,13 +153,14 @@ tracks/3/keys = {
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
-FURTHEST_SPEED = -23.0
-MIDDLE_SPEED = -25.0
-BUILDINGS_SPEED = -30.0
-DARKEST_SPEED = -30.0
-CARS_SPEED = -50.0
-RAILINGS_SPEED = -50.0
-GROUND_SPEED = -50.0
+CLOUD_SPEED = -50.0
+FURTHEST_SPEED = -53.0
+MIDDLE_SPEED = -55.0
+BUILDINGS_SPEED = -60.0
+DARKEST_SPEED = -60.0
+CARS_SPEED = -80.0
+RAILINGS_SPEED = -80.0
+GROUND_SPEED = -80.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2( 0, 540 )
