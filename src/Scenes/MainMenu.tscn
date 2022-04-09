@@ -284,8 +284,6 @@ anims/FadeIn = SubResource( 1 )
 anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
-[node name="Tween" type="Tween" parent="."]
-
 [connection signal="toggled" from="SFX" to="." method="_on_SFX_toggled"]
 [connection signal="button_down" from="STAR" to="." method="_on_STAR_button_down"]
 [connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]

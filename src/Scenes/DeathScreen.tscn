@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Scripts/DeathScreen.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/Assets/Share.png" type="Texture" id=5]
 [ext_resource path="res://src/Assets/Retry.png" type="Texture" id=6]
 [ext_resource path="res://src/Assets/Menu.png" type="Texture" id=7]
+[ext_resource path="res://src/Assets/Hashtag.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -133,6 +134,10 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Hashtag" type="Sprite" parent="."]
+position = Vector2( 0, 248 )
+texture = ExtResource( 8 )
 
 [connection signal="button_down" from="SHARE" to="." method="_on_SHARE_button_down"]
 [connection signal="button_down" from="RETRY" to="." method="_on_RETRY_button_down"]

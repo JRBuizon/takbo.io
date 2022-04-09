@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -25,6 +25,15 @@
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBold.tres" type="DynamicFont" id=23]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesItal.tres" type="DynamicFont" id=24]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=25]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/10.png" type="Texture" id=26]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/1.png" type="Texture" id=27]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/3.png" type="Texture" id=28]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/6.png" type="Texture" id=29]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/2.png" type="Texture" id=30]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/9.png" type="Texture" id=31]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/5.png" type="Texture" id=32]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/7.png" type="Texture" id=33]
+[ext_resource path="res://src/Assets/Parallax/Nighttime/4.png" type="Texture" id=34]
 
 [sub_resource type="DynamicFont" id=5]
 size = 40
@@ -179,56 +188,92 @@ transform = Transform2D( 1, 0, 0, 1, 0, 360 )
 
 [node name="Background" type="ParallaxLayer" parent="DT"]
 
-[node name="Sprite" type="Sprite" parent="DT/Background"]
+[node name="DTBackground" type="Sprite" parent="DT/Background"]
 texture = ExtResource( 17 )
+
+[node name="NTBackground" type="Sprite" parent="DT/Background"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 26 )
 
 [node name="Clouds" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite2" type="Sprite" parent="DT/Clouds"]
+[node name="Sun" type="Sprite" parent="DT/Clouds"]
 texture = ExtResource( 13 )
 
-[node name="Sprite" type="Sprite" parent="DT/Clouds"]
+[node name="DTClouds" type="Sprite" parent="DT/Clouds"]
 texture = ExtResource( 14 )
+
+[node name="NTClouds" type="Sprite" parent="DT/Clouds"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 31 )
 
 [node name="FarSprites" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/FarSprites"]
+[node name="DTFar" type="Sprite" parent="DT/FarSprites"]
 texture = ExtResource( 12 )
+
+[node name="NTFar" type="Sprite" parent="DT/FarSprites"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 33 )
 
 [node name="MidSprites" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/MidSprites"]
+[node name="DTMid" type="Sprite" parent="DT/MidSprites"]
 texture = ExtResource( 15 )
+
+[node name="NTMid" type="Sprite" parent="DT/MidSprites"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 29 )
 
 [node name="NearSprites" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/NearSprites"]
+[node name="DTNear" type="Sprite" parent="DT/NearSprites"]
 texture = ExtResource( 11 )
 
-[node name="Reflections" type="Sprite" parent="DT/NearSprites"]
+[node name="DTRef" type="Sprite" parent="DT/NearSprites"]
 texture = ExtResource( 9 )
+
+[node name="NTNear" type="Sprite" parent="DT/NearSprites"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 32 )
+
+[node name="NTRef" type="Sprite" parent="DT/NearSprites"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 34 )
 
 [node name="Cars" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/Cars"]
+[node name="DTCars" type="Sprite" parent="DT/Cars"]
 texture = ExtResource( 16 )
+
+[node name="NTCars" type="Sprite" parent="DT/Cars"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 28 )
 
 [node name="Railings" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/Railings"]
+[node name="DTRailings" type="Sprite" parent="DT/Railings"]
 texture = ExtResource( 10 )
+
+[node name="NTRailings" type="Sprite" parent="DT/Railings"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 30 )
 
 [node name="Ground" type="ParallaxLayer" parent="DT"]
 motion_mirroring = Vector2( 5461, 0 )
 
-[node name="Sprite" type="Sprite" parent="DT/Ground"]
+[node name="DTGround" type="Sprite" parent="DT/Ground"]
 texture = ExtResource( 8 )
+
+[node name="NTGround" type="Sprite" parent="DT/Ground"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 27 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
 position = Vector2( -56, 512 )
@@ -399,6 +444,8 @@ autoplay = "FadeIn"
 anims/FadeIn = SubResource( 2 )
 anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="button_pressed" from="DeathScreen" to="." method="_on_DeathScreen_button_pressed"]
 [connection signal="button_down" from="ConfirmExitScreen/CONFIRM_EXIT" to="." method="_on_CONFIRM_EXIT_button_down"]

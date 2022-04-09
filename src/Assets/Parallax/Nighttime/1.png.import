@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tempSplashPage.png-6d4701fca9e80a01f486d7b35e59d9eb.stex"
+path="res://.import/1.png-c84655ab431b2b1c562b9b2f0e02c926.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tempSplashPage.png"
-dest_files=[ "res://.import/tempSplashPage.png-6d4701fca9e80a01f486d7b35e59d9eb.stex" ]
+source_file="res://src/Assets/Parallax/Nighttime/1.png"
+dest_files=[ "res://.import/1.png-c84655ab431b2b1c562b9b2f0e02c926.stex" ]
 
 [params]
 

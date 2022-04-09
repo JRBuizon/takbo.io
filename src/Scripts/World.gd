@@ -37,6 +37,7 @@ var displayText = 0
 var startedGame = false
 var scenePath = ""
 var amplitude = 1
+var nightTime = 50
 
 #var Plat = preload("res://src/Platform.tscn")
 var pastYlevel = 512
@@ -87,7 +88,19 @@ func _physics_process(delta):
 
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
-
+	
+	if displayText == nightTime:
+		$Tween.interpolate_property($DT/Background/NTBackground, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/Clouds/NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/FarSprites/NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/MidSprites/NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/NearSprites/NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/NearSprites/NTRef, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/Cars/NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/Railings/NTRailings, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($DT/Ground/NTGround, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		$Tween.start()
+		
 func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
 	ylevel = pastYlevel-((randi() % totalVariations - absoluteVariationsD) * snapHeight)
