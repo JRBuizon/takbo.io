@@ -5,6 +5,7 @@ onready var player = $Player
 onready var deathScr = $DeathScreen
 onready var animation = $AnimationPlayer
 onready var confirmScr = $ConfirmExitScreen
+onready var tween = $Tween
 
 onready var sfxM = $SfXmuted
 onready var sfxU = $SfXunmuted
@@ -14,6 +15,7 @@ onready var friendName = $friendName
 onready var progressBar = $toFriendScore
 onready var tap = $Tap
 
+onready var parallax = $DT
 #Parallax Layers
 onready var DTClouds = $DT/Clouds
 onready var DTFar = $DT/FarSprites
@@ -22,6 +24,16 @@ onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
 onready var DTRailings = $DT/Railings
 onready var DTGround = $DT/Ground
+
+onready var NTBG = $DT/Background/NTBackground
+onready var NTClouds = $DT/Clouds/NTClouds
+onready var NTFar = $DT/FarSprites/NTFar
+onready var NTMid = $DT/MidSprites/NTMid
+onready var NTNear = $DT/NearSprites/NTNear
+onready var NTRef = $DT/NearSprites/NTRef
+onready var NTCars = $DT/Cars/NTCars
+onready var NTRailings = $DT/Railings/NTRailings
+onready var NTGround = $DT/Ground/NTGround
 
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
@@ -61,6 +73,8 @@ func _ready():
 	
 	else:
 		progressBar.visible = false
+		
+	parallax.transform.origin = Vector2(randomizeParallax(), 360)
 	
 	animation.play("FadeIn")
 
@@ -90,16 +104,16 @@ func _physics_process(delta):
 	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
 	
 	if displayText == nightTime:
-		$Tween.interpolate_property($DT/Background/NTBackground, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/Clouds/NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/FarSprites/NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/MidSprites/NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/NearSprites/NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/NearSprites/NTRef, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/Cars/NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/Railings/NTRailings, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.interpolate_property($DT/Ground/NTGround, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		$Tween.start()
+		tween.interpolate_property(NTBG, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTRef, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTRailings, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.interpolate_property(NTGround, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+		tween.start()
 		
 func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
@@ -132,6 +146,11 @@ func player_dies():
 	gameStart = false
 	gameEnd = true
 
+func randomizeParallax():
+	var randomX = -(randi()%5461 + 1)
+	print(randomX)
+	return randomX
+	
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
 		area.get_parent().position = Vector2(616, rand_ylevel())

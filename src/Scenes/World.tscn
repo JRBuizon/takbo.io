@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -34,10 +34,19 @@
 [ext_resource path="res://src/Assets/Parallax/Nighttime/5.png" type="Texture" id=32]
 [ext_resource path="res://src/Assets/Parallax/Nighttime/7.png" type="Texture" id=33]
 [ext_resource path="res://src/Assets/Parallax/Nighttime/4.png" type="Texture" id=34]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBB_ital.otf" type="DynamicFontData" id=35]
 
 [sub_resource type="DynamicFont" id=5]
 size = 40
 font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 35 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 35 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 200 )
@@ -177,16 +186,17 @@ tracks/3/keys = {
 script = ExtResource( 3 )
 CLOUD_SPEED = -5.0
 FAR_SPEED = -15.0
-NEAR_SPEED = -30.0
-CARS_SPEED = -50.0
-RAILINGS_SPEED = -50.0
-GROUND_SPEED = -50.0
+NEAR_SPEED = -25.0
+CARS_SPEED = -40.0
+RAILINGS_SPEED = -40.0
+GROUND_SPEED = -40.0
 
 [node name="DT" type="ParallaxBackground" parent="."]
 offset = Vector2( 0, 360 )
 transform = Transform2D( 1, 0, 0, 1, 0, 360 )
 
 [node name="Background" type="ParallaxLayer" parent="DT"]
+motion_mirroring = Vector2( 5461, 0 )
 
 [node name="DTBackground" type="Sprite" parent="DT/Background"]
 texture = ExtResource( 17 )
@@ -347,9 +357,10 @@ margin_left = 90.0
 margin_top = 80.0
 margin_right = 272.0
 margin_bottom = 120.0
-custom_fonts/italics_font = ExtResource( 24 )
-custom_fonts/bold_font = ExtResource( 23 )
-custom_fonts/normal_font = ExtResource( 22 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_fonts/italics_font = SubResource( 6 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -363,9 +374,7 @@ margin_bottom = 120.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_fonts/italics_font = ExtResource( 24 )
-custom_fonts/bold_font = ExtResource( 23 )
-custom_fonts/normal_font = ExtResource( 22 )
+custom_fonts/italics_font = SubResource( 7 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -379,6 +388,7 @@ margin_right = 399.0
 margin_bottom = 69.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
+texture_progress_offset = Vector2( 0, 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -435,6 +445,7 @@ position = Vector2( -48, 24 )
 shape = SubResource( 1 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
+visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
