@@ -22,9 +22,8 @@ size = 20
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 20
-outline_size = 1
-outline_color = Color( 0.105882, 0.0941176, 0.0705882, 1 )
+size = 25
+outline_size = 3
 font_data = ExtResource( 3 )
 
 [node name="ShareScreen" type="Node2D"]
@@ -118,7 +117,7 @@ margin_left = 80.0
 margin_top = 304.0
 margin_right = 393.0
 margin_bottom = 324.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.105882, 0.0941176, 0.0705882, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "COPIED TO CLIPBOARD!"
 align = 1

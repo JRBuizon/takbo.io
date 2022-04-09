@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://src/Assets/Parallax/Nighttime/7.png" type="Texture" id=33]
 [ext_resource path="res://src/Assets/Parallax/Nighttime/4.png" type="Texture" id=34]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_ital.otf" type="DynamicFontData" id=35]
+[ext_resource path="res://src/Assets/confirmExitScreen.png" type="Texture" id=36]
 
 [sub_resource type="DynamicFont" id=5]
 size = 40
@@ -50,6 +51,14 @@ font_data = ExtResource( 35 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 200 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 35
+font_data = ExtResource( 25 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
@@ -244,15 +253,30 @@ motion_mirroring = Vector2( 5461, 0 )
 [node name="DTNear" type="Sprite" parent="DT/NearSprites"]
 texture = ExtResource( 11 )
 
-[node name="DTRef" type="Sprite" parent="DT/NearSprites"]
+[node name="DTRef" type="Sprite" parent="DT/NearSprites/DTNear"]
+texture = ExtResource( 9 )
+
+[node name="DTNear2" type="Sprite" parent="DT/NearSprites"]
+modulate = Color( 1, 1, 1, 0.498039 )
+position = Vector2( 0, 68 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 11 )
+
+[node name="DTRef" type="Sprite" parent="DT/NearSprites/DTNear2"]
 texture = ExtResource( 9 )
 
 [node name="NTNear" type="Sprite" parent="DT/NearSprites"]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 32 )
 
-[node name="NTRef" type="Sprite" parent="DT/NearSprites"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="NTRef" type="Sprite" parent="DT/NearSprites/NTNear"]
+texture = ExtResource( 34 )
+
+[node name="NTNear2" type="Sprite" parent="DT/NearSprites/NTNear"]
+modulate = Color( 1, 1, 1, 0.498039 )
+texture = ExtResource( 32 )
+
+[node name="NTRef" type="Sprite" parent="DT/NearSprites/NTNear/NTNear2"]
 texture = ExtResource( 34 )
 
 [node name="Cars" type="ParallaxLayer" parent="DT"]
@@ -261,28 +285,20 @@ motion_mirroring = Vector2( 5461, 0 )
 [node name="DTCars" type="Sprite" parent="DT/Cars"]
 texture = ExtResource( 16 )
 
+[node name="DTRailings" type="Sprite" parent="DT/Cars/DTCars"]
+texture = ExtResource( 10 )
+
+[node name="DTGround" type="Sprite" parent="DT/Cars/DTCars"]
+texture = ExtResource( 8 )
+
 [node name="NTCars" type="Sprite" parent="DT/Cars"]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 28 )
 
-[node name="Railings" type="ParallaxLayer" parent="DT"]
-motion_mirroring = Vector2( 5461, 0 )
-
-[node name="DTRailings" type="Sprite" parent="DT/Railings"]
-texture = ExtResource( 10 )
-
-[node name="NTRailings" type="Sprite" parent="DT/Railings"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="NTRailings" type="Sprite" parent="DT/Cars/NTCars"]
 texture = ExtResource( 30 )
 
-[node name="Ground" type="ParallaxLayer" parent="DT"]
-motion_mirroring = Vector2( 5461, 0 )
-
-[node name="DTGround" type="Sprite" parent="DT/Ground"]
-texture = ExtResource( 8 )
-
-[node name="NTGround" type="Sprite" parent="DT/Ground"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="NTGround" type="Sprite" parent="DT/Cars/NTCars"]
 texture = ExtResource( 27 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
@@ -388,7 +404,7 @@ margin_right = 399.0
 margin_bottom = 69.0
 texture_under = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
-texture_progress_offset = Vector2( 0, 5 )
+texture_progress_offset = Vector2( -1, 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -443,6 +459,39 @@ position = Vector2( -152, 440 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -48, 24 )
 shape = SubResource( 1 )
+
+[node name="FriendBeat" type="Sprite" parent="."]
+position = Vector2( 242.152, -150 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 36 )
+
+[node name="Label" type="Label" parent="FriendBeat"]
+margin_left = -192.784
+margin_top = 60.0
+margin_right = 193.216
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "you beat"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="FriendBeat"]
+margin_left = -192.784
+margin_top = 100.0
+margin_right = 193.216
+margin_bottom = 131.0
+custom_colors/font_color = Color( 0.992157, 0.00784314, 0.564706, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "donny"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
 position = Vector2( 245, 360 )

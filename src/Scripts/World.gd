@@ -22,18 +22,13 @@ onready var DTFar = $DT/FarSprites
 onready var DTMid = $DT/MidSprites
 onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
-onready var DTRailings = $DT/Railings
-onready var DTGround = $DT/Ground
 
 onready var NTBG = $DT/Background/NTBackground
 onready var NTClouds = $DT/Clouds/NTClouds
 onready var NTFar = $DT/FarSprites/NTFar
 onready var NTMid = $DT/MidSprites/NTMid
 onready var NTNear = $DT/NearSprites/NTNear
-onready var NTRef = $DT/NearSprites/NTRef
 onready var NTCars = $DT/Cars/NTCars
-onready var NTRailings = $DT/Railings/NTRailings
-onready var NTGround = $DT/Ground/NTGround
 
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
@@ -49,9 +44,8 @@ var displayText = 0
 var startedGame = false
 var scenePath = ""
 var amplitude = 1
-var nightTime = 50
+var nightTime = 300
 
-#var Plat = preload("res://src/Platform.tscn")
 var pastYlevel = 512
 var ylevel = 0
 
@@ -75,7 +69,8 @@ func _ready():
 		progressBar.visible = false
 		
 	parallax.transform.origin = Vector2(randomizeParallax(), 360)
-	
+	if Global.friendName:
+		$FriendBeat/Label2.text = Global.friendName
 	animation.play("FadeIn")
 
 func _process(delta):
@@ -84,8 +79,11 @@ func _process(delta):
 	DTMid.motion_offset.x += MID_SPEED * delta
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
-	DTRailings.motion_offset.x += RAILINGS_SPEED * delta
-	DTGround.motion_offset.x += GROUND_SPEED * delta
+	
+	if Global.friendName:
+		if displayText == int(Global.friendScore):
+			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
+			tween.start()
 	
 	#var time = delta * 3
 	#tap.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
@@ -109,10 +107,7 @@ func _physics_process(delta):
 		tween.interpolate_property(NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 		tween.interpolate_property(NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 		tween.interpolate_property(NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTRef, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 		tween.interpolate_property(NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTRailings, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTGround, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 		tween.start()
 		
 func rand_ylevel():

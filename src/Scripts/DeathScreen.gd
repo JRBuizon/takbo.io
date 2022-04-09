@@ -10,6 +10,13 @@ func displayScreen():
 		Vector2(0, 0), Vector2(1, 1), 0.7,
 		10, Tween.EASE_OUT)
 	tween.start()
+	if Global.friendName:
+		if Global.score > int(Global.friendScore):
+			$CHALLENGE.text = "You beat " + Global.friendName + " by " + str(Global.score - int(Global.friendScore)) + " meters!"
+		elif Global.score < int(Global.friendScore):
+			$CHALLENGE.text = str(int(Global.friendScore) - Global.score) + " more meters until you beat " + Global.friendName + "!"
+	else:
+		$CHALLENGE.text = ""
 	
 func hideScreen():
 	tween.interpolate_property(self, "scale",

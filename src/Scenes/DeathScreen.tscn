@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Scripts/DeathScreen.gd" type="Script" id=2]
@@ -22,6 +22,10 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 22
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 15
 font_data = ExtResource( 3 )
 
 [node name="DeathScreen" type="Node2D"]
@@ -84,9 +88,9 @@ __meta__ = {
 
 [node name="SCORE" type="RichTextLabel" parent="."]
 margin_left = -192.0
-margin_top = -133.0
+margin_top = -153.0
 margin_right = 192.0
-margin_bottom = -77.0
+margin_bottom = -97.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -101,9 +105,9 @@ __meta__ = {
 
 [node name="YOU DIED" type="RichTextLabel" parent="."]
 margin_left = -152.0
-margin_top = -168.0
+margin_top = -188.0
 margin_right = 152.0
-margin_bottom = -142.0
+margin_bottom = -162.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -118,9 +122,9 @@ __meta__ = {
 
 [node name="METERS" type="RichTextLabel" parent="."]
 margin_left = -152.0
-margin_top = -74.0
+margin_top = -94.0
 margin_right = 152.0
-margin_bottom = -48.0
+margin_bottom = -68.0
 custom_colors/default_color = Color( 0.992157, 0.00784314, 0.564706, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
@@ -138,6 +142,20 @@ __meta__ = {
 [node name="Hashtag" type="Sprite" parent="."]
 position = Vector2( 0, 248 )
 texture = ExtResource( 8 )
+
+[node name="CHALLENGE" type="Label" parent="."]
+margin_left = -184.0
+margin_top = -64.0
+margin_right = 184.0
+margin_bottom = -32.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "You beat Donny by x meters"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_down" from="SHARE" to="." method="_on_SHARE_button_down"]
 [connection signal="button_down" from="RETRY" to="." method="_on_RETRY_button_down"]
