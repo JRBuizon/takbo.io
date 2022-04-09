@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4.png-29cb7b00bf478404b396e8d6b2eb7707.stex"
+path="res://.import/Hashtag.png-eae3417345b595ceebaf74488f1df252.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LOGOS/4.png"
-dest_files=[ "res://.import/4.png-29cb7b00bf478404b396e8d6b2eb7707.stex" ]
+source_file="res://src/Assets/Hashtag.png"
+dest_files=[ "res://.import/Hashtag.png-eae3417345b595ceebaf74488f1df252.stex" ]
 
 [params]
 

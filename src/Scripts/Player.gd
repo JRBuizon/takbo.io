@@ -7,7 +7,7 @@ onready var hitBoxCol = $PlayerHitBox/CollisionShape2D
 onready var sprite = $PlayerSprite
 onready var floorCast = $floorRayCast
 
-var jumpHeight = 130.0
+var jumpHeight = 105.0
 var jumpTUp = 0.25
 var jumpTDown = 0.2
 
@@ -56,11 +56,9 @@ func _physics_process(delta):
 		else:
 			#Play Jump animation
 			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
-				motion.y = jumpVelo/2
+					motion.y = jumpVelo/2
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	
-	
-	
+
 

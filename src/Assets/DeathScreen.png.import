@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2.png-fcddf2b7650e2b4cbbd6fdb30d0b01d0.stex"
+path="res://.import/DeathScreen.png-f49286496c903e8e8eb21422afb0f66b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LOGOS/2.png"
-dest_files=[ "res://.import/2.png-fcddf2b7650e2b4cbbd6fdb30d0b01d0.stex" ]
+source_file="res://src/Assets/DeathScreen.png"
+dest_files=[ "res://.import/DeathScreen.png-f49286496c903e8e8eb21422afb0f66b.stex" ]
 
 [params]
 

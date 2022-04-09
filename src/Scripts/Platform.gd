@@ -2,13 +2,12 @@ extends StaticBody2D
 
 var Speed = 0.0
 var gameStart = false
-var baseSpeed = -5.0
-
+var baseSpeed = -4.0
 
 func _physics_process(delta):
 	position += Vector2(Speed, 0.0)
 	
-	if Input.is_action_just_pressed("tap") and not gameStart:
+	if not gameStart and Input.is_action_just_pressed("tap"):
 		Speed = baseSpeed
 		gameStart = true
 

@@ -5,6 +5,7 @@ var Leni = true
 const filePath = "user://highscore.data"
 onready var friendName = getQueryParams("name")
 var friendScore = getQueryParams("score")
+var score = 0
 
 func _ready():
 	loadHighscore()

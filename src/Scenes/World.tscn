@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -19,6 +19,16 @@
 [ext_resource path="res://src/Assets/Parallax/Daytime/10.png" type="Texture" id=17]
 [ext_resource path="res://src/Assets/Exit.png" type="Texture" id=18]
 [ext_resource path="res://src/Assets/progressBarFill.png" type="Texture" id=19]
+[ext_resource path="res://src/Assets/SFXmuted.png" type="Texture" id=20]
+[ext_resource path="res://src/Scenes/ConfirmExitScreen.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesReg.tres" type="DynamicFont" id=22]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBold.tres" type="DynamicFont" id=23]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesItal.tres" type="DynamicFont" id=24]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=25]
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 25 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 200 )
@@ -159,7 +169,7 @@ script = ExtResource( 3 )
 CLOUD_SPEED = -5.0
 FAR_SPEED = -15.0
 NEAR_SPEED = -30.0
-CARS_SPEED = -45.0
+CARS_SPEED = -50.0
 RAILINGS_SPEED = -50.0
 GROUND_SPEED = -50.0
 
@@ -221,39 +231,68 @@ motion_mirroring = Vector2( 5461, 0 )
 texture = ExtResource( 8 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( -56, 512 )
 
 [node name="Platform2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 60, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 40, 512 )
 
 [node name="Platform3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 180, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 136, 512 )
 
 [node name="Platform4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 300, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 232, 512 )
 
 [node name="Platform5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 420, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 328, 512 )
 
 [node name="Platform6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 540, 420 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 424, 512 )
+
+[node name="Platform7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 520, 512 )
+
+[node name="Platform8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 616, 512 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 130, 500 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 120, 536 )
 
 [node name="Score" type="RichTextLabel" parent="."]
-margin_left = 150.0
+margin_left = 56.0
 margin_top = 160.0
-margin_right = 340.0
-margin_bottom = 200.0
+margin_right = 424.0
+margin_bottom = 248.0
+rect_pivot_offset = Vector2( 184, 0 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_fonts/italics_font = ExtResource( 24 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = ExtResource( 22 )
 bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tap" type="RichTextLabel" parent="."]
+visible = false
+anchor_bottom = 2.456
+margin_left = 80.0
+margin_top = 448.0
+margin_right = 200.0
+margin_bottom = 488.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 60, 0 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_fonts/italics_font = ExtResource( 24 )
+custom_fonts/bold_font = ExtResource( 23 )
+custom_fonts/normal_font = ExtResource( 22 )
+bbcode_enabled = true
+bbcode_text = "[b][center]TAP!"
+text = "TAP!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -261,18 +300,27 @@ __meta__ = {
 [node name="friendName" type="RichTextLabel" parent="."]
 margin_left = 90.0
 margin_top = 80.0
-margin_right = 240.0
-margin_bottom = 110.0
+margin_right = 272.0
+margin_bottom = 120.0
+custom_fonts/italics_font = ExtResource( 24 )
+custom_fonts/bold_font = ExtResource( 23 )
+custom_fonts/normal_font = ExtResource( 22 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="friendScore" type="RichTextLabel" parent="."]
-margin_left = 290.0
+margin_left = 264.0
 margin_top = 80.0
 margin_right = 400.0
-margin_bottom = 110.0
+margin_bottom = 120.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_fonts/italics_font = ExtResource( 24 )
+custom_fonts/bold_font = ExtResource( 23 )
+custom_fonts/normal_font = ExtResource( 22 )
 bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -291,27 +339,57 @@ __meta__ = {
 }
 
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
-position = Vector2( 240, 310 )
+position = Vector2( 240, 360 )
+
+[node name="ConfirmExitScreen" parent="." instance=ExtResource( 21 )]
+pause_mode = 2
+position = Vector2( 240, 312 )
+
+[node name="SfXmuted" type="Sprite" parent="."]
+visible = false
+position = Vector2( 439.534, 51.24 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 20 )
 
 [node name="SfXunmuted" type="Sprite" parent="."]
 position = Vector2( 413, 24 )
 texture = ExtResource( 7 )
 centered = false
 
+[node name="SFX" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 410.0
+margin_top = 20.0
+margin_right = 470.0
+margin_bottom = 80.0
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Exit" type="Sprite" parent="."]
 position = Vector2( 18, 24 )
 texture = ExtResource( 18 )
 centered = false
 
+[node name="EXIT" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 80.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( -160, 420 )
+position = Vector2( -152, 440 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 24, 46 )
+position = Vector2( -48, 24 )
 shape = SubResource( 1 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
-visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
@@ -323,5 +401,12 @@ anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
 [connection signal="button_pressed" from="DeathScreen" to="." method="_on_DeathScreen_button_pressed"]
+[connection signal="button_down" from="ConfirmExitScreen/CONFIRM_EXIT" to="." method="_on_CONFIRM_EXIT_button_down"]
+[connection signal="button_down" from="ConfirmExitScreen/CANCEL" to="." method="_on_CANCEL_button_down"]
+[connection signal="toggled" from="SFX" to="." method="_on_SFX_toggled"]
+[connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="DeathScreen"]
+[editable path="ConfirmExitScreen"]

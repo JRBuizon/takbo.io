@@ -4,10 +4,10 @@
 [ext_resource path="res://placeHolderWhite.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8.1, 7.8 )
+extents = Vector2( 16.2, 15.6 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 240, 464 )
@@ -17,6 +17,7 @@ __meta__ = {
 }
 
 [node name="PlayerSprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
 [node name="PlayerColl" type="CollisionShape2D" parent="."]
@@ -25,10 +26,10 @@ shape = SubResource( 1 )
 [node name="PlayerHitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
-position = Vector2( 0.1, -0.2 )
+position = Vector2( 0.2, -0.4 )
 shape = SubResource( 2 )
 
 [node name="floorRayCast" type="RayCast2D" parent="."]
-position = Vector2( 0, 8 )
+position = Vector2( 0, 16 )
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 5 )

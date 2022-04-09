@@ -4,10 +4,15 @@ onready var score = $Score
 onready var player = $Player
 onready var deathScr = $DeathScreen
 onready var animation = $AnimationPlayer
+onready var confirmScr = $ConfirmExitScreen
+
+onready var sfxM = $SfXmuted
+onready var sfxU = $SfXunmuted
 
 onready var friendScore = $friendScore
 onready var friendName = $friendName
 onready var progressBar = $toFriendScore
+onready var tap = $Tap
 
 #Parallax Layers
 onready var DTClouds = $DT/Clouds
@@ -31,25 +36,26 @@ var scoreText = 0
 var displayText = 0
 var startedGame = false
 var scenePath = ""
+var amplitude = 1
 
 #var Plat = preload("res://src/Platform.tscn")
-var pastYlevel = 420
+var pastYlevel = 512
 var ylevel = 0
 
-const totalVariations = 6
-const absoluteVariationsD = 3
+const totalVariations = 5
+const absoluteVariationsD = 2
 const absoluteVariationsU = 2
-const snapHeight = 40
-const highestPossible = 260
-const lowestPossible = 540
+const snapHeight = 32
+const highestPossible = 384
+const lowestPossible = 608
 
 var gameStart = false
 var gameEnd = false
 
 func _ready():
 	if Global.friendName:
-		friendName.set_bbcode("Beat " + Global.friendName + "!")
-		friendScore.set_bbcode("[right]" + Global.friendScore + "m")
+		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
+		friendScore.set_bbcode("[right][i]" + Global.friendScore + "m")
 		progressBar.set_max(int(Global.friendScore))
 	
 	else:
@@ -66,10 +72,13 @@ func _process(delta):
 	DTRailings.motion_offset.x += RAILINGS_SPEED * delta
 	DTGround.motion_offset.x += GROUND_SPEED * delta
 	
+	#var time = delta * 3
+	#tap.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
+	
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("tap") and not gameStart:
-		gameStart = true
+	if not gameStart and Input.is_action_just_pressed("tap"):
+			gameStart = true
 	
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
@@ -77,7 +86,7 @@ func _physics_process(delta):
 			progressBar.set_value(scoreText)
 
 	displayText = floor(scoreText)
-	score.set_bbcode("[center][b]" + str(displayText) + "m[/b][/center]")
+	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
 
 func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
@@ -85,7 +94,6 @@ func rand_ylevel():
 	
 	if pastYlevel == ylevel: #If current Y Level is the same as the last Y Level
 		var choice = randi() % 2 #Randomly pick 1 or 0
-		print("repeating")
 		if choice > 0: #If 0 go up and shuffle
 			ylevel = pastYlevel-((randi() % absoluteVariationsU + 1) * snapHeight)
 	
@@ -105,14 +113,15 @@ func rand_ylevel():
 func player_dies():
 	if displayText > Global.highscore:
 		Global.highscore = displayText
-	deathScr.displayDeathScr()
+	Global.score = displayText
+	deathScr.displayScreen()
 	player.playerDies()
 	gameStart = false
 	gameEnd = true
 
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
-		area.get_parent().position = Vector2(530, rand_ylevel())
+		area.get_parent().position = Vector2(616, rand_ylevel())
 
 func _on_DeathScreen_button_pressed(scene_path):
 	animation.play("FadeOut")
@@ -121,3 +130,31 @@ func _on_DeathScreen_button_pressed(scene_path):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
 		get_tree().change_scene(scenePath)
+
+
+func _on_SFX_toggled(button_pressed):
+	if button_pressed:
+		sfxM.visible = true
+		sfxU.visible = false
+	
+	if not button_pressed:
+		sfxM.visible = false
+		sfxU.visible = true
+
+
+func _on_EXIT_button_down():
+	get_tree().paused = true
+	confirmScr.displayScreen()
+
+
+func _on_CONFIRM_EXIT_button_down():
+	get_tree().paused = false
+	player.playerDies()
+	confirmScr.hideScreen()
+	animation.play("FadeOut")
+	scenePath = "res://src/Scenes/MainMenu.tscn"
+
+
+func _on_CANCEL_button_down():
+	get_tree().paused = false
+	confirmScr.hideScreen()

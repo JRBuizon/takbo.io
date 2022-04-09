@@ -1,12 +1,26 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Comic Frame.png" type="Texture" id=2]
 [ext_resource path="res://src/Assets/Leni Frame.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesReg.tres" type="DynamicFont" id=4]
 [ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/Assets/Kiko Frame.png" type="Texture" id=7]
 [ext_resource path="res://src/Assets/Background.png" type="Texture" id=8]
 [ext_resource path="res://src/Assets/TakboLogo.png" type="Texture" id=9]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesItal.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/Assets/SFXmuted.png" type="Texture" id=11]
+[ext_resource path="res://src/Assets/SFXunmuted.png" type="Texture" id=12]
+[ext_resource path="res://src/Assets/Star.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -151,6 +165,42 @@ __meta__ = {
 position = Vector2( 240, 360 )
 texture = ExtResource( 8 )
 
+[node name="SfXmuted" type="Sprite" parent="."]
+position = Vector2( 434.256, 47.243 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 11 )
+
+[node name="SfXunmuted" type="Sprite" parent="."]
+position = Vector2( 408, 20 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="SFX" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 401.652
+margin_top = 13.802
+margin_right = 465.652
+margin_bottom = 77.802
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star" type="Sprite" parent="."]
+position = Vector2( 18, 20 )
+texture = ExtResource( 13 )
+centered = false
+
+[node name="STAR" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 12.251
+margin_top = 16.0
+margin_right = 76.251
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ComicFrame" type="Sprite" parent="."]
 position = Vector2( 240, 468.472 )
 texture = ExtResource( 2 )
@@ -162,35 +212,45 @@ texture = ExtResource( 9 )
 offset = Vector2( 0.98, 3.682 )
 
 [node name="LeniFrame" type="Sprite" parent="."]
-position = Vector2( 232, 400 )
+position = Vector2( 240, 400 )
 texture = ExtResource( 3 )
 
+[node name="KikoFrame" type="Sprite" parent="."]
+position = Vector2( 240, 592 )
+texture = ExtResource( 7 )
+
 [node name="LENI" type="Button" parent="."]
-modulate = Color( 1, 1, 1, 0.364706 )
-margin_left = -26.0
-margin_top = 312.0
-margin_right = 474.0
-margin_bottom = 692.0
-rect_scale = Vector2( 0.4, 0.4 )
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 128.0
+margin_top = 304.0
+margin_right = 336.0
+margin_bottom = 472.0
 rect_pivot_offset = Vector2( 256, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KIKO" type="Button" parent="."]
-margin_left = 152.0
-margin_top = 488.0
-margin_right = 664.0
-margin_bottom = 994.0
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 136.0
+margin_top = 504.0
+margin_right = 344.0
+margin_bottom = 672.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PickRunner" type="RichTextLabel" parent="."]
-margin_left = 144.0
+margin_left = 96.0
 margin_top = 280.0
-margin_right = 328.0
-margin_bottom = 296.0
+margin_right = 384.0
+margin_bottom = 304.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_fonts/italics_font = ExtResource( 10 )
+custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center][b]PICK YOUR RUNNER"
 text = "PICK YOUR RUNNER"
@@ -199,10 +259,13 @@ __meta__ = {
 }
 
 [node name="Highscore" type="RichTextLabel" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 192.0
-margin_bottom = 24.0
+margin_left = 80.0
+margin_top = 40.0
+margin_right = 384.0
+margin_bottom = 72.0
+custom_fonts/italics_font = ExtResource( 10 )
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[b]HIGHSCORE: "
 text = "HIGHSCORE: "
@@ -210,12 +273,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="KikoFrame" type="Sprite" parent="."]
-position = Vector2( 240, 592 )
-texture = ExtResource( 7 )
-
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
-visible = false
 position = Vector2( 240, 360 )
 scale = Vector2( 33, 47 )
 texture = ExtResource( 5 )
@@ -226,6 +284,10 @@ anims/FadeIn = SubResource( 1 )
 anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="toggled" from="SFX" to="." method="_on_SFX_toggled"]
+[connection signal="button_down" from="STAR" to="." method="_on_STAR_button_down"]
 [connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]
 [connection signal="button_down" from="KIKO" to="." method="_on_KIKO_button_down"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
