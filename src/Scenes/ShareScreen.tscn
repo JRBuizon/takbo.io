@@ -1,64 +1,155 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://BUTTONS/1.png" type="Texture" id=1]
+[ext_resource path="res://src/Assets/Background.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/ShareScreen.gd" type="Script" id=2]
-[ext_resource path="res://placeHolderWhite.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/Assets/Share.png" type="Texture" id=4]
+[ext_resource path="res://src/Assets/Fonts/BackIssuesBB_reg.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://src/Assets/confirmExitScreen.png" type="Texture" id=6]
+[ext_resource path="res://src/Assets/progressBarBG.png" type="Texture" id=7]
+[ext_resource path="res://src/Assets/TakboLogo.png" type="Texture" id=8]
+[ext_resource path="res://src/Assets/Exit.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 1
+outline_color = Color( 0.105882, 0.0941176, 0.0705882, 1 )
+font_data = ExtResource( 3 )
 
 [node name="ShareScreen" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 script = ExtResource( 2 )
 
-[node name="SecondPanel" type="Node2D" parent="."]
-position = Vector2( 500, 0 )
-
-[node name="shareableLink" type="RichTextLabel" parent="SecondPanel"]
-margin_left = 56.0
-margin_top = 352.0
-margin_right = 416.0
-margin_bottom = 392.0
-bbcode_enabled = true
-text = "text
-"
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="COPY" type="Button" parent="SecondPanel"]
-margin_left = 188.0
-margin_top = 384.0
-margin_right = 216.0
-margin_bottom = 406.0
-rect_scale = Vector2( 3, 1 )
-icon = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="FirstPanel" type="Node2D" parent="."]
+position = Vector2( 0, 37 )
 
-[node name="USERNAME" type="TextEdit" parent="FirstPanel"]
-visible = false
-margin_left = 112.0
-margin_top = 264.0
-margin_right = 360.0
-margin_bottom = 304.0
-text = "USERNAME"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
+[node name="ConfirmExitScreen" type="Sprite" parent="FirstPanel"]
+position = Vector2( 240, 380 )
+texture = ExtResource( 6 )
+
+[node name="Share" type="Sprite" parent="FirstPanel"]
+position = Vector2( 240, 468 )
+texture = ExtResource( 4 )
 
 [node name="SHARE" type="Button" parent="FirstPanel"]
-margin_left = 200.0
-margin_top = 320.0
-margin_right = 7124.0
-margin_bottom = 3782.0
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 152.0
+margin_top = 436.0
+margin_right = 17752.0
+margin_bottom = 6836.0
 rect_scale = Vector2( 0.01, 0.01 )
-icon = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="FirstPanel"]
+margin_left = 64.0
+margin_top = 358.0
+margin_right = 416.0
+margin_bottom = 398.0
+rect_pivot_offset = Vector2( 176, 0 )
+custom_colors/selection_color = Color( 0.960784, 0.290196, 1, 0.623529 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+max_length = 10
+placeholder_text = "ENTER A USERNAME!"
+placeholder_alpha = 0.417
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBarBg" type="Sprite" parent="FirstPanel"]
+position = Vector2( 240.25, 377.25 )
+scale = Vector2( 1.16032, 1.41429 )
+texture = ExtResource( 7 )
+
+[node name="Label2" type="Label" parent="FirstPanel"]
+margin_left = 64.0
+margin_top = 243.0
+margin_right = 415.0
+margin_bottom = 297.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="FirstPanel"]
+margin_left = 64.0
+margin_top = 291.0
+margin_right = 422.0
+margin_bottom = 334.0
+custom_colors/font_color = Color( 0.992157, 0.00784314, 0.564706, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "METERS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondPanel" type="Node2D" parent="."]
+position = Vector2( 500, 37 )
+
+[node name="Label" type="Label" parent="SecondPanel"]
+margin_left = 80.0
+margin_top = 304.0
+margin_right = 393.0
+margin_bottom = 324.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "COPIED TO CLIPBOARD!"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="button_down" from="SecondPanel/COPY" to="." method="_on_COPY_button_down"]
+[node name="TakboLogo" type="Sprite" parent="."]
+position = Vector2( 240, 163 )
+texture = ExtResource( 8 )
+
+[node name="Exit" type="Sprite" parent="."]
+position = Vector2( 18, 24 )
+texture = ExtResource( 9 )
+centered = false
+
+[node name="EXIT" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 80.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="button_down" from="FirstPanel/SHARE" to="." method="_on_SHARE_button_down"]
+[connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

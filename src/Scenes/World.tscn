@@ -445,7 +445,6 @@ position = Vector2( -48, 24 )
 shape = SubResource( 1 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
-visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )

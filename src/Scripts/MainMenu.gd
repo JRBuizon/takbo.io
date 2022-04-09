@@ -38,8 +38,9 @@ func _on_LENI_button_down():
 
 
 func _on_STAR_button_down():
+	Global.score = Global.highscore
 	animation.play("FadeOut")
-	scenePath = "res://src/Scripts/ShareScreen.gd"
+	scenePath = "res://src/Scenes/ShareScreen.tscn"
 
 
 
