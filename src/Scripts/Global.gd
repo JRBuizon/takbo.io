@@ -1,10 +1,14 @@
 extends Node2D
 
+const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
 var Leni = true
 const filePath = "user://highscore.data"
-onready var friendName = getQueryParams("name")
-var friendScore = getQueryParams("score")
+
+var config = parseFriendConfig()
+
+onready var friendName = config["name"]
+var friendScore = config["score"]
 var score = 0
 
 func _ready():
@@ -35,4 +39,19 @@ func getQueryParams(parameter):
 		return url.searchParams.get(parameter)
 	return null
 	
-
+func parseFriendConfig():
+	var encrypted_base_64 = getQueryParams("share")
+	# Error handling
+	if encrypted_base_64 == null: 
+		return { "name": null, "score": null}
+		
+	encrypted_base_64 = encrypted_base_64.percent_decode()
+	var data = Encryption.decrypt(encrypted_base_64)
+	var data_object = JSON.parse(data)
+	
+	# What happens if the score is present but no name or vice versa?
+	if data_object.error != OK:
+		return { "name": null, "score": null}
+		
+	return data_object.result
+	

@@ -1,5 +1,6 @@
 extends Node2D
 
+const Encryption = preload("res://src/Utils/encryption.gd")
 onready var tween = $Tween
 onready var nameInput = $FirstPanel/LineEdit
 var amplitude = 3
@@ -17,7 +18,21 @@ func _process(delta):
 	$TakboLogo.position = Vector2(240, amplitude * sin(time) + 163)
 
 func _on_SHARE_button_down():
-	link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.score)
+#	Need to create the new link with AES encryption
+	var body = {
+		"name": nameInput.text,
+		"score": str(Global.score),
+	}
+	
+	var data = JSON.print(body)
+	
+#	Converts the encrypted data to base64
+	var encrypted_base_64 = Encryption.encrypt(data)
+	
+	link = "https://takbo-io-demo.vercel.app/?share=" + encrypted_base_64.percent_encode()
+	print(encrypted_base_64)
+	print(link)
+#	link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.score)
 	tween.interpolate_property($SecondPanel, "position",
 		Vector2(500, 0), Vector2(-500, 0), 2,
 		10, Tween.EASE_OUT_IN)
@@ -31,7 +46,6 @@ func _on_EXIT_button_down():
 	tween.start()
 	$Timer.start()
 	
-
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://src/Scenes/MainMenu.tscn")
