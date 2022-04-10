@@ -41,7 +41,8 @@ var scoreText = 0
 var displayText = 0
 var startedGame = false
 var scenePath = ""
-var amplitude = 1
+var amplitude = 0.2
+var time = 0
 var nightTime = 300
 
 var pastYlevel = 512
@@ -88,12 +89,13 @@ func _process(delta):
 		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 		tween.start()
 			
-	#var time = delta * 3
-	#tap.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
+	time += delta * 2
+	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
 	
 
 func _physics_process(delta):
 	if not gameStart and Input.is_action_just_pressed("tap"):
+			tap.visible = false
 			gameStart = true
 	
 	if gameStart and not gameEnd:

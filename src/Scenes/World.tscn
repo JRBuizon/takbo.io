@@ -22,7 +22,7 @@
 [ext_resource path="res://src/Assets/Buttons/SFXmuted.png" type="Texture" id=20]
 [ext_resource path="res://src/Scenes/ConfirmExitScreen.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesReg.tres" type="DynamicFont" id=22]
-[ext_resource path="res://src/Assets/Fonts/BackIssuesBold.tres" type="DynamicFont" id=23]
+[ext_resource path="res://src/Assets/Tap.png" type="Texture" id=23]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesItal.tres" type="DynamicFont" id=24]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=25]
 [ext_resource path="res://src/Assets/Parallax/Nighttime/10.png" type="Texture" id=26]
@@ -345,29 +345,13 @@ custom_fonts/italics_font = ExtResource( 24 )
 custom_fonts/bold_font = SubResource( 5 )
 custom_fonts/normal_font = ExtResource( 22 )
 bbcode_enabled = true
-
-[node name="Tap" type="RichTextLabel" parent="."]
-visible = false
-anchor_bottom = 2.456
-margin_left = 80.0
-margin_top = 448.0
-margin_right = 200.0
-margin_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_pivot_offset = Vector2( 60, 0 )
-custom_colors/default_color = Color( 0, 0, 0, 1 )
-custom_colors/selection_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-custom_fonts/italics_font = ExtResource( 24 )
-custom_fonts/bold_font = ExtResource( 23 )
-custom_fonts/normal_font = ExtResource( 22 )
-bbcode_enabled = true
-bbcode_text = "[b][center]TAP!"
-text = "TAP!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tap" type="Sprite" parent="."]
+position = Vector2( 240, 300 )
+texture = ExtResource( 23 )
 
 [node name="friendName" type="RichTextLabel" parent="."]
 margin_left = 90.0
@@ -489,6 +473,7 @@ __meta__ = {
 }
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
+visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
