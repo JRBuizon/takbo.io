@@ -42,10 +42,10 @@ func playerDies():
 func setSprite():
 	if Global.Leni:
 		$LeniSprite.visible = true
-		#Kiko false visible
+		$KikoSprite.visible = false
 	else:
 		$LeniSprite.visible = false
-		#Kiko true visible
+		$KikoSprite.visible = true
 	
 
 func _physics_process(delta):

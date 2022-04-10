@@ -2,11 +2,11 @@
 
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Backgrounds/Comic Frame.png" type="Texture" id=2]
-[ext_resource path="res://src/Assets/Leni Frame.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/KikoFrame.png" type="Texture" id=3]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesReg.tres" type="DynamicFont" id=4]
 [ext_resource path="res://transitionPlaceholder.png" type="Texture" id=5]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://src/Assets/Kiko Frame.png" type="Texture" id=7]
+[ext_resource path="res://src/Assets/LeniFrame.png" type="Texture" id=7]
 [ext_resource path="res://src/Assets/Backgrounds/Background.png" type="Texture" id=8]
 [ext_resource path="res://src/Assets/TakboLogo.png" type="Texture" id=9]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesItal.tres" type="DynamicFont" id=10]
@@ -212,19 +212,19 @@ texture = ExtResource( 9 )
 offset = Vector2( 0.98, 3.682 )
 
 [node name="LeniFrame" type="Sprite" parent="."]
-position = Vector2( 240, 400 )
-texture = ExtResource( 3 )
+position = Vector2( 240, 404 )
+texture = ExtResource( 7 )
 
 [node name="KikoFrame" type="Sprite" parent="."]
 position = Vector2( 240, 592 )
-texture = ExtResource( 7 )
+texture = ExtResource( 3 )
 
 [node name="LENI" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 128.0
+margin_left = 112.0
 margin_top = 304.0
-margin_right = 336.0
-margin_bottom = 472.0
+margin_right = 360.0
+margin_bottom = 488.0
 rect_pivot_offset = Vector2( 256, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -232,10 +232,10 @@ __meta__ = {
 
 [node name="KIKO" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 136.0
-margin_top = 504.0
-margin_right = 344.0
-margin_bottom = 672.0
+margin_left = 112.0
+margin_top = 491.0
+margin_right = 368.0
+margin_bottom = 683.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
