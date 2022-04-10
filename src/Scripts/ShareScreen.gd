@@ -38,7 +38,6 @@ func _on_SHARE_button_down():
 	
 	if OS.get_name() == "iOS":
 		var clipboard = JavaScript.get_interface("navigator.clipboard")
-		
 		print("IOS")
 		clipboard.writeText(link)
 	else:

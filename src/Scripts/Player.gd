@@ -29,7 +29,9 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 func playerDies():
-	$AudioStreamPlayer2D.play()
+	if Global.score > Global.EGG_THRESHOLD:
+		$AudioStreamPlayer2D.play()
+		
 	collision.disabled = true
 	hitBox.monitoring = false
 	hitBoxCol.disabled = true

@@ -345,9 +345,6 @@ custom_fonts/italics_font = ExtResource( 24 )
 custom_fonts/bold_font = SubResource( 5 )
 custom_fonts/normal_font = ExtResource( 22 )
 bbcode_enabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tap" type="RichTextLabel" parent="."]
 visible = false
@@ -409,9 +406,6 @@ margin_bottom = 69.0
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
 texture_progress_offset = Vector2( -1, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DeathScreen" parent="." instance=ExtResource( 4 )]
 position = Vector2( 240, 360 )
@@ -438,9 +432,6 @@ margin_top = 20.0
 margin_right = 470.0
 margin_bottom = 80.0
 toggle_mode = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Exit" type="Sprite" parent="."]
 position = Vector2( 18, 24 )
