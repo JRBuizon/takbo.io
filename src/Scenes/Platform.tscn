@@ -21,6 +21,7 @@ texture = ExtResource( 2 )
 [node name="PlatColl" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 120 )
 shape = SubResource( 1 )
+one_way_collision = true
 
 [node name="PlatHitBox" type="Area2D" parent="."]
 
