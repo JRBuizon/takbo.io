@@ -211,6 +211,7 @@ motion_mirroring = Vector2( 5461, 0 )
 texture = ExtResource( 17 )
 
 [node name="NTBackground" type="Sprite" parent="DT/Background"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 26 )
 
@@ -224,6 +225,7 @@ texture = ExtResource( 13 )
 texture = ExtResource( 14 )
 
 [node name="NTClouds" type="Sprite" parent="DT/Clouds"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 31 )
 
@@ -234,6 +236,7 @@ motion_mirroring = Vector2( 5461, 0 )
 texture = ExtResource( 12 )
 
 [node name="NTFar" type="Sprite" parent="DT/FarSprites"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 33 )
 
@@ -244,6 +247,7 @@ motion_mirroring = Vector2( 5461, 0 )
 texture = ExtResource( 15 )
 
 [node name="NTMid" type="Sprite" parent="DT/MidSprites"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 29 )
 
@@ -266,6 +270,7 @@ texture = ExtResource( 11 )
 texture = ExtResource( 9 )
 
 [node name="NTNear" type="Sprite" parent="DT/NearSprites"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 32 )
 
@@ -292,6 +297,7 @@ texture = ExtResource( 10 )
 texture = ExtResource( 8 )
 
 [node name="NTCars" type="Sprite" parent="DT/Cars"]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 28 )
 
@@ -402,7 +408,7 @@ margin_left = 84.0
 margin_top = 34.0
 margin_right = 399.0
 margin_bottom = 69.0
-texture_under = ExtResource( 6 )
+texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
 texture_progress_offset = Vector2( -1, 5 )
 __meta__ = {

@@ -23,12 +23,12 @@ onready var DTMid = $DT/MidSprites
 onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
 
-onready var NTBG = $DT/Background/NTBackground
-onready var NTClouds = $DT/Clouds/NTClouds
-onready var NTFar = $DT/FarSprites/NTFar
-onready var NTMid = $DT/MidSprites/NTMid
-onready var NTNear = $DT/NearSprites/NTNear
-onready var NTCars = $DT/Cars/NTCars
+#onready var NTBG = $DT/Background/NTBackground
+#onready var NTClouds = $DT/Clouds/NTClouds
+#onready var NTFar = $DT/FarSprites/NTFar
+#onready var NTMid = $DT/MidSprites/NTMid
+#onready var NTNear = $DT/NearSprites/NTNear
+#onready var NTCars = $DT/Cars/NTCars
 
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
@@ -64,14 +64,11 @@ func _ready():
 		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
 		friendScore.set_bbcode("[right][i]" + Global.friendScore + "m")
 		progressBar.set_max(int(Global.friendScore))
+		$FriendBeat/Label2.text = Global.friendName
 	
-	else:
+	elif not Global.friendName and Global.highscore > 0:
 		friendName.set_bbcode("[i]Your highscore: " + str(Global.highscore) + "m")
 		progressBar.set_max(int(Global.highscore))
-	
-	if Global.friendName:
-		$FriendBeat/Label2.text = Global.friendName
-	else:
 		$FriendBeat/Label2.text = "Your highscore!"
 		
 	parallax.transform.origin = Vector2(randomizeParallax(), 360)
@@ -87,7 +84,7 @@ func _process(delta):
 	if Global.friendName and displayText == int(Global.friendScore):
 		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 		tween.start()
-	elif not Global.friendName and displayText == int(Global.highscore):
+	elif not Global.friendName and displayText == Global.highscore and Global.highscore > 0:
 		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 		tween.start()
 			
@@ -109,14 +106,14 @@ func _physics_process(delta):
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
 	
-	if displayText == nightTime:
-		tween.interpolate_property(NTBG, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.interpolate_property(NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-		tween.start()
+#	if displayText == nightTime:
+#		tween.interpolate_property(NTBG, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.interpolate_property(NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.interpolate_property(NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.interpolate_property(NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.interpolate_property(NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.interpolate_property(NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+#		tween.start()
 		
 func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
