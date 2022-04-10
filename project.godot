@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="Takbo"
 run/main_scene="res://src/Scenes/MainMenu.tscn"
-config/icon="res://icon.png"
+config/icon="res://src/Assets/favicon.ico"
 
 [autoload]
 
