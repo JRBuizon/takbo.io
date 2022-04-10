@@ -66,11 +66,15 @@ func _ready():
 		progressBar.set_max(int(Global.friendScore))
 	
 	else:
-		progressBar.visible = false
-		
-	parallax.transform.origin = Vector2(randomizeParallax(), 360)
+		friendName.set_bbcode("[i]Your highscore: " + str(Global.highscore) + "m")
+		progressBar.set_max(int(Global.highscore))
+	
 	if Global.friendName:
 		$FriendBeat/Label2.text = Global.friendName
+	else:
+		$FriendBeat/Label2.text = "Your highscore!"
+		
+	parallax.transform.origin = Vector2(randomizeParallax(), 360)
 	animation.play("FadeIn")
 
 func _process(delta):
@@ -80,11 +84,13 @@ func _process(delta):
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	
-	if Global.friendName:
-		if displayText == int(Global.friendScore):
-			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
-			tween.start()
-	
+	if Global.friendName and displayText == int(Global.friendScore):
+		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
+		tween.start()
+	elif not Global.friendName and displayText == int(Global.highscore):
+		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
+		tween.start()
+			
 	#var time = delta * 3
 	#tap.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
 	
@@ -96,6 +102,8 @@ func _physics_process(delta):
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
 		if Global.friendName and not scoreText > int(Global.friendScore):
+			progressBar.set_value(scoreText)
+		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
 
 	displayText = floor(scoreText)

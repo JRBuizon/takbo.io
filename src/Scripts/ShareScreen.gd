@@ -17,7 +17,7 @@ func _process(delta):
 	$TakboLogo.position = Vector2(240, amplitude * sin(time) + 163)
 
 func _on_SHARE_button_down():
-	link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.highscore)
+	link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.score)
 	tween.interpolate_property($SecondPanel, "position",
 		Vector2(500, 0), Vector2(-500, 0), 2,
 		10, Tween.EASE_OUT_IN)

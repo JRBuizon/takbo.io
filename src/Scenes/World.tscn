@@ -371,7 +371,7 @@ __meta__ = {
 [node name="friendName" type="RichTextLabel" parent="."]
 margin_left = 90.0
 margin_top = 80.0
-margin_right = 272.0
+margin_right = 360.0
 margin_bottom = 120.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0, 0, 0, 1 )
