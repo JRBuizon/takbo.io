@@ -51,7 +51,7 @@ func _on_Timer_timeout():
 
 func _on_LineEdit_focus_entered():
 	# Prompts the user to input their username
-	var input_value = JavaScript.eval("window.prompt('Enter a suitable name')")
+	var input_value = JavaScript.eval("window.prompt('Enter name')")
 	if input_value != null:
 		nameInput.text = input_value
 	# Only needs to release focus if game is running on a mobile device	
