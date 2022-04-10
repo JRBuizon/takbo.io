@@ -6,7 +6,7 @@ onready var nameInput = $FirstPanel/LineEdit
 var amplitude = 3
 var time = 0
 
-onready var link = "https://takbo-io-demo.vercel.app/?name=friend&score=" + str(Global.highscore)
+onready var link = Global.getBaseURL()
 
 func _ready():
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -29,10 +29,8 @@ func _on_SHARE_button_down():
 #	Converts the encrypted data to base64
 	var encrypted_base_64 = Encryption.encrypt(data)
 	
-	link = "https://takbo-io-demo.vercel.app/?share=" + encrypted_base_64.percent_encode()
-	print(encrypted_base_64)
-	print(link)
-#	link = "https://takbo-io-demo.vercel.app/?name=" + nameInput.text + "&score=" + str(Global.score)
+	link = Global.getBaseURL() + "?share=" + encrypted_base_64.percent_encode()
+	
 	tween.interpolate_property($SecondPanel, "position",
 		Vector2(500, 0), Vector2(-500, 0), 2,
 		10, Tween.EASE_OUT_IN)

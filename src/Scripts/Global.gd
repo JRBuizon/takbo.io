@@ -47,6 +47,7 @@ func parseFriendConfig():
 		
 	encrypted_base_64 = encrypted_base_64.percent_decode()
 	var data = Encryption.decrypt(encrypted_base_64)
+	
 	var data_object = JSON.parse(data)
 	
 	# What happens if the score is present but no name or vice versa?
@@ -54,4 +55,13 @@ func parseFriendConfig():
 		return { "name": null, "score": null}
 		
 	return data_object.result
+	
+func getBaseURL():
+	var base_url = JavaScript.eval("window.location.origin")
+	
+#	For local testing only
+	if base_url == "http://localhost:8060":
+		return base_url + "/tmp_js_export.html"
+		
+	return base_url
 	
