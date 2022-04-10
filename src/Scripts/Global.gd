@@ -1,6 +1,6 @@
 extends Node2D
 
-const EGG_THRESHOLD = 1670
+const EGG_THRESHOLD = 2021
 const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
 var Leni = true
