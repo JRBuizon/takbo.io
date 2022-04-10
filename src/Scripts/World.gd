@@ -35,8 +35,6 @@ export(float) var FAR_SPEED = -20
 export(float) var MID_SPEED = -20
 export(float) var NEAR_SPEED = -20
 export(float) var CARS_SPEED = -20
-export(float) var RAILINGS_SPEED = -20
-export(float) var GROUND_SPEED = -20
 
 
 var scoreText = 0
@@ -73,7 +71,7 @@ func _ready():
 	elif Global.highscore <= 0:
 		progressBar.visible = false
 		
-	parallax.transform.origin = Vector2(randomizeParallax(), 360)
+	parallax.set_scroll_base_offset(Vector2(randomizeParallax(), 0))
 	animation.play("FadeIn")
 
 func _process(delta):
