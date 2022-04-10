@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/confirmExit.png-4c1ace7b79c6b1ac78a049c3b2e7ed52.stex"
+path="res://.import/confirmExit.png-d4405f5fd1cef5ef80a683c6d6ecd783.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/confirmExit.png"
-dest_files=[ "res://.import/confirmExit.png-4c1ace7b79c6b1ac78a049c3b2e7ed52.stex" ]
+source_file="res://src/Assets/Buttons/confirmExit.png"
+dest_files=[ "res://.import/confirmExit.png-d4405f5fd1cef5ef80a683c6d6ecd783.stex" ]
 
 [params]
 

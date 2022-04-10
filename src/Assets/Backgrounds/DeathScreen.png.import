@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SFXmuted.png-b9f293fef6392ddf57d91645f542992c.stex"
+path="res://.import/DeathScreen.png-b735ce17a8cf29ea312134fc98538817.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/SFXmuted.png"
-dest_files=[ "res://.import/SFXmuted.png-b9f293fef6392ddf57d91645f542992c.stex" ]
+source_file="res://src/Assets/Backgrounds/DeathScreen.png"
+dest_files=[ "res://.import/DeathScreen.png-b735ce17a8cf29ea312134fc98538817.stex" ]
 
 [params]
 

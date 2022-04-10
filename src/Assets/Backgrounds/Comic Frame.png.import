@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Comic Frame.png-71e3a2916994a3e2cf2aabc0c8261b50.stex"
+path="res://.import/Comic Frame.png-e7a7e2f3de50ae6c5e8404daaaf47cd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Comic Frame.png"
-dest_files=[ "res://.import/Comic Frame.png-71e3a2916994a3e2cf2aabc0c8261b50.stex" ]
+source_file="res://src/Assets/Backgrounds/Comic Frame.png"
+dest_files=[ "res://.import/Comic Frame.png-e7a7e2f3de50ae6c5e8404daaaf47cd8.stex" ]
 
 [params]
 

@@ -70,6 +70,8 @@ func _ready():
 		friendName.set_bbcode("[i]Your highscore: " + str(Global.highscore) + "m")
 		progressBar.set_max(int(Global.highscore))
 		$FriendBeat/Label2.text = "Your highscore!"
+	elif Global.highscore <= 0:
+		progressBar.visible = false
 		
 	parallax.transform.origin = Vector2(randomizeParallax(), 360)
 	animation.play("FadeIn")

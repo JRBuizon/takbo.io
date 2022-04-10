@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Share.png-3eeef6ecec29f9689edcdfd9d8346e0b.stex"
+path="res://.import/confirmExitScreen.png-30c3176311df44147ab129cf2932ff2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Share.png"
-dest_files=[ "res://.import/Share.png-3eeef6ecec29f9689edcdfd9d8346e0b.stex" ]
+source_file="res://src/Assets/Backgrounds/confirmExitScreen.png"
+dest_files=[ "res://.import/confirmExitScreen.png-30c3176311df44147ab129cf2932ff2e.stex" ]
 
 [params]
 

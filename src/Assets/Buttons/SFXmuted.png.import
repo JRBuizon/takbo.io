@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Background.png-242b70ea577558465fbb26010dc20eca.stex"
+path="res://.import/SFXmuted.png-df46a99afca55f33262a273af084ad9b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/Background.png"
-dest_files=[ "res://.import/Background.png-242b70ea577558465fbb26010dc20eca.stex" ]
+source_file="res://src/Assets/Buttons/SFXmuted.png"
+dest_files=[ "res://.import/SFXmuted.png-df46a99afca55f33262a273af084ad9b.stex" ]
 
 [params]
 

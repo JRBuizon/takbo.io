@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/progressBarBG.png-366552723eb73fa25a9c1a7a9cf267de.stex"
+path="res://.import/Exit.png-f4dd94515837d061dd8701b09c697120.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/progressBarBG.png"
-dest_files=[ "res://.import/progressBarBG.png-366552723eb73fa25a9c1a7a9cf267de.stex" ]
+source_file="res://src/Assets/Buttons/Exit.png"
+dest_files=[ "res://.import/Exit.png-f4dd94515837d061dd8701b09c697120.stex" ]
 
 [params]
 
