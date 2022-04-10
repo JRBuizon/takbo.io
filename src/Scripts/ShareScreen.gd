@@ -35,3 +35,13 @@ func _on_EXIT_button_down():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://src/Scenes/MainMenu.tscn")
+
+
+func _on_LineEdit_focus_entered():
+	# Prompts the user to input their username
+	var input_value = JavaScript.eval("window.prompt('Enter a suitable name')")
+	if input_value != null:
+		nameInput.text = input_value
+	# Only needs to release focus if game is running on a mobile device	
+	if OS.has_touchscreen_ui_hint():
+		nameInput.release_focus()

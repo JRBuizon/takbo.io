@@ -65,6 +65,7 @@ margin_top = 358.0
 margin_right = 416.0
 margin_bottom = 398.0
 rect_pivot_offset = Vector2( 176, 0 )
+focus_mode = 1
 custom_colors/selection_color = Color( 0.960784, 0.290196, 1, 0.623529 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -72,9 +73,6 @@ align = 1
 max_length = 10
 placeholder_text = "ENTER A USERNAME!"
 placeholder_alpha = 0.417
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ProgressBarBg" type="Sprite" parent="FirstPanel"]
 position = Vector2( 240.25, 377.25 )
@@ -150,5 +148,6 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="button_down" from="FirstPanel/SHARE" to="." method="_on_SHARE_button_down"]
+[connection signal="focus_entered" from="FirstPanel/LineEdit" to="." method="_on_LineEdit_focus_entered"]
 [connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
