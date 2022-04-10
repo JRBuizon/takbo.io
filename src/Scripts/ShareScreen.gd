@@ -36,7 +36,13 @@ func _on_SHARE_button_down():
 		10, Tween.EASE_OUT_IN)
 	tween.start()
 	
-	OS.set_clipboard(link)
+	if OS.get_name() == "iOS":
+		var clipboard = JavaScript.get_interface("navigator.clipboard")
+		
+		print("IOS")
+		clipboard.writeText(link)
+	else:
+		OS.set_clipboard(link)
 
 
 func _on_EXIT_button_down():
