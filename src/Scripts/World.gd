@@ -114,7 +114,7 @@ func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
 	ylevel = pastYlevel-((randi() % totalVariations - absoluteVariationsD) * snapHeight)
 	
-	if pastYlevel == ylevel: #If current Y Level is the same as the last Y Level
+	if pastYlevel == ylevel and displayText >= 250: #If current Y Level is the same as the last Y Level
 		var choice = randi() % 2 #Randomly pick 1 or 0
 		if choice > 0: #If 0 go up and shuffle
 			ylevel = pastYlevel-((randi() % absoluteVariationsU + 1) * snapHeight)

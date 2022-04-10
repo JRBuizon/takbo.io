@@ -6,6 +6,7 @@ var amplitude = 3
 var time = 0
 
 onready var link = "https://takbo-io-demo.vercel.app/?name=friend&score=" + str(Global.highscore)
+
 func _ready():
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
