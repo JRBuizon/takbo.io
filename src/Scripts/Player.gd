@@ -29,6 +29,7 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 func playerDies():
+	$AudioStreamPlayer2D.play()
 	collision.disabled = true
 	hitBox.monitoring = false
 	hitBoxCol.disabled = true
