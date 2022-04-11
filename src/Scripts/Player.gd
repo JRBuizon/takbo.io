@@ -36,7 +36,8 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 func playerDies():
-	if Global.score > Global.EGG_THRESHOLD:
+	var willYoda = randf() #0-1
+	if willYoda >= 0.9:
 		audio.stream = yoda
 		audio.play()
 	else:

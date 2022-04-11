@@ -1,6 +1,5 @@
 extends Node2D
 
-const EGG_THRESHOLD = 2021
 const MUSIC_VOLUME = -25
 const HARD_MODE_THRESHOLD = 250
 
