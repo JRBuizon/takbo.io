@@ -92,12 +92,13 @@ func _process(delta):
 	
 	var score_to_beat = int(Global.friendScore) if Global.friendName else Global.highscore
 
-	if displayText == score_to_beat and score_to_beat > 0:
-		Global.play_music("res://src/Assets/Sounds/music_new_record.mp3")
-		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
-		tween.start()
-	elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
-		Global.play_music("res://src/Assets/Sounds/music_harder.mp3")
+	if not gameEnd:
+		if displayText == score_to_beat and score_to_beat > 0:
+			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
+			tween.start()
+			Global.play_music("res://src/Assets/Sounds/music_new_record.mp3")
+		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
+			Global.play_music("res://src/Assets/Sounds/music_harder.mp3")
 		
 	time += delta * 2
 	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
