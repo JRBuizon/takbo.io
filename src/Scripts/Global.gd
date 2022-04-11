@@ -16,8 +16,7 @@ var config = parseFriendConfig()
 onready var friendName = config["name"]
 var friendScore = config["score"]
 var score = 0
-
-onready var music_player = $BGMusicPlayer
+var music_player
 
 func _ready():
 	music_player = AudioStreamPlayer.new()
