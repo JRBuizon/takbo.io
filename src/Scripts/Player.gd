@@ -7,8 +7,6 @@ onready var hitBoxCol = $PlayerHitBox/CollisionShape2D
 onready var floorCast = $floorRayCast
 onready var animation = $AnimationPlayer
 
-#var fs1Sfx = preload("res://src/Assets/Sounds/SFX/footstep1.mp3")
-#var fs2Sfx = preload("res://src/Assets/Sounds/SFX/footstep2.mp3")
 var deathSfx = preload("res://src/Assets/Sounds/SFX/deathv1.mp3")
 var jumpSfx = preload("res://src/Assets/Sounds/SFX/jumpv2.mp3")
 var yoda = preload("res://src/Assets/Sounds/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3")
@@ -85,16 +83,4 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 	
 
-
-
-
-#func fs1():
-#	audio.playing = false
-#	audio.stream = fs1Sfx
-#	audio.play()
-#
-#func fs2():
-#	audio.playing = false
-#	audio.stream = fs2Sfx
-#	audio.play()
 

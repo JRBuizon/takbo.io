@@ -23,13 +23,6 @@ onready var DTMid = $DT/MidSprites
 onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
 
-#onready var NTBG = $DT/Background/NTBackground
-#onready var NTClouds = $DT/Clouds/NTClouds
-#onready var NTFar = $DT/FarSprites/NTFar
-#onready var NTMid = $DT/MidSprites/NTMid
-#onready var NTNear = $DT/NearSprites/NTNear
-#onready var NTCars = $DT/Cars/NTCars
-
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
 export(float) var MID_SPEED = -20
