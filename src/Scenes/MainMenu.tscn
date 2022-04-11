@@ -283,3 +283,4 @@ anims/RESET = SubResource( 2 )
 [connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]
 [connection signal="button_down" from="KIKO" to="." method="_on_KIKO_button_down"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

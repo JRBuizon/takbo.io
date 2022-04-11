@@ -35,7 +35,6 @@ func _on_KIKO_button_down():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
-		Global.stop_music()
 		get_tree().change_scene(scenePath)
 
 
@@ -55,3 +54,8 @@ func _on_SFX_toggled(button_pressed):
 	Global.toggle_mute()
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	if anim_name == "FadeOut":
+		Global.stop_music()
