@@ -37,7 +37,9 @@ func _on_SHARE_button_down():
 	tween.start()
 	
 	if OS.get_name() == "iOS":
+		
 		JavaScript.eval("""alert("Copied to clipboard!");""")
+		
 		
 		var clipboard = JavaScript.get_interface("navigator.clipboard")
 		print("IOS")

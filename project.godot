@@ -21,8 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Takbo"
-run/main_scene="res://src/Scenes/MainMenu.tscn"
+run/main_scene="res://src/Scenes/IosSucks.tscn"
 config/icon="res://src/Assets/favicon.ico"
+
+[audio]
+
+driver=""
 
 [autoload]
 
