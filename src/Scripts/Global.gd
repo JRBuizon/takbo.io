@@ -4,6 +4,8 @@ const EGG_THRESHOLD = 2021
 const MUSIC_VOLUME = -25
 const HARD_MODE_THRESHOLD = 250
 
+const MUSIC_BUS = 1 # "BGM"
+
 const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
 var Leni = true
@@ -14,12 +16,12 @@ var config = parseFriendConfig()
 onready var friendName = config["name"]
 var friendScore = config["score"]
 var score = 0
-
-onready var music_player = $BGMusicPlayer
+var music_player
 
 func _ready():
 	music_player = AudioStreamPlayer.new()
 	music_player.volume_db = MUSIC_VOLUME
+	music_player.bus = "BGM"
 	add_child(music_player)
 	loadHighscore()
 
@@ -73,15 +75,16 @@ func getBaseURL():
 		return base_url + "/tmp_js_export.html"
 		
 	return base_url
+	
+func stop_music():
+	music_player.stop()
 
-func play_music(song_path: String):
-	if ResourceLoader.exists(song_path):
-		music_player.stream = load(song_path)
-	else: 
-#		Play the menu song by default
-		print("File does not exist. Falling back to main menu music.")
-		music_player.stream = load("res://src/Assets/Sounds/music_menu.mp3")
+func play_music(song_path: Object):
+	music_player.stream = song_path
 	music_player.play()
 
 func toggle_mute():
-	music_player.stream_paused = not music_player.stream_paused
+	AudioServer.set_bus_mute(MUSIC_BUS, not AudioServer.is_bus_mute(MUSIC_BUS))
+	
+func is_music_muted():
+	return AudioServer.is_bus_mute(MUSIC_BUS)

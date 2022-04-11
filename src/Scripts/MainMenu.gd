@@ -12,11 +12,13 @@ var amplitude = 0.05
 var time = 0.0
 var speed = 2
 
+onready var main_menu_music = preload("res://src/Assets/Sounds/music_menu.mp3")
+
 func _ready():
-	Global.play_music("res://src/Assets/Sounds/music_menu.mp3")
+	Global.play_music(main_menu_music)
 	# Checks the current state of the music player
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
 
 
@@ -50,5 +52,10 @@ func _on_STAR_button_down():
 
 func _on_SFX_toggled(button_pressed):
 	Global.toggle_mute()
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	if anim_name == "FadeOut":
+		Global.stop_music()

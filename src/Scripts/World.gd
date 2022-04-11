@@ -58,6 +58,10 @@ const lowestPossible = 608
 var gameStart = false
 var gameEnd = false
 
+onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
+onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
+onready var music_new_record = preload("res://src/Assets/Sounds/music_new_record.mp3")
+
 func _ready():
 	if Global.friendName:
 		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
@@ -75,11 +79,11 @@ func _ready():
 	parallax.set_scroll_base_offset(Vector2(randomizeParallax(), 0))
 	animation.play("FadeIn")
 	
-	Global.play_music("res://src/Assets/Sounds/music_start.mp3")
+	Global.play_music(music_start)
 	
 	# Checks the current state of the music player
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 
 func _process(delta):
 	DTClouds.motion_offset.x += CLOUD_SPEED * delta
@@ -96,9 +100,9 @@ func _process(delta):
 		if displayText == score_to_beat and score_to_beat > 0:
 			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
-			Global.play_music("res://src/Assets/Sounds/music_new_record.mp3")
+			Global.play_music(music_new_record)
 		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
-			Global.play_music("res://src/Assets/Sounds/music_harder.mp3")
+			Global.play_music(music_harder)
 		
 	time += delta * 2
 	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
@@ -179,8 +183,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_SFX_toggled(button_pressed):
 	Global.toggle_mute()
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 
 
 func _on_EXIT_button_down():
