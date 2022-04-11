@@ -12,4 +12,4 @@ dest_files=[ "res://.import/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3-096a5b3ce0
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=0.3
