@@ -54,8 +54,15 @@ var gameEnd = false
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
 onready var music_new_record = preload("res://src/Assets/Sounds/music_new_record.mp3")
+onready var mSfx = preload("res://src/Assets/Sounds/SFX/100m.mp3")
+
+var audio: AudioStreamPlayer
 
 func _ready():
+	audio = AudioStreamPlayer.new()
+	audio.volume_db = -10
+	add_child(audio)
+	
 	if Global.friendName:
 		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
 		friendScore.set_bbcode("[right][i]" + Global.friendScore + "m")
@@ -90,6 +97,7 @@ func _process(delta):
 	var score_to_beat = int(Global.friendScore) if Global.friendName else Global.highscore
 
 	if not gameEnd:
+		
 		if displayText == score_to_beat and score_to_beat > 0:
 			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
@@ -112,18 +120,14 @@ func _physics_process(delta):
 			progressBar.set_value(scoreText)
 		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
+			
+		if (int(displayText)%100) == 0 and not audio.playing:
+			audio.stream = mSfx
+			audio.play()
 
 	displayText = floor(scoreText)
 	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
 	
-#	if displayText == nightTime:
-#		tween.interpolate_property(NTBG, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.interpolate_property(NTClouds, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.interpolate_property(NTFar, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.interpolate_property(NTMid, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.interpolate_property(NTNear, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.interpolate_property(NTCars, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-#		tween.start()
 		
 func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight

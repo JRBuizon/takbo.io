@@ -11,10 +11,17 @@ var scenePath = ""
 var amplitude = 0.05
 var time = 0.0
 var speed = 2
+var audio: AudioStreamPlayer
 
+onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/buttonv1.mp3")
 onready var main_menu_music = preload("res://src/Assets/Sounds/music_menu.mp3")
 
 func _ready():
+	audio = AudioStreamPlayer.new()
+	audio.volume_db = -10
+	audio.set_bus("Master")
+	add_child(audio)
+	audio.stream = buttonSfx
 	# Checks the current state of the music player
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
@@ -28,6 +35,7 @@ func _process(delta):
 
 
 func _on_KIKO_button_down():
+	audio.play()
 	Global.Leni = false
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
@@ -39,18 +47,21 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_LENI_button_down():
+	audio.play()
 	Global.Leni = true
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
 
 
 func _on_STAR_button_down():
+	audio.play()
 	Global.score = Global.highscore
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/ShareScreen.tscn"
 
 
 func _on_SFX_toggled(button_pressed):
+	audio.play()
 	Global.toggle_mute()
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
