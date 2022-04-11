@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/deathv1.mp3-2318c5445d741b12ec4ea8a8c74815c1.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/SFX/deathv1.mp3"
+dest_files=[ "res://.import/deathv1.mp3-2318c5445d741b12ec4ea8a8c74815c1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

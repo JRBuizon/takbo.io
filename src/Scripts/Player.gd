@@ -4,9 +4,14 @@ extends KinematicBody2D
 onready var collision = $PlayerColl
 onready var hitBox = $PlayerHitBox
 onready var hitBoxCol = $PlayerHitBox/CollisionShape2D
-onready var sprite = $PlayerSprite
 onready var floorCast = $floorRayCast
 onready var animation = $AnimationPlayer
+
+#var fs1Sfx = preload("res://src/Assets/Sounds/SFX/footstep1.mp3")
+#var fs2Sfx = preload("res://src/Assets/Sounds/SFX/footstep2.mp3")
+var deathSfx = preload("res://src/Assets/Sounds/SFX/deathv1.mp3")
+var jumpSfx = preload("res://src/Assets/Sounds/SFX/jumpv2.mp3")
+var yoda = preload("res://src/Assets/Sounds/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3")
 
 var jumpHeight = 105.0
 var jumpTUp = 0.25
@@ -18,8 +23,12 @@ onready var fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 
 var motion = Vector2.ZERO
 var alive = true
+var audio: AudioStreamPlayer
 
 func _ready():
+	audio = AudioStreamPlayer.new()
+	audio.volume_db = -10
+	add_child(audio)
 	collision.disabled = false
 	hitBox.monitoring = true
 	hitBoxCol.disabled = false
@@ -30,7 +39,11 @@ func det_grav() -> float:
 
 func playerDies():
 	if Global.score > Global.EGG_THRESHOLD:
-		$AudioStreamPlayer2D.play()
+		audio.stream = yoda
+		audio.play()
+	else:
+		audio.stream = deathSfx
+		audio.play()
 		
 	collision.disabled = true
 	hitBox.monitoring = false
@@ -57,6 +70,8 @@ func _physics_process(delta):
 		if floorCast.is_colliding() or is_on_floor():
 			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
+				audio.stream = jumpSfx
+				audio.play()
 				motion.y = jumpVelo
 		else:
 			if motion.y < 0:
@@ -70,4 +85,16 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 	
 
+
+
+
+#func fs1():
+#	audio.playing = false
+#	audio.stream = fs1Sfx
+#	audio.play()
+#
+#func fs2():
+#	audio.playing = false
+#	audio.stream = fs2Sfx
+#	audio.play()
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Characters/LeniSS.png" type="Texture" id=2]
 [ext_resource path="res://src/Assets/Characters/KikoSS.png" type="Texture" id=3]
-[ext_resource path="res://src/Assets/Sounds/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5, 4 )
@@ -196,4 +195,5 @@ anims/Run = SubResource( 9 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
