@@ -24,10 +24,6 @@ config/name="Takbo"
 run/main_scene="res://src/Scenes/MainMenu.tscn"
 config/icon="res://src/Assets/favicon.ico"
 
-[audio]
-
-driver=""
-
 [autoload]
 
 Global="*res://src/Scripts/Global.gd"
