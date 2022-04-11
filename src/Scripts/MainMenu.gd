@@ -12,8 +12,10 @@ var amplitude = 0.05
 var time = 0.0
 var speed = 2
 
+onready var main_menu_music = preload("res://src/Assets/Sounds/music_menu.mp3")
+
 func _ready():
-	Global.play_music("res://src/Assets/Sounds/music_menu.mp3")
+	Global.play_music(main_menu_music)
 	# Checks the current state of the music player
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()

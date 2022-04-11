@@ -77,13 +77,8 @@ func getBaseURL():
 		
 	return base_url
 
-func play_music(song_path: String):
-	if ResourceLoader.exists(song_path):
-		music_player.stream = load(song_path)
-	else: 
-#		Play the menu song by default
-		print("File does not exist. Falling back to main menu music.")
-		music_player.stream = load("res://src/Assets/Sounds/music_menu.mp3")
+func play_music(song_path: Object):
+	music_player.stream = song_path
 	music_player.play()
 
 func toggle_mute():
