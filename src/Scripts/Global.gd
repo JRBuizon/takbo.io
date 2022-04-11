@@ -19,13 +19,12 @@ var score = 0
 var music_player
 
 func _ready():
-	loadHighscore()
-	
-func _init():
 	music_player = AudioStreamPlayer.new()
 	music_player.volume_db = MUSIC_VOLUME
 	music_player.bus = "BGM"
 	add_child(music_player)
+	loadHighscore()
+	
 
 func loadHighscore():
 	var file = File.new()

@@ -15,12 +15,13 @@ var speed = 2
 onready var main_menu_music = preload("res://src/Assets/Sounds/music_menu.mp3")
 
 func _ready():
-	Global.play_music(main_menu_music)
 	# Checks the current state of the music player
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
-
+	yield(get_tree().create_timer(1), "timeout")
+	Global.play_music(main_menu_music)
+	
 
 func _process(delta):
 	time += delta * speed
