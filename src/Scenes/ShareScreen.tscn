@@ -55,9 +55,6 @@ margin_top = 436.0
 margin_right = 17752.0
 margin_bottom = 6836.0
 rect_scale = Vector2( 0.01, 0.01 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LineEdit" type="LineEdit" parent="FirstPanel"]
 margin_left = 64.0
@@ -147,7 +144,7 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="button_down" from="FirstPanel/SHARE" to="." method="_on_SHARE_button_down"]
+[connection signal="pressed" from="FirstPanel/SHARE" to="." method="_on_SHARE_pressed"]
 [connection signal="focus_entered" from="FirstPanel/LineEdit" to="." method="_on_LineEdit_focus_entered"]
 [connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

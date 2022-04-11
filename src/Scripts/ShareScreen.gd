@@ -17,7 +17,7 @@ func _process(delta):
 	time += delta * 2
 	$TakboLogo.position = Vector2(240, amplitude * sin(time) + 163)
 
-func _on_SHARE_button_down():
+func _on_SHARE_pressed():
 #	Need to create the new link with AES encryption
 	var body = {
 		"name": nameInput.text,
@@ -36,13 +36,13 @@ func _on_SHARE_button_down():
 		10, Tween.EASE_OUT_IN)
 	tween.start()
 	
-	if OS.get_name() == "iOS":
-		var loc = JavaScript.eval("window.location")
-		var url = JavaScript.create_object("URL", link)
-		loc.text.set(url)
-		
-	else:
-		OS.set_clipboard(link)
+#	if OS.get_name() == "iOS":
+#		var loc = JavaScript.eval("window.location")
+#		var url = JavaScript.create_object("URL", link)
+#		loc.text.set(url)
+#
+#	else:
+	OS.set_clipboard(link)
 
 
 func _on_EXIT_button_down():
