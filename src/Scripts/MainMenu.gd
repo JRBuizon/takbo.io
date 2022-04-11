@@ -20,10 +20,6 @@ func _ready():
 	sfxU.visible = not Global.is_music_muted()
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
 	Global.play_music(main_menu_music)
-	yield(get_tree().create_timer(1.0), "timeout")
-	$SFX.pressed = true
-
-	$SFX.pressed = false
 	
 
 func _process(delta):
