@@ -36,12 +36,6 @@ func _on_SHARE_pressed():
 		10, Tween.EASE_OUT_IN)
 	tween.start()
 	
-#	if OS.get_name() == "iOS":
-#		var loc = JavaScript.eval("window.location")
-#		var url = JavaScript.create_object("URL", link)
-#		loc.text.set(url)
-#
-#	else:
 	OS.set_clipboard(link)
 
 
