@@ -75,7 +75,7 @@ func getBaseURL():
 	return base_url
 
 func play_music(song_path: String):
-	if File.new().file_exists(song_path):
+	if ResourceLoader.exists(song_path):
 		music_player.stream = load(song_path)
 	else: 
 #		Play the menu song by default
