@@ -35,6 +35,7 @@ func _on_KIKO_button_down():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
+		Global.stop_music()
 		get_tree().change_scene(scenePath)
 
 

@@ -76,6 +76,9 @@ func getBaseURL():
 		return base_url + "/tmp_js_export.html"
 		
 	return base_url
+	
+func stop_music():
+	music_player.stop()
 
 func play_music(song_path: Object):
 	music_player.stream = song_path
