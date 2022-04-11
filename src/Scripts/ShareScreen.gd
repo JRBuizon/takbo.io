@@ -37,7 +37,9 @@ func _on_SHARE_button_down():
 	tween.start()
 	
 	if OS.get_name() == "iOS":
-		var alert = JavaScript.eval("window.prompt(" + link + ");")
+		var loc = JavaScript.eval("window.location")
+		var url = JavaScript.create_object("URL", link)
+		loc.text.set(url)
 		
 	else:
 		OS.set_clipboard(link)
