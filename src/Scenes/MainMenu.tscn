@@ -182,9 +182,6 @@ margin_top = 13.802
 margin_right = 465.652
 margin_bottom = 77.802
 toggle_mode = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Star" type="Sprite" parent="."]
 position = Vector2( 18, 20 )
