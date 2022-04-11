@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/music_harder.mp3-7c3320d0ccb32671d037ea9da36c4a76.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/music_harder.mp3"
+dest_files=[ "res://.import/music_harder.mp3-7c3320d0ccb32671d037ea9da36c4a76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

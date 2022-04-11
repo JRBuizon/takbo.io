@@ -13,8 +13,12 @@ var time = 0.0
 var speed = 2
 
 func _ready():
+	Global.play_music("res://src/Assets/Sounds/music_menu.mp3")
+	# Checks the current state of the music player
+	sfxM.visible = Global.music_player.stream_paused
+	sfxU.visible = not Global.music_player.stream_paused
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
-	
+
 
 func _process(delta):
 	time += delta * speed
@@ -31,6 +35,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "FadeOut":
 		get_tree().change_scene(scenePath)
 
+
 func _on_LENI_button_down():
 	Global.Leni = true
 	animation.play("FadeOut")
@@ -43,12 +48,7 @@ func _on_STAR_button_down():
 	scenePath = "res://src/Scenes/ShareScreen.tscn"
 
 
-
 func _on_SFX_toggled(button_pressed):
-	if button_pressed:
-		sfxM.visible = true
-		sfxU.visible = false
-	
-	if not button_pressed:
-		sfxM.visible = false
-		sfxU.visible = true
+	Global.toggle_mute()
+	sfxM.visible = Global.music_player.stream_paused
+	sfxU.visible = not Global.music_player.stream_paused

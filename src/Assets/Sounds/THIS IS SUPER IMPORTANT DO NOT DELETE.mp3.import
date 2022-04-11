@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3-096a5b3ce08e36bf150e5cb6d5b0551c.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3"
+dest_files=[ "res://.import/THIS IS SUPER IMPORTANT DO NOT DELETE.mp3-096a5b3ce08e36bf150e5cb6d5b0551c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

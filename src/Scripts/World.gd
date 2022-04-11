@@ -74,6 +74,12 @@ func _ready():
 		
 	parallax.set_scroll_base_offset(Vector2(randomizeParallax(), 0))
 	animation.play("FadeIn")
+	
+	Global.play_music("res://src/Assets/Sounds/music_start.mp3")
+	
+	# Checks the current state of the music player
+	sfxM.visible = Global.music_player.stream_paused
+	sfxU.visible = not Global.music_player.stream_paused
 
 func _process(delta):
 	DTClouds.motion_offset.x += CLOUD_SPEED * delta
@@ -82,13 +88,17 @@ func _process(delta):
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	
-	if Global.friendName and displayText == int(Global.friendScore):
+	print(Performance.get_monitor(Performance.TIME_FPS)) 
+	
+	var score_to_beat = int(Global.friendScore) if Global.friendName else Global.highscore
+
+	if displayText == score_to_beat and score_to_beat > 0:
+		Global.play_music("res://src/Assets/Sounds/music_new_record.mp3")
 		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 		tween.start()
-	elif not Global.friendName and displayText == Global.highscore and Global.highscore > 0:
-		tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
-		tween.start()
-			
+	elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
+		Global.play_music("res://src/Assets/Sounds/music_harder.mp3")
+		
 	time += delta * 2
 	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
 	
@@ -121,7 +131,7 @@ func rand_ylevel():
 	#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
 	ylevel = pastYlevel-((randi() % totalVariations - absoluteVariationsD) * snapHeight)
 	
-	if pastYlevel == ylevel and displayText >= 250: #If current Y Level is the same as the last Y Level
+	if pastYlevel == ylevel and displayText >= Global.HARD_MODE_THRESHOLD: #If current Y Level is the same as the last Y Level
 		var choice = randi() % 2 #Randomly pick 1 or 0
 		if choice > 0: #If 0 go up and shuffle
 			ylevel = pastYlevel-((randi() % absoluteVariationsU + 1) * snapHeight)
@@ -167,13 +177,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_SFX_toggled(button_pressed):
-	if button_pressed:
-		sfxM.visible = true
-		sfxU.visible = false
-	
-	if not button_pressed:
-		sfxM.visible = false
-		sfxU.visible = true
+	Global.toggle_mute()
+	sfxM.visible = Global.music_player.stream_paused
+	sfxU.visible = not Global.music_player.stream_paused
 
 
 func _on_EXIT_button_down():

@@ -1,6 +1,9 @@
 extends Node2D
 
 const EGG_THRESHOLD = 2021
+const MUSIC_VOLUME = -25
+const HARD_MODE_THRESHOLD = 250
+
 const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
 var Leni = true
@@ -12,7 +15,12 @@ onready var friendName = config["name"]
 var friendScore = config["score"]
 var score = 0
 
+onready var music_player = $BGMusicPlayer
+
 func _ready():
+	music_player = AudioStreamPlayer.new()
+	music_player.volume_db = MUSIC_VOLUME
+	add_child(music_player)
 	loadHighscore()
 
 func loadHighscore():
@@ -65,4 +73,15 @@ func getBaseURL():
 		return base_url + "/tmp_js_export.html"
 		
 	return base_url
-	
+
+func play_music(song_path: String):
+	if File.new().file_exists(song_path):
+		music_player.stream = load(song_path)
+	else: 
+#		Play the menu song by default
+		print("File does not exist. Falling back to main menu music.")
+		music_player.stream = load("res://src/Assets/Sounds/music_menu.mp3")
+	music_player.play()
+
+func toggle_mute():
+	music_player.stream_paused = not music_player.stream_paused
