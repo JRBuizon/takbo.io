@@ -15,8 +15,8 @@ var speed = 2
 func _ready():
 	Global.play_music("res://src/Assets/Sounds/music_menu.mp3")
 	# Checks the current state of the music player
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
 
 
@@ -50,5 +50,5 @@ func _on_STAR_button_down():
 
 func _on_SFX_toggled(button_pressed):
 	Global.toggle_mute()
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()

@@ -78,8 +78,8 @@ func _ready():
 	Global.play_music("res://src/Assets/Sounds/music_start.mp3")
 	
 	# Checks the current state of the music player
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 
 func _process(delta):
 	DTClouds.motion_offset.x += CLOUD_SPEED * delta
@@ -179,8 +179,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_SFX_toggled(button_pressed):
 	Global.toggle_mute()
-	sfxM.visible = Global.music_player.stream_paused
-	sfxU.visible = not Global.music_player.stream_paused
+	sfxM.visible = Global.is_music_muted()
+	sfxU.visible = not Global.is_music_muted()
 
 
 func _on_EXIT_button_down():

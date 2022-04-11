@@ -4,6 +4,8 @@ const EGG_THRESHOLD = 2021
 const MUSIC_VOLUME = -25
 const HARD_MODE_THRESHOLD = 250
 
+const MUSIC_BUS = 1 # "BGM"
+
 const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
 var Leni = true
@@ -20,6 +22,7 @@ onready var music_player = $BGMusicPlayer
 func _ready():
 	music_player = AudioStreamPlayer.new()
 	music_player.volume_db = MUSIC_VOLUME
+	music_player.bus = "BGM"
 	add_child(music_player)
 	loadHighscore()
 
@@ -84,4 +87,7 @@ func play_music(song_path: String):
 	music_player.play()
 
 func toggle_mute():
-	music_player.stream_paused = not music_player.stream_paused
+	AudioServer.set_bus_mute(MUSIC_BUS, not AudioServer.is_bus_mute(MUSIC_BUS))
+	
+func is_music_muted():
+	return AudioServer.is_bus_mute(MUSIC_BUS)

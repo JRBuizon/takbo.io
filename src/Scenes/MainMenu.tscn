@@ -223,9 +223,6 @@ margin_top = 304.0
 margin_right = 360.0
 margin_bottom = 488.0
 rect_pivot_offset = Vector2( 256, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="KIKO" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
