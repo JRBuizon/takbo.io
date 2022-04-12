@@ -21,8 +21,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Takbo"
+config/description="Leni Kiko 2022 - Kulay Rosas ang Bukas"
 run/main_scene="res://src/Scenes/IosSucks.tscn"
 config/icon="res://src/Assets/favicon.ico"
+config/macos_native_icon="res://src/Assets/favicon.ico"
+config/windows_native_icon="res://src/Assets/favicon.ico"
 
 [audio]
 

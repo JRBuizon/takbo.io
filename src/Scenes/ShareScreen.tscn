@@ -145,6 +145,5 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="FirstPanel/SHARE" to="." method="_on_SHARE_pressed"]
-[connection signal="focus_entered" from="FirstPanel/LineEdit" to="." method="_on_LineEdit_focus_entered"]
 [connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
