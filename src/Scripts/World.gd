@@ -57,21 +57,16 @@ onready var music_new_record = preload("res://src/Assets/Sounds/music_new_record
 onready var mSfx = preload("res://src/Assets/Sounds/SFX/100m.mp3")
 onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/buttonv1.mp3")
 
+var score_to_beat = int(Global.friendScore) if Global.friendName else Global.highscore
+
 var audio: AudioStreamPlayer
-var sfx: AudioStreamPlayer
 
 func _ready():
-	#button sfx
-	sfx = AudioStreamPlayer.new()
-	sfx.volume_db = -10
-	sfx.set_pause_mode(Node.PAUSE_MODE_PROCESS)
-	add_child(sfx)
-	sfx.stream = buttonSfx
-	
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
 	add_child(audio)
+	audio.pause_mode = Node.PAUSE_MODE_PROCESS
 	
 	if Global.friendName:
 		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
@@ -104,10 +99,9 @@ func _process(delta):
 		
 	print(Performance.get_monitor(Performance.TIME_FPS)) 
 	
-	var score_to_beat = int(Global.friendScore) if Global.friendName else Global.highscore
+	#score_to_beat used to be here!!!! moved it to vars up above since we dont want it to continuously redefine itself
 
 	if not gameEnd:
-		
 		if displayText == score_to_beat and score_to_beat > 0:
 			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
@@ -183,7 +177,8 @@ func _on_Area2D_area_entered(area):
 		area.get_parent().position = Vector2(616, rand_ylevel())
 
 func _on_DeathScreen_button_pressed(scene_path):
-	sfx.play()
+	audio.stream = buttonSfx
+	audio.play()
 	animation.play("FadeOut")
 	scenePath = scene_path
 
@@ -193,14 +188,16 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_SFX_toggled(button_pressed):
-	sfx.play()
+	audio.stream = buttonSfx
+	audio.play()
 	Global.toggle_mute()
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
 
 
 func _on_EXIT_button_down():
-	sfx.play()
+	audio.stream = buttonSfx
+	audio.play()
 	get_tree().paused = true
 	if player.alive:
 		confirmScr.displayScreen()
@@ -211,7 +208,8 @@ func _on_EXIT_button_down():
 
 
 func _on_CONFIRM_EXIT_button_down():
-	sfx.play()
+	audio.stream = buttonSfx
+	audio.play()
 	get_tree().paused = false
 	player.playerDies()
 	confirmScr.hideScreen()
@@ -220,7 +218,8 @@ func _on_CONFIRM_EXIT_button_down():
 
 
 func _on_CANCEL_button_down():
-	sfx.play()
+	audio.stream = buttonSfx
+	audio.play()
 	get_tree().paused = false
 	confirmScr.hideScreen()
 	if not player.alive:
