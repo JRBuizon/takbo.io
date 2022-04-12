@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Scripts/DeathScreen.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/Assets/Buttons/Retry.png" type="Texture" id=6]
 [ext_resource path="res://src/Assets/Buttons/Menu.png" type="Texture" id=7]
 [ext_resource path="res://src/Assets/Hashtag.png" type="Texture" id=8]
+[ext_resource path="res://src/Assets/takbo.iolink.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -29,6 +30,7 @@ size = 15
 font_data = ExtResource( 3 )
 
 [node name="DeathScreen" type="Node2D"]
+pause_mode = 2
 scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 2 )
 
@@ -140,8 +142,12 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Hashtag" type="Sprite" parent="."]
-position = Vector2( 0, 248 )
+position = Vector2( 0, -264 )
 texture = ExtResource( 8 )
+
+[node name="Link" type="Sprite" parent="."]
+position = Vector2( 0, 248 )
+texture = ExtResource( 9 )
 
 [node name="CHALLENGE" type="Label" parent="."]
 margin_left = -184.0
