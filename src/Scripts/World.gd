@@ -199,7 +199,12 @@ func _on_SFX_toggled(button_pressed):
 func _on_EXIT_button_down():
 	sfx.play()
 	get_tree().paused = true
-	confirmScr.displayScreen()
+	if player.alive:
+		confirmScr.displayScreen()
+	elif not player.alive:
+		deathScr.hideScreen()
+		yield(get_tree().create_timer(0.7), "timeout")
+		confirmScr.displayScreen()
 
 
 func _on_CONFIRM_EXIT_button_down():
@@ -215,3 +220,6 @@ func _on_CANCEL_button_down():
 	sfx.play()
 	get_tree().paused = false
 	confirmScr.hideScreen()
+	if not player.alive:
+		yield(get_tree().create_timer(0.7), "timeout")
+		deathScr.displayScreen()
