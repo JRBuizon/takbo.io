@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HEADER-KIKO.png-1ac6ed634d4286455146df05fd8cbeaa.stex"
+path="res://.import/SplashPageLogo.png-4bda3244014b1ea88a33eca4691edbb3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/HEADER-KIKO.png"
-dest_files=[ "res://.import/HEADER-KIKO.png-1ac6ed634d4286455146df05fd8cbeaa.stex" ]
+source_file="res://src/Assets/SplashPageLogo.png"
+dest_files=[ "res://.import/SplashPageLogo.png-4bda3244014b1ea88a33eca4691edbb3.stex" ]
 
 [params]
 

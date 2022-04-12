@@ -4,7 +4,6 @@ var amplitude = 0.1
 var time = 0
 func _process(delta):
 	time += delta * 3
-	$Container.scale = Vector2(amplitude/3 * sin(time) + 1.1, amplitude/3 * sin(time) + 1.1)
 	$TakboLogo.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
 	$Label.modulate.a = (amplitude + 1) * sin(time * 1.1)
 	

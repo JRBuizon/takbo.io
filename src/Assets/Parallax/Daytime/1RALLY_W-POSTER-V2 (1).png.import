@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HEADER-LENI.png-6d0661ef6fb2035d1659ad1187d86d83.stex"
+path="res://.import/1RALLY_W-POSTER-V2 (1).png-17d8ca81843f62818f7e71874e473cf8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/HEADER-LENI.png"
-dest_files=[ "res://.import/HEADER-LENI.png-6d0661ef6fb2035d1659ad1187d86d83.stex" ]
+source_file="res://src/Assets/Parallax/Daytime/1RALLY_W-POSTER-V2 (1).png"
+dest_files=[ "res://.import/1RALLY_W-POSTER-V2 (1).png-17d8ca81843f62818f7e71874e473cf8.stex" ]
 
 [params]
 
