@@ -22,14 +22,12 @@ onready var DTFar = $DT/FarSprites
 onready var DTMid = $DT/MidSprites
 onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
-onready var Crowd = $ParallaxBackground/ParallaxLayer
 
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
 export(float) var MID_SPEED = -20
 export(float) var NEAR_SPEED = -20
 export(float) var CARS_SPEED = -20
-export(float) var CROWD_SPEED = -100
 
 
 var scoreText = 0
@@ -103,7 +101,6 @@ func _process(delta):
 	DTMid.motion_offset.x += MID_SPEED * delta
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
-	Crowd.motion_offset.x += CROWD_SPEED * delta
 		
 	print(Performance.get_monitor(Performance.TIME_FPS)) 
 	
