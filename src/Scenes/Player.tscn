@@ -9,7 +9,7 @@ code = "shader_type canvas_item;
  
 uniform float width;
 uniform vec4 outline_color : hint_color;
- 
+
 void fragment()
 {
     vec2 size = (vec2(width) * TEXTURE_PIXEL_SIZE);
@@ -32,7 +32,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=12]
 shader = SubResource( 11 )
-shader_param/width = 1.0
+shader_param/width = 0.75
 shader_param/outline_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="Shader" id=13]
@@ -63,7 +63,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 13 )
-shader_param/width = 1.0
+shader_param/width = 0.75
 shader_param/outline_color = Color( 1, 1, 1, 1 )
 
 [sub_resource type="RectangleShape2D" id=1]
