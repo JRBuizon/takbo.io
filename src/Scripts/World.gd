@@ -55,10 +55,20 @@ onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
 onready var music_new_record = preload("res://src/Assets/Sounds/music_new_record.mp3")
 onready var mSfx = preload("res://src/Assets/Sounds/SFX/100m.mp3")
+onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/buttonv1.mp3")
 
 var audio: AudioStreamPlayer
+var sfx: AudioStreamPlayer
 
 func _ready():
+	#button sfx
+	sfx = AudioStreamPlayer.new()
+	sfx.volume_db = -10
+	sfx.set_pause_mode(Node.PAUSE_MODE_PROCESS)
+	add_child(sfx)
+	sfx.stream = buttonSfx
+	
+	#jump and death sfx
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
 	add_child(audio)
@@ -121,7 +131,7 @@ func _physics_process(delta):
 		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
 			
-		if (int(displayText)%100) == 0 and not audio.playing:
+		if (int(displayText)%100) == 0 and not audio.playing and displayText > 99:
 			audio.stream = mSfx
 			audio.play()
 
@@ -170,6 +180,7 @@ func _on_Area2D_area_entered(area):
 		area.get_parent().position = Vector2(616, rand_ylevel())
 
 func _on_DeathScreen_button_pressed(scene_path):
+	sfx.play()
 	animation.play("FadeOut")
 	scenePath = scene_path
 
@@ -179,17 +190,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_SFX_toggled(button_pressed):
+	sfx.play()
 	Global.toggle_mute()
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
 
 
 func _on_EXIT_button_down():
+	sfx.play()
 	get_tree().paused = true
 	confirmScr.displayScreen()
 
 
 func _on_CONFIRM_EXIT_button_down():
+	sfx.play()
 	get_tree().paused = false
 	player.playerDies()
 	confirmScr.hideScreen()
@@ -198,5 +212,6 @@ func _on_CONFIRM_EXIT_button_down():
 
 
 func _on_CANCEL_button_down():
+	sfx.play()
 	get_tree().paused = false
 	confirmScr.hideScreen()

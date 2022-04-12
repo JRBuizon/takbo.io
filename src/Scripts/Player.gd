@@ -37,10 +37,12 @@ func det_grav() -> float:
 
 func playerDies():
 	var willYoda = randf() #0-1
-	if willYoda >= 0.9:
+	if willYoda > 0.98:
+		audio.volume_db = -30
 		audio.stream = yoda
 		audio.play()
 	else:
+		audio.volume_db = -10
 		audio.stream = deathSfx
 		audio.play()
 		

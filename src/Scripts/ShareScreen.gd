@@ -7,8 +7,15 @@ var amplitude = 3
 var time = 0
 
 onready var link = Global.getBaseURL()
+onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/buttonv1.mp3")
+var sfx: AudioStreamPlayer
 
 func _ready():
+	sfx = AudioStreamPlayer.new()
+	sfx.volume_db = -10
+	add_child(sfx)
+	sfx.stream = buttonSfx
+	
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	$FirstPanel/Label2.text = str(Global.score)
@@ -18,6 +25,7 @@ func _process(delta):
 	$TakboLogo.position = Vector2(240, amplitude * sin(time) + 163)
 
 func _on_SHARE_pressed():
+	sfx.play()
 #	Need to create the new link with AES encryption
 	var body = {
 		"name": nameInput.text,
@@ -40,6 +48,8 @@ func _on_SHARE_pressed():
 
 
 func _on_EXIT_button_down():
+	sfx.play()
+	Global.stop_music()
 	tween.interpolate_property(self, "modulate:a", 1.0, 0.0, 0.7, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	$Timer.start()

@@ -4,6 +4,7 @@ onready var tween = $Tween
 onready var score = $SCORE
 signal button_pressed(scene_path)
 
+
 func displayScreen():
 	score.set_bbcode("[center][b]" + str(Global.score))
 	tween.interpolate_property(self, "scale",

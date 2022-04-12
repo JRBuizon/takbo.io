@@ -19,12 +19,13 @@ onready var main_menu_music = preload("res://src/Assets/Sounds/music_menu.mp3")
 func _ready():
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
-	audio.set_bus("Master")
 	add_child(audio)
 	audio.stream = buttonSfx
+	
 	# Checks the current state of the music player
 	sfxM.visible = Global.is_music_muted()
 	sfxU.visible = not Global.is_music_muted()
+	
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
 	Global.play_music(main_menu_music)
 	
