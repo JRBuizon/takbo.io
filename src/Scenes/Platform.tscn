@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Scripts/Platform.gd" type="Script" id=1]
-[ext_resource path="res://placeHolderWhite.png" type="Texture" id=2]
 [ext_resource path="res://src/Assets/Platforms/Asphalt.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -12,11 +11,6 @@ extents = Vector2( 3.5, 80 )
 
 [node name="Platform" type="StaticBody2D"]
 script = ExtResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 200 )
-scale = Vector2( 6, 20 )
-texture = ExtResource( 2 )
 
 [node name="PlatColl" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 120 )
@@ -30,7 +24,7 @@ position = Vector2( -43.5, 120 )
 shape = SubResource( 2 )
 
 [node name="Asphalt" type="Sprite" parent="."]
-position = Vector2( 0, 198 )
+position = Vector2( 0, 210 )
 texture = ExtResource( 3 )
 
 [connection signal="area_entered" from="PlatHitBox" to="." method="_on_PlatHitBox_area_entered"]
