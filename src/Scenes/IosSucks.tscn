@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Assets/Backgrounds/Background.png" type="Texture" id=1]
 [ext_resource path="res://IosSucks.gd" type="Script" id=2]
 [ext_resource path="res://src/Assets/TakboLogo.png" type="Texture" id=3]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_ital.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/Assets/HEADER-KIKO.png" type="Texture" id=5]
+[ext_resource path="res://src/Assets/HEADER-LENI.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -16,8 +18,24 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 centered = false
 
+[node name="Container" type="Node2D" parent="."]
+position = Vector2( 242, 268 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Header-Leni" type="Sprite" parent="Container"]
+position = Vector2( -80, 0 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 6 )
+
+[node name="Header-Kiko" type="Sprite" parent="Container"]
+position = Vector2( 70, 0 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 5 )
+
 [node name="TakboLogo" type="Sprite" parent="."]
-position = Vector2( 240, 360 )
+position = Vector2( 240, 427 )
 texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
