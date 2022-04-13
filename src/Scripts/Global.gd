@@ -88,3 +88,8 @@ func toggle_mute():
 	
 func is_music_muted():
 	return AudioServer.is_bus_mute(MUSIC_BUS)
+
+func track_event(event_name: String):
+	var window = JavaScript.get_interface("window")
+	if window != null and window.plausible != null:
+		window.plausible(event_name)
