@@ -73,3 +73,6 @@ func _on_SFX_toggled(button_pressed):
 func _on_AnimationPlayer_animation_started(anim_name):
 	if anim_name == "FadeOut":
 		Global.stop_music()
+
+func _on_INFO_pressed():
+	JavaScript.eval('window.location.replace("https://takbo.io/info")')

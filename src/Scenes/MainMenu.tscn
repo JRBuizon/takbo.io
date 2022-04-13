@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Backgrounds/Comic Frame.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/Assets/Buttons/SFXmuted.png" type="Texture" id=11]
 [ext_resource path="res://src/Assets/Buttons/SFXunmuted.png" type="Texture" id=12]
 [ext_resource path="res://src/Assets/Buttons/Star.png" type="Texture" id=13]
+[ext_resource path="res://src/Assets/Buttons/Info.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
@@ -182,6 +183,25 @@ margin_top = 13.802
 margin_right = 465.652
 margin_bottom = 77.802
 toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Sprite" parent="."]
+position = Vector2( 408, 84.682 )
+texture = ExtResource( 14 )
+centered = false
+
+[node name="INFO" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 401.652
+margin_top = 79.146
+margin_right = 465.652
+margin_bottom = 143.146
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Star" type="Sprite" parent="."]
 position = Vector2( 18, 20 )
@@ -282,6 +302,7 @@ anims/FadeOut = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
 [connection signal="toggled" from="SFX" to="." method="_on_SFX_toggled"]
+[connection signal="pressed" from="INFO" to="." method="_on_INFO_pressed"]
 [connection signal="button_down" from="STAR" to="." method="_on_STAR_button_down"]
 [connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]
 [connection signal="button_down" from="KIKO" to="." method="_on_KIKO_button_down"]
