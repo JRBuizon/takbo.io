@@ -73,6 +73,8 @@ func _ready():
 		friendScore.set_bbcode("[right][i]" + Global.friendScore + "m")
 		progressBar.set_max(int(Global.friendScore))
 		$FriendBeat/Label2.text = Global.friendName
+		
+		Global.track_event("ChallengeFriend")
 	
 	elif not Global.friendName and Global.highscore > 0:
 		friendName.set_bbcode("[i]Your highscore: " + str(Global.highscore) + "m")
@@ -108,6 +110,8 @@ func _process(delta):
 			Global.play_music(music_new_record)
 			$FriendBeatTimer.start()
 			
+			if Global.friendName:
+				Global.track_event("BeatFriend")
 			
 		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
 			Global.play_music(music_harder)

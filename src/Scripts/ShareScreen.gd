@@ -19,6 +19,7 @@ func _ready():
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	$FirstPanel/Label2.text = str(Global.score)
+	nameInput.text = "Default"
 	
 func _process(delta):
 	time += delta * 2
@@ -37,8 +38,6 @@ func _on_SHARE_pressed():
 #	Converts the encrypted data to base64
 	var encrypted_base_64 = Encryption.encrypt(data)
 	
-	Global.track_event("CopyLink")
-	
 	link = Global.getBaseURL() + "?share=" + encrypted_base_64.percent_encode()
 	
 	tween.interpolate_property($SecondPanel, "position",
@@ -46,6 +45,7 @@ func _on_SHARE_pressed():
 		10, Tween.EASE_OUT_IN)
 	tween.start()
 	
+	Global.track_event("CopyLink")
 	OS.set_clipboard(link)
 
 

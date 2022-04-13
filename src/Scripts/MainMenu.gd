@@ -40,6 +40,7 @@ func _on_KIKO_button_down():
 	Global.Leni = false
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
+	Global.track_event("PickKiko")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -52,6 +53,7 @@ func _on_LENI_button_down():
 	Global.Leni = true
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
+	Global.track_event("PickLeni")
 
 
 func _on_STAR_button_down():
