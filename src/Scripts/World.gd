@@ -2,9 +2,9 @@ extends Node2D
 
 onready var score = $Score
 onready var player = $Player
-onready var deathScr = $DeathScreen
+onready var deathScr = $CanvasLayer/DeathScreen
 onready var animation = $AnimationPlayer
-onready var confirmScr = $ConfirmExitScreen
+onready var confirmScr = $CanvasLayer/ConfirmExitScreen
 onready var tween = $Tween
 
 onready var sfxM = $SfXmuted
@@ -22,6 +22,7 @@ onready var DTFar = $DT/FarSprites
 onready var DTMid = $DT/MidSprites
 onready var DTNear = $DT/NearSprites
 onready var DTCars = $DT/Cars
+onready var crowd = $ParallaxBackground/ParallaxLayer
 
 export(float) var CLOUD_SPEED = -20
 export(float) var FAR_SPEED = -20
@@ -98,6 +99,7 @@ func _process(delta):
 	DTMid.motion_offset.x += MID_SPEED * delta
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
+	crowd.motion_offset.x += -800 * delta
 		
 	print(Performance.get_monitor(Performance.TIME_FPS)) 
 	
