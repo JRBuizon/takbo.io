@@ -74,7 +74,7 @@ func getBaseURL():
 	if base_url == "http://localhost:8060":
 		return base_url + "/tmp_js_export.html"
 		
-	return base_url
+	return base_url + "/"
 	
 func stop_music():
 	music_player.stop()

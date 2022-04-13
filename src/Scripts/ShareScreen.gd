@@ -19,7 +19,7 @@ func _ready():
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0, 1.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	$FirstPanel/Label2.text = str(Global.score)
-	nameInput.text = "Default"
+	nameInput.text = "User"
 	
 func _process(delta):
 	time += delta * 2
@@ -45,8 +45,12 @@ func _on_SHARE_pressed():
 		10, Tween.EASE_OUT_IN)
 	tween.start()
 	
+	var message = "Nakascore ng %s si %s sa huli niyang takbo! Subukan siyang talunin sa Takbo.io #TakboLeniKiko #LeniKikoAllTheWay\n\n"
+	
+	var formatted_message = message % [body["score"], body["name"]]
+	
 	Global.track_event("CopyLink")
-	OS.set_clipboard(link)
+	OS.set_clipboard(formatted_message + link)
 
 
 func _on_EXIT_button_down():
