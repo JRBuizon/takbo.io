@@ -292,9 +292,9 @@ texture = ExtResource( 8 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 1
-offset = Vector2( 0, 625 )
+offset = Vector2( 0, 635 )
 scale = Vector2( 0.4, 0.4 )
-transform = Transform2D( 0.4, 0, 0, 0.4, 0, 625 )
+transform = Transform2D( 0.4, 0, 0, 0.4, 0, 635 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 3450, 0 )
