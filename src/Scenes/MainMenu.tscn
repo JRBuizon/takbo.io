@@ -291,7 +291,6 @@ __meta__ = {
 }
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
-visible = false
 position = Vector2( 240, 360 )
 scale = Vector2( 33, 47 )
 texture = ExtResource( 5 )
