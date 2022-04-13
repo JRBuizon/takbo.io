@@ -110,9 +110,6 @@ func _process(delta):
 			Global.play_music(music_new_record)
 			$FriendBeatTimer.start()
 			
-			if Global.friendName:
-				Global.track_event("BeatFriend")
-			
 		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
 			Global.play_music(music_harder)
 		

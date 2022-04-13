@@ -13,6 +13,8 @@ func displayScreen():
 	if Global.friendName:
 		if Global.score > int(Global.friendScore):
 			$CHALLENGE.text = "You beat " + Global.friendName + " by " + str(Global.score - int(Global.friendScore)) + " meters!"
+			Global.track_event("BeatFriend")
+			
 		elif Global.score < int(Global.friendScore):
 			$CHALLENGE.text = str(int(Global.friendScore) - Global.score) + " more meters until you beat " + Global.friendName + "!"
 	else:
