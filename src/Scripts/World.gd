@@ -36,20 +36,20 @@ var startedGame = false
 var scenePath = ""
 var amplitude = 0.2
 var time = 0
-var nightTime = 300
 
-var pastYlevel = 512
+var pastYlevel = 448
 var ylevel = 0
 
 const totalVariations = 5
 const absoluteVariationsD = 2
 const absoluteVariationsU = 2
 const snapHeight = 32
-const highestPossible = 384
-const lowestPossible = 608
+const highestPossible = 320
+const lowestPossible = 544
 
 var gameStart = false
 var gameEnd = false
+var friendBeat = false
 
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
@@ -106,6 +106,9 @@ func _process(delta):
 			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
 			Global.play_music(music_new_record)
+			$FriendBeatTimer.start()
+			
+			
 		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
 			Global.play_music(music_harder)
 		
@@ -156,7 +159,7 @@ func rand_ylevel():
 		pastYlevel = ylevel #setting the current Y Level as the past Y Level for the next platform
 		return ylevel #For putting in the Vector2 later
 	else:
-		return 512
+		return 448
 
 func player_dies():
 	if displayText > Global.highscore:
@@ -225,3 +228,15 @@ func _on_CANCEL_button_down():
 	if not player.alive:
 		yield(get_tree().create_timer(0.7), "timeout")
 		deathScr.displayScreen()
+
+
+func _on_FriendBeatTimer_timeout():
+	if not friendBeat:
+		friendName.visible = false
+		friendScore.visible = false
+		progressBar.visible = false
+		$FriendBeatTimer.start()
+		friendBeat = true
+	else:
+		tween.interpolate_property($FriendBeat, "position:y", -30.0, -150.0, 2.0, 10, Tween.EASE_IN)
+		tween.start()

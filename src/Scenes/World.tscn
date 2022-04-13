@@ -79,7 +79,7 @@ size = 30
 font_data = ExtResource( 25 )
 
 [sub_resource type="DynamicFont" id=9]
-size = 35
+size = 30
 font_data = ExtResource( 25 )
 
 [sub_resource type="Animation" id=2]
@@ -218,7 +218,7 @@ script = ExtResource( 3 )
 CLOUD_SPEED = -5.0
 FAR_SPEED = -15.0
 NEAR_SPEED = -25.0
-CARS_SPEED = -40.0
+CARS_SPEED = -35.0
 
 [node name="DT" type="ParallaxBackground" parent="."]
 layer = -10
@@ -283,31 +283,31 @@ texture = ExtResource( 10 )
 texture = ExtResource( 8 )
 
 [node name="Platform1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -56, 512 )
+position = Vector2( -56, 448 )
 
 [node name="Platform2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 512 )
+position = Vector2( 40, 448 )
 
 [node name="Platform3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 136, 512 )
+position = Vector2( 136, 448 )
 
 [node name="Platform4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 232, 512 )
+position = Vector2( 232, 448 )
 
 [node name="Platform5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 328, 512 )
+position = Vector2( 328, 448 )
 
 [node name="Platform6" parent="." instance=ExtResource( 1 )]
-position = Vector2( 424, 512 )
+position = Vector2( 424, 448 )
 
 [node name="Platform7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 520, 512 )
+position = Vector2( 520, 448 )
 
 [node name="Platform8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 616, 512 )
+position = Vector2( 616, 448 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 120, 536 )
+position = Vector2( 120, 472 )
 
 [node name="Score" type="RichTextLabel" parent="."]
 margin_left = 56.0
@@ -451,6 +451,7 @@ __meta__ = {
 }
 
 [node name="TransitionPlaceholder" type="Sprite" parent="."]
+visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
@@ -463,6 +464,10 @@ anims/RESET = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="FriendBeatTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
 [connection signal="button_pressed" from="DeathScreen" to="." method="_on_DeathScreen_button_pressed"]
 [connection signal="button_down" from="ConfirmExitScreen/CONFIRM_EXIT" to="." method="_on_CONFIRM_EXIT_button_down"]
 [connection signal="button_down" from="ConfirmExitScreen/CANCEL" to="." method="_on_CANCEL_button_down"]
@@ -470,6 +475,7 @@ anims/RESET = SubResource( 4 )
 [connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="FriendBeatTimer" to="." method="_on_FriendBeatTimer_timeout"]
 
 [editable path="DeathScreen"]
 [editable path="ConfirmExitScreen"]
