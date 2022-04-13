@@ -222,13 +222,14 @@ NEAR_SPEED = -25.0
 CARS_SPEED = -40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -128
+layer = -11
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
 texture = ExtResource( 26 )
 centered = false
 
 [node name="DT" type="ParallaxBackground" parent="."]
+layer = -10
 offset = Vector2( 0, 360 )
 transform = Transform2D( 1, 0, 0, 1, 0, 360 )
 
