@@ -134,7 +134,7 @@ func _physics_process(delta):
 			audio.play()
 
 	displayText = floor(scoreText)
-	score.set_bbcode("[center][b]" + str(displayText) + "[/b]" + "\n[i]meters[/i][/center]")
+	score.text = str(displayText)
 	
 		
 func rand_ylevel():
