@@ -70,6 +70,9 @@ func parseFriendConfig():
 func getBaseURL():
 	var base_url = JavaScript.eval("window.location.origin")
 	
+	if base_url == null:
+		return "https://takbo.io/"
+	
 #	For local testing only
 	if base_url == "http://localhost:8060":
 		return base_url + "/tmp_js_export.html"

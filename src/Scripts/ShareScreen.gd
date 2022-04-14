@@ -3,6 +3,7 @@ extends Node2D
 const Encryption = preload("res://src/Utils/encryption.gd")
 onready var tween = $Tween
 onready var nameInput = $FirstPanel/LineEdit
+onready var keyboard = $VirtualKeyboard
 var amplitude = 3
 var time = 0
 
@@ -63,3 +64,7 @@ func _on_EXIT_button_down():
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://src/Scenes/MainMenu.tscn")
+
+
+func _on_LineEdit_focus_entered():
+	keyboard.show()

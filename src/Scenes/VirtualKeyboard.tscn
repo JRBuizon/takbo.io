@@ -1,0 +1,298 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://src/Assets/Keyboard/b.png" type="Texture" id=1]
+[ext_resource path="res://src/Assets/Keyboard/m.png" type="Texture" id=2]
+[ext_resource path="res://src/Assets/Keyboard/v.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/Keyboard/i.png" type="Texture" id=4]
+[ext_resource path="res://src/Assets/Keyboard/empty-big.png" type="Texture" id=5]
+[ext_resource path="res://src/Assets/Keyboard/y.png" type="Texture" id=6]
+[ext_resource path="res://src/Assets/Keyboard/space.png" type="Texture" id=7]
+[ext_resource path="res://src/Assets/Keyboard/a.png" type="Texture" id=8]
+[ext_resource path="res://src/Assets/Keyboard/empty-small.png" type="Texture" id=9]
+[ext_resource path="res://src/Assets/Keyboard/del.png" type="Texture" id=10]
+[ext_resource path="res://src/Assets/Keyboard/enter.png" type="Texture" id=11]
+[ext_resource path="res://src/Assets/Keyboard/bg.png" type="Texture" id=12]
+[ext_resource path="res://src/Assets/Keyboard/e.png" type="Texture" id=13]
+[ext_resource path="res://src/Assets/Keyboard/k.png" type="Texture" id=14]
+[ext_resource path="res://src/Assets/Keyboard/z.png" type="Texture" id=15]
+[ext_resource path="res://src/Assets/Keyboard/g.png" type="Texture" id=16]
+[ext_resource path="res://src/Assets/Keyboard/x.png" type="Texture" id=17]
+[ext_resource path="res://src/Assets/Keyboard/w.png" type="Texture" id=18]
+[ext_resource path="res://src/Assets/Keyboard/f.png" type="Texture" id=19]
+[ext_resource path="res://src/Assets/Keyboard/q.png" type="Texture" id=20]
+[ext_resource path="res://src/Assets/Keyboard/c.png" type="Texture" id=21]
+[ext_resource path="res://src/Assets/Keyboard/p.png" type="Texture" id=22]
+[ext_resource path="res://src/Assets/Keyboard/u.png" type="Texture" id=23]
+[ext_resource path="res://src/Assets/Keyboard/d.png" type="Texture" id=24]
+[ext_resource path="res://src/Assets/Keyboard/s.png" type="Texture" id=25]
+[ext_resource path="res://src/Assets/Keyboard/j.png" type="Texture" id=26]
+[ext_resource path="res://src/Assets/Keyboard/r.png" type="Texture" id=27]
+[ext_resource path="res://src/Assets/Keyboard/l.png" type="Texture" id=28]
+[ext_resource path="res://src/Assets/Keyboard/t.png" type="Texture" id=29]
+[ext_resource path="res://src/Assets/Keyboard/h.png" type="Texture" id=30]
+[ext_resource path="res://src/Assets/Keyboard/o.png" type="Texture" id=31]
+[ext_resource path="res://src/Assets/Keyboard/n.png" type="Texture" id=32]
+[ext_resource path="res://src/Scripts/VirtualKeyboard.gd" type="Script" id=34]
+
+[node name="VirtualKeyboard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 91, 292 )
+script = ExtResource( 34 )
+
+[node name="Bg" type="Sprite" parent="."]
+position = Vector2( 240, 588 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FirstRow" type="GridContainer" parent="."]
+margin_left = 4.0
+margin_top = 465.0
+margin_right = 475.0
+margin_bottom = 520.0
+rect_pivot_offset = Vector2( 74, -68 )
+custom_constants/hseparation = 3
+columns = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureButton" type="TextureButton" parent="FirstRow"]
+margin_right = 44.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 20 )
+
+[node name="TextureButton2" type="TextureButton" parent="FirstRow"]
+margin_left = 47.0
+margin_right = 92.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 18 )
+
+[node name="TextureButton3" type="TextureButton" parent="FirstRow"]
+margin_left = 95.0
+margin_right = 139.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 13 )
+
+[node name="TextureButton4" type="TextureButton" parent="FirstRow"]
+margin_left = 142.0
+margin_right = 187.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 27 )
+
+[node name="TextureButton5" type="TextureButton" parent="FirstRow"]
+margin_left = 190.0
+margin_right = 234.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 29 )
+
+[node name="TextureButton6" type="TextureButton" parent="FirstRow"]
+margin_left = 237.0
+margin_right = 281.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 6 )
+
+[node name="TextureButton7" type="TextureButton" parent="FirstRow"]
+margin_left = 284.0
+margin_right = 329.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 23 )
+
+[node name="TextureButton8" type="TextureButton" parent="FirstRow"]
+margin_left = 332.0
+margin_right = 376.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 4 )
+
+[node name="TextureButton9" type="TextureButton" parent="FirstRow"]
+margin_left = 379.0
+margin_right = 423.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 31 )
+
+[node name="TextureButton10" type="TextureButton" parent="FirstRow"]
+margin_left = 426.0
+margin_right = 471.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 22 )
+
+[node name="SecondRow" type="GridContainer" parent="."]
+margin_left = 25.0
+margin_top = 529.0
+margin_right = 456.0
+margin_bottom = 584.0
+rect_pivot_offset = Vector2( 74, -68 )
+columns = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureButton" type="TextureButton" parent="SecondRow"]
+margin_right = 44.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 8 )
+
+[node name="TextureButton2" type="TextureButton" parent="SecondRow"]
+margin_left = 48.0
+margin_right = 93.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 25 )
+
+[node name="TextureButton3" type="TextureButton" parent="SecondRow"]
+margin_left = 97.0
+margin_right = 141.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 24 )
+
+[node name="TextureButton4" type="TextureButton" parent="SecondRow"]
+margin_left = 145.0
+margin_right = 189.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 19 )
+
+[node name="TextureButton5" type="TextureButton" parent="SecondRow"]
+margin_left = 193.0
+margin_right = 238.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 16 )
+
+[node name="TextureButton6" type="TextureButton" parent="SecondRow"]
+margin_left = 242.0
+margin_right = 286.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 30 )
+
+[node name="TextureButton7" type="TextureButton" parent="SecondRow"]
+margin_left = 290.0
+margin_right = 334.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 26 )
+
+[node name="TextureButton8" type="TextureButton" parent="SecondRow"]
+margin_left = 338.0
+margin_right = 383.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 14 )
+
+[node name="TextureButton9" type="TextureButton" parent="SecondRow"]
+margin_left = 387.0
+margin_right = 431.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 28 )
+
+[node name="BigEmpty" type="TextureButton" parent="."]
+margin_left = 4.0
+margin_top = 597.0
+margin_right = 71.0
+margin_bottom = 652.0
+rect_pivot_offset = Vector2( -97, -3 )
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Delete" type="TextureButton" parent="."]
+margin_left = 419.0
+margin_top = 594.0
+margin_right = 474.0
+margin_bottom = 649.0
+texture_normal = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ThirdRow" type="GridContainer" parent="."]
+margin_left = 75.0
+margin_top = 594.0
+margin_right = 407.0
+margin_bottom = 649.0
+rect_pivot_offset = Vector2( 74, -68 )
+columns = 10
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureButton2" type="TextureButton" parent="ThirdRow"]
+margin_right = 44.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 15 )
+
+[node name="TextureButton3" type="TextureButton" parent="ThirdRow"]
+margin_left = 48.0
+margin_right = 92.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 17 )
+
+[node name="TextureButton4" type="TextureButton" parent="ThirdRow"]
+margin_left = 96.0
+margin_right = 141.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 21 )
+
+[node name="TextureButton5" type="TextureButton" parent="ThirdRow"]
+margin_left = 145.0
+margin_right = 189.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 3 )
+
+[node name="TextureButton6" type="TextureButton" parent="ThirdRow"]
+margin_left = 193.0
+margin_right = 237.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 1 )
+
+[node name="TextureButton7" type="TextureButton" parent="ThirdRow"]
+margin_left = 241.0
+margin_right = 286.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 32 )
+
+[node name="TextureButton8" type="TextureButton" parent="ThirdRow"]
+margin_left = 290.0
+margin_right = 335.0
+margin_bottom = 55.0
+texture_normal = ExtResource( 2 )
+
+[node name="Space" type="TextureButton" parent="."]
+margin_left = 123.0
+margin_top = 659.0
+margin_right = 356.0
+margin_bottom = 714.0
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Enter" type="TextureButton" parent="."]
+margin_left = 360.0
+margin_top = 659.0
+margin_right = 475.0
+margin_bottom = 714.0
+texture_normal = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SmallEmpty" type="TextureButton" parent="."]
+margin_left = 4.0
+margin_top = 661.0
+margin_right = 57.0
+margin_bottom = 716.0
+texture_normal = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SmallEmpty2" type="TextureButton" parent="."]
+margin_left = 65.0
+margin_top = 661.0
+margin_right = 118.0
+margin_bottom = 716.0
+texture_normal = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="pressed" from="Enter" to="." method="_on_Enter_pressed"]
