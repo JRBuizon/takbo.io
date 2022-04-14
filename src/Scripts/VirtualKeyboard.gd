@@ -1,6 +1,6 @@
 extends Control
 
-onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/buttonv1.mp3")
+onready var buttonSfx = preload("res://src/Assets/Sounds/SFX/keyboard_click_3.mp3")
 var sfx: AudioStreamPlayer
 
 const FIRST_ROW = "qwertyuiop"
@@ -32,12 +32,11 @@ func on_key_pressed(key: String):
 		target.insert_text_at_cursor(key.to_upper())
 	elif target is LineEdit:
 		target.append_at_cursor(key.to_upper())
-	
 
 func _on_Enter_pressed():
 	sfx.play()
 	self.hide()
-	
+
 func _on_Delete_pressed():
 	sfx.play()
 	var target = get_focus_owner()
@@ -45,6 +44,6 @@ func _on_Delete_pressed():
 		target.text.erase(target.text.length - 1, 1)
 	elif target is LineEdit:
 		target.delete_char_at_cursor()
-		
+
 func _on_Space_pressed():
 	on_key_pressed(" ")
