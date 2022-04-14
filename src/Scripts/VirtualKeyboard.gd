@@ -36,6 +36,7 @@ func on_key_pressed(key: String):
 func _on_Enter_pressed():
 	sfx.play()
 	self.hide()
+	get_focus_owner().release_focus()
 
 func _on_Delete_pressed():
 	sfx.play()

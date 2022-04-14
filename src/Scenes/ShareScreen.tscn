@@ -55,6 +55,8 @@ margin_top = 436.0
 margin_right = 17752.0
 margin_bottom = 6836.0
 rect_scale = Vector2( 0.01, 0.01 )
+focus_mode = 0
+enabled_focus_mode = 0
 
 [node name="LineEdit" type="LineEdit" parent="FirstPanel"]
 margin_left = 64.0

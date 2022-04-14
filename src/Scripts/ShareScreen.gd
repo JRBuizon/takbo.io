@@ -67,4 +67,6 @@ func _on_Timer_timeout():
 
 
 func _on_LineEdit_focus_entered():
-	keyboard.show()
+	# TODO Can also check if the device supports the virtual keyboard.
+	if OS.has_touchscreen_ui_hint():
+		keyboard.show()
