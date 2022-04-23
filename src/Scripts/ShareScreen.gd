@@ -60,12 +60,26 @@ func _on_SHARE_pressed():
 		
 	else:
 		# Attempt to bring up the share menu
-		var share_data = {
-			"url": "https://takbo.io/",
-			"text": "This is a test message",
-			"title": "Takbo.io | Beat my score!"
-		};
-		navigator.share(share_data);
+#		var share_data = {
+#			"url": "https://takbo.io/",
+#			"text": "This is a test message",
+#			"title": "Takbo.io | Beat my score!"
+#		};
+#		navigator.share(share_data);
+		JavaScript.eval("""
+			var share_data = {
+				"url": "https://takbo.io/",
+				"text": "This is a test message",
+				"title": "Takbo.io | Beat my score!"
+			};
+			
+			if (navigator.canShare(data)){
+				alert("Can share");
+				navigator.share(data);
+			}else {
+				alert("Cannot share");
+			}
+		""")
 
 
 func _on_EXIT_button_down():
