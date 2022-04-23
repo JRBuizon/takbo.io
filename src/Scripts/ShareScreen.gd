@@ -50,7 +50,7 @@ func _on_SHARE_pressed():
 	
 	var formatted_message = message % [body["score"], body["name"]]
 	
-	var navigator = JavaScript.eval("navigator");
+	var navigator = JavaScript.get_interface("navigator");
 	
 	Global.track_event("CopyLink")
 	
