@@ -50,36 +50,24 @@ func _on_SHARE_pressed():
 	
 	var formatted_message = message % [body["score"], body["name"]]
 	
-	var navigator = JavaScript.eval("window.navigator");
+	var window = JavaScript.get_interface("window");
 	
 	Global.track_event("CopyLink")
+	OS.set_clipboard(formatted_message + link);
 	
-	if navigator.canShare == null and not navigator.canShare():
+	if window.navigator.canShare == null and not window.navigator.canShare():
 		# Fallback to clipboard copy
-		OS.set_clipboard(formatted_message + link);
+		window.alert("Cannot share");
 		
 	else:
+		window.alert("Can share");
 		# Attempt to bring up the share menu
-#		var share_data = {
-#			"url": "https://takbo.io/",
-#			"text": "This is a test message",
-#			"title": "Takbo.io | Beat my score!"
-#		};
-#		navigator.share(share_data);
-		JavaScript.eval("""
-			var share_data = {
-				"url": "https://takbo.io/",
-				"text": "This is a test message",
-				"title": "Takbo.io | Beat my score!"
-			};
-			
-			if (navigator.canShare(data)){
-				alert("Can share");
-				navigator.share(data);
-			}else {
-				alert("Cannot share");
-			}
-		""")
+		var share_data = {
+			"url": "https://takbo.io/",
+			"text": "This is a test message",
+			"title": "Takbo.io | Beat my score!"
+		};
+		window.navigator.share(share_data);
 
 
 func _on_EXIT_button_down():
