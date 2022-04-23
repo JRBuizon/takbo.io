@@ -50,18 +50,19 @@ func _on_SHARE_pressed():
 	
 	var formatted_message = message % [body["score"], body["name"]]
 	
-	var navigator = JavaScript.get_interface("navigator");
+	var navigator = JavaScript.eval("navigator");
+	
+	Global.track_event("CopyLink")
 	
 	if navigator.canShare == null:
 		# Fallback to clipboard copy
 		OS.set_clipboard(formatted_message + link);
-		Global.track_event("CopyLink")
 		
 	else:
 		# Attempt to bring up the share menu
 		var share_data = {
-			"url": link,
-			"text": formatted_message,
+			"url": "https://takbo.io/",
+			"text": "This is a test message",
 			"title": "Takbo.io | Beat my score!"
 		};
 		navigator.share(share_data);
