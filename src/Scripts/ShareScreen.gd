@@ -54,7 +54,7 @@ func _on_SHARE_pressed():
 	
 	Global.track_event("CopyLink")
 	
-	if navigator.canShare == null:
+	if navigator.canShare == null and not navigator.canShare():
 		# Fallback to clipboard copy
 		OS.set_clipboard(formatted_message + link);
 		
