@@ -45,6 +45,9 @@ func _on_SHARE_pressed():
 #	Converts the encrypted data to base64
 	var encrypted_hex = Encryption.encrypt(data)
 	
+	print(encrypted_hex)
+	print(encrypted_hex.percent_encode())
+	
 	link = Global.getBaseURL() + "?share=" + encrypted_hex.percent_encode()
 	
 	var message = "Nakascore ng %s si %s sa huli niyang takbo! Subukan siyang talunin sa Takbo.io #TakboLeniKiko #LeniKikoAllTheWay\n\n"

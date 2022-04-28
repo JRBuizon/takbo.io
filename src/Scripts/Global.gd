@@ -56,18 +56,22 @@ func parseFriendConfig():
 	if encrypted_hex == null: 
 		return { "name": null, "score": null}
 		
-	var data = Encryption.decrypt(encrypted_hex.percent_decode())
-	
-	if data == null:
-		return { "name": null, "score": null}
+	var data = Encryption.decrypt_base64(encrypted_hex.percent_decode())
 	
 	var data_object = JSON.parse(data)
 	
 	# What happens if the score is present but no name or vice versa?
-	if data_object.error != OK:
-		return { "name": null, "score": null}
+	if data_object.error == OK:
+		return data_object.result
 		
-	return data_object.result
+	data = Encryption.decrypt_hex(encrypted_hex)
+		
+	data_object = JSON.parse(data)
+	
+	if data_object.error == OK:
+		return data_object.result
+	
+	return { "name": null, "score": null}	
 	
 func getBaseURL():
 	var base_url = JavaScript.eval("window.location.origin")
