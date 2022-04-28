@@ -43,20 +43,23 @@ func _on_SHARE_pressed():
 	var data = JSON.print(body)
 	
 #	Converts the encrypted data to base64
-	var encrypted_base_64 = Encryption.encrypt(data)
+	var encrypted_hex = Encryption.encrypt(data)
 	
-	link = Global.getBaseURL() + "?share=" + encrypted_base_64.percent_encode()
+	link = Global.getBaseURL() + "?share=" + encrypted_hex.percent_encode()
 	
 	var message = "Nakascore ng %s si %s sa huli niyang takbo! Subukan siyang talunin sa Takbo.io #TakboLeniKiko #LeniKikoAllTheWay\n\n"
 	
 	var formatted_message = message % [body["score"], body["name"]]
 	
-	var window = JavaScript.get_interface("window");
 	
 	Global.track_event("CopyLink")
 	
 	# Fallback to clipboard copy
-	OS.set_clipboard(formatted_message + link);
+	OS.set_clipboard(link);
+	
+#	var image = get_viewport().get_texture().get_data()
+#	image.flip_y()
+#	image.save_png_to_buffer()
 
 	# Attempt to bring up the share menu
 	var script_message = """
@@ -67,9 +70,11 @@ func _on_SHARE_pressed():
 	  })
 	""" % [link, formatted_message]
 	
-	if window.navigator.canShare != null and JavaScript.eval("navigator.canShare(%s)" % script_message):
-		
-		JavaScript.eval(script_message)
+	var window = JavaScript.get_interface("window");
+	if window != null and window.navigator.canShare != null:
+		if JavaScript.eval("navigator.canShare(%s)" % script_message):
+			
+			JavaScript.eval(script_message)
 
 
 func _on_EXIT_button_down():

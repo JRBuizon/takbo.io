@@ -51,13 +51,15 @@ func getQueryParams(parameter):
 	return null
 	
 func parseFriendConfig():
-	var encrypted_base_64 = getQueryParams("share")
+	var encrypted_hex = getQueryParams("share")
 	# Error handling
-	if encrypted_base_64 == null: 
+	if encrypted_hex == null: 
 		return { "name": null, "score": null}
 		
-	encrypted_base_64 = encrypted_base_64.percent_decode()
-	var data = Encryption.decrypt(encrypted_base_64)
+	var data = Encryption.decrypt(encrypted_hex.percent_decode())
+	
+	if data == null:
+		return { "name": null, "score": null}
 	
 	var data_object = JSON.parse(data)
 	
