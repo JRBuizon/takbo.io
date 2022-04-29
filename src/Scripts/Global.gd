@@ -10,6 +10,8 @@ var highscore = 0 setget setHighscore
 var Leni = true
 const filePath = "user://highscore.data"
 
+var hasPU = false
+
 var config = parseFriendConfig()
 
 onready var friendName = config["name"]

@@ -63,6 +63,7 @@ var score_to_beat = int(Global.friendScore) if Global.friendName else Global.hig
 var audio: AudioStreamPlayer
 
 func _ready():
+	Global.hasPU = false
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
@@ -100,8 +101,11 @@ func _process(delta):
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	crowd.motion_offset.x += -800 * delta
-		
-	print(Performance.get_monitor(Performance.TIME_FPS)) 
+	
+	print(player.jumpTDown)
+#	print("Has Glide: " + str(player.glide))
+	print("Has PU: " + str(Global.hasPU))
+	#print(Performance.get_monitor(Performance.TIME_FPS)) 
 	
 	#score_to_beat used to be here!!!! moved it to vars up above since we dont want it to continuously redefine itself
 
@@ -178,9 +182,14 @@ func randomizeParallax():
 	print(randomX)
 	return randomX
 	
+func player_picked_up_powerup(PUname):
+	player.powerUPStart(PUname)
+	
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
 		area.get_parent().position = Vector2(620, rand_ylevel())
+		if gameStart:
+			area.get_parent().powerup_chance()
 
 func _on_DeathScreen_button_pressed(scene_path):
 	audio.stream = buttonSfx

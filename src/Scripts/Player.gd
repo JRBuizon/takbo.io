@@ -23,6 +23,17 @@ var motion = Vector2.ZERO
 var alive = true
 var audio: AudioStreamPlayer
 
+onready var PUTimer = $PUTimer
+var glide = false
+
+func powerUPStart(PUname):
+	Global.hasPU = true
+	#apply powerups here
+	if PUname == "Glide":
+		glide = true
+	
+	PUTimer.start()
+
 func _ready():
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
@@ -58,7 +69,6 @@ func playerDies():
 
 func setSprite():
 	if Global.Leni:
-		$ChickenSprite.visible = false
 		$LeniSprite.visible = true #CHANGE THIS BACK TO TRUE AFTER TESTING CHICKEN
 		$KikoSprite.visible = false
 	else:
@@ -72,19 +82,36 @@ func _physics_process(delta):
 		if floorCast.is_colliding() or is_on_floor():
 			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
+				if glide:
+					jumpTDown = 1.5
+					fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 				audio.stream = jumpSfx
 				audio.play()
 				motion.y = jumpVelo
 		else:
 			if motion.y < 0:
 				animation.play("Jump")
-			else:
+			elif motion.y > 0 and not glide:
 				animation.play("Falling")
+			elif motion.y > 0 and glide:
+				#play glide animation
+				pass
 			
 			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
-					motion.y = jumpVelo/2
+				motion.y = jumpVelo/2
+
+		if Input.is_action_just_released("tap"):
+				jumpTDown = 0.2
+				fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
 
 
+
+
+func _on_PUTimer_timeout():
+	#Get rid of powerup here
+	Global.hasPU = false
+	glide = false
+	pass
