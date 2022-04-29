@@ -28,6 +28,12 @@ func _process(delta):
 
 func _on_SHARE_pressed():
 	sfx.play()	
+	
+	tween.interpolate_property($SecondPanel, "position",
+	Vector2(500, 0), Vector2(-500, 0), 2,
+	10, Tween.EASE_OUT_IN)
+	tween.start()
+	
 #	Need to create the new link with AES encryption
 	var body = {
 		"name": nameInput.text,
@@ -37,37 +43,41 @@ func _on_SHARE_pressed():
 	var data = JSON.print(body)
 	
 #	Converts the encrypted data to base64
-	var encrypted_base_64 = Encryption.encrypt(data)
+	var encrypted_hex = Encryption.encrypt(data)
 	
-	link = Global.getBaseURL() + "?share=" + encrypted_base_64.percent_encode()
+	print(encrypted_hex)
+	print(encrypted_hex.percent_encode())
 	
-	tween.interpolate_property($SecondPanel, "position",
-		Vector2(500, 0), Vector2(-500, 0), 2,
-		10, Tween.EASE_OUT_IN)
-	tween.start()
+	link = Global.getBaseURL() + "?share=" + encrypted_hex.percent_encode()
 	
 	var message = "Nakascore ng %s si %s sa huli niyang takbo! Subukan siyang talunin sa Takbo.io #TakboLeniKiko #LeniKikoAllTheWay\n\n"
 	
 	var formatted_message = message % [body["score"], body["name"]]
 	
-	var window = JavaScript.get_interface("window");
 	
 	Global.track_event("CopyLink")
-	OS.set_clipboard(formatted_message + link);
 	
-#	if window.navigator.canShare == null and not window.navigator.canShare():
-#		# Fallback to clipboard copy
-#		window.alert("Cannot share");
-#
-#	else:
-#		window.alert("Can share");
-#		# Attempt to bring up the share menu
-#		var share_data = {
-#			"url": "https://takbo.io/",
-#			"text": "This is a test message",
-#			"title": "Takbo.io | Beat my score!"
-#		};
-#		window.navigator.share(share_data);
+	# Fallback to clipboard copy
+	OS.set_clipboard(link);
+	
+#	var image = get_viewport().get_texture().get_data()
+#	image.flip_y()
+#	image.save_png_to_buffer()
+
+	# Attempt to bring up the share menu
+	var script_message = """
+	  navigator.share({
+		"url": "%s",
+		"text": `%s`,
+		"title": "Takbo.io | Beat my score!"
+	  })
+	""" % [link, formatted_message]
+	
+	var window = JavaScript.get_interface("window");
+	if window != null and window.navigator.canShare != null:
+		if JavaScript.eval("navigator.canShare(%s)" % script_message):
+			
+			JavaScript.eval(script_message)
 
 
 func _on_EXIT_button_down():

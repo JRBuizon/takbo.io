@@ -51,21 +51,27 @@ func getQueryParams(parameter):
 	return null
 	
 func parseFriendConfig():
-	var encrypted_base_64 = getQueryParams("share")
+	var encrypted_hex = getQueryParams("share")
 	# Error handling
-	if encrypted_base_64 == null: 
+	if encrypted_hex == null: 
 		return { "name": null, "score": null}
 		
-	encrypted_base_64 = encrypted_base_64.percent_decode()
-	var data = Encryption.decrypt(encrypted_base_64)
+	var data = Encryption.decrypt_base64(encrypted_hex.percent_decode())
 	
 	var data_object = JSON.parse(data)
 	
 	# What happens if the score is present but no name or vice versa?
-	if data_object.error != OK:
-		return { "name": null, "score": null}
+	if data_object.error == OK:
+		return data_object.result
 		
-	return data_object.result
+	data = Encryption.decrypt_hex(encrypted_hex)
+		
+	data_object = JSON.parse(data)
+	
+	if data_object.error == OK:
+		return data_object.result
+	
+	return { "name": null, "score": null}	
 	
 func getBaseURL():
 	var base_url = JavaScript.eval("window.location.origin")
