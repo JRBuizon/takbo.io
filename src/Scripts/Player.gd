@@ -91,11 +91,10 @@ func _physics_process(delta):
 		else:
 			if motion.y < 0:
 				animation.play("Jump")
-			elif motion.y > 0 and not glide:
+			elif motion.y > 0 and not jumpTDown == 1.5:
 				animation.play("Falling")
-			elif motion.y > 0 and glide:
-				#play glide animation
-				pass
+			elif motion.y > 0 and jumpTDown == 1.5:
+				animation.play("Gliding")
 			
 			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
 				motion.y = jumpVelo/2

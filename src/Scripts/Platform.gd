@@ -13,7 +13,7 @@ func powerup_chance():
 		var choice = randi() % 3
 		if choice == 0:
 			var glideInst = glidePU.instance()
-			glideInst.position = Vector2(0, -30)
+			glideInst.position = Vector2(0, -20)
 			self.add_child(glideInst)
 		elif choice == 1:
 			#var coinInst = coinPU.instance()
