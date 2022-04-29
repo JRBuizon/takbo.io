@@ -1,19 +1,19 @@
 extends Node2D
 
-onready var score = $Score
-onready var player = $Player
+onready var score = $WorldLayer/Score
+onready var player = $WorldLayer/Player
 onready var deathScr = $CanvasLayer/DeathScreen
 onready var animation = $AnimationPlayer
 onready var confirmScr = $CanvasLayer/ConfirmExitScreen
 onready var tween = $Tween
 
-onready var sfxM = $SfXmuted
-onready var sfxU = $SfXunmuted
+onready var sfxM = $WorldLayer/SfXmuted
+onready var sfxU = $WorldLayer/SfXunmuted
 
-onready var friendScore = $friendScore
-onready var friendName = $friendName
-onready var progressBar = $toFriendScore
-onready var tap = $Tap
+onready var friendScore = $WorldLayer/friendScore
+onready var friendName = $WorldLayer/friendName
+onready var progressBar = $WorldLayer/toFriendScore
+onready var tap = $WorldLayer/Tap
 
 onready var parallax = $DT
 #Parallax Layers
@@ -73,14 +73,14 @@ func _ready():
 		friendName.set_bbcode("[i]Beat " + Global.friendName + "!")
 		friendScore.set_bbcode("[right][i]" + Global.friendScore + "m")
 		progressBar.set_max(int(Global.friendScore))
-		$FriendBeat/Label2.text = Global.friendName
+		$WorldLayer/FriendBeat/Label2.text = Global.friendName
 		
 		Global.track_event("ChallengeFriend")
 	
 	elif not Global.friendName and Global.highscore > 0:
 		friendName.set_bbcode("[i]Your highscore: " + str(Global.highscore) + "m")
 		progressBar.set_max(int(Global.highscore))
-		$FriendBeat/Label2.text = "Your highscore!"
+		$WorldLayer/FriendBeat/Label2.text = "Your highscore!"
 	elif Global.highscore <= 0:
 		progressBar.visible = false
 		
@@ -107,7 +107,7 @@ func _process(delta):
 
 	if not gameEnd:
 		if displayText == score_to_beat and score_to_beat > 0:
-			tween.interpolate_property($FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
+			tween.interpolate_property($WorldLayer/FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
 			Global.play_music(music_new_record)
 			$FriendBeatTimer.start()
@@ -180,7 +180,7 @@ func randomizeParallax():
 	
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
-		area.get_parent().position = Vector2(616, rand_ylevel())
+		area.get_parent().position = Vector2(620, rand_ylevel())
 
 func _on_DeathScreen_button_pressed(scene_path):
 	audio.stream = buttonSfx
@@ -241,5 +241,5 @@ func _on_FriendBeatTimer_timeout():
 		$FriendBeatTimer.start()
 		friendBeat = true
 	else:
-		tween.interpolate_property($FriendBeat, "position:y", -30.0, -150.0, 2.0, 10, Tween.EASE_IN)
+		tween.interpolate_property($WorldLayer/FriendBeat, "position:y", -30.0, -150.0, 2.0, 10, Tween.EASE_IN)
 		tween.start()

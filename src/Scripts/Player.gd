@@ -58,7 +58,8 @@ func playerDies():
 
 func setSprite():
 	if Global.Leni:
-		$LeniSprite.visible = true
+		$ChickenSprite.visible = false
+		$LeniSprite.visible = true #CHANGE THIS BACK TO TRUE AFTER TESTING CHICKEN
 		$KikoSprite.visible = false
 	else:
 		$LeniSprite.visible = false

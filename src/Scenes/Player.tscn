@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Characters/LeniSS.png" type="Texture" id=2]
 [ext_resource path="res://src/Assets/Characters/KikoSS.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/Characters/chickenSS.png" type="Texture" id=4]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
@@ -95,6 +96,18 @@ tracks/1/keys = {
 "points": PoolRealArray( 10, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChickenSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Falling"
@@ -119,6 +132,18 @@ tracks/1/keys = {
 "points": PoolRealArray( 9, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChickenSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Jump"
@@ -142,6 +167,18 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "points": PoolRealArray( 8, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChickenSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -186,6 +223,30 @@ tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ChickenSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ChickenSprite:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Run"
@@ -212,6 +273,18 @@ tracks/1/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525 )
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ChickenSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 240, 464 )
@@ -231,6 +304,15 @@ position = Vector2( 2, -32 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 hframes = 11
+
+[node name="ChickenSprite" type="Sprite" parent="."]
+visible = false
+material = SubResource( 14 )
+position = Vector2( 2, -32 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+hframes = 11
+frame = 10
 
 [node name="PlayerColl" type="CollisionShape2D" parent="."]
 position = Vector2( 4.5, 12 )

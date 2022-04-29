@@ -79,9 +79,6 @@ size = 20
 outline_size = 2
 font_data = ExtResource( 35 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 200 )
-
 [sub_resource type="DynamicFont" id=8]
 size = 30
 font_data = ExtResource( 25 )
@@ -89,6 +86,9 @@ font_data = ExtResource( 25 )
 [sub_resource type="DynamicFont" id=9]
 size = 30
 font_data = ExtResource( 25 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 200 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
@@ -229,7 +229,7 @@ NEAR_SPEED = -25.0
 CARS_SPEED = -35.0
 
 [node name="DT" type="ParallaxBackground" parent="."]
-layer = -10
+layer = 1
 offset = Vector2( 0, 360 )
 transform = Transform2D( 1, 0, 0, 1, 0, 360 )
 
@@ -291,7 +291,7 @@ texture = ExtResource( 10 )
 texture = ExtResource( 8 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-layer = 1
+layer = 3
 offset = Vector2( 0, 635 )
 scale = Vector2( 0.4, 0.4 )
 transform = Transform2D( 0.4, 0, 0, 0.4, 0, 635 )
@@ -302,34 +302,37 @@ motion_mirroring = Vector2( 3450, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 22 )
 
-[node name="Platform1" parent="." instance=ExtResource( 1 )]
+[node name="WorldLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Platform1" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( -56, 448 )
 
-[node name="Platform2" parent="." instance=ExtResource( 1 )]
+[node name="Platform2" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 40, 448 )
 
-[node name="Platform3" parent="." instance=ExtResource( 1 )]
+[node name="Platform3" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 136, 448 )
 
-[node name="Platform4" parent="." instance=ExtResource( 1 )]
+[node name="Platform4" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 232, 448 )
 
-[node name="Platform5" parent="." instance=ExtResource( 1 )]
+[node name="Platform5" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 328, 448 )
 
-[node name="Platform6" parent="." instance=ExtResource( 1 )]
+[node name="Platform6" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 424, 448 )
 
-[node name="Platform7" parent="." instance=ExtResource( 1 )]
+[node name="Platform7" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 520, 448 )
 
-[node name="Platform8" parent="." instance=ExtResource( 1 )]
+[node name="Platform8" parent="WorldLayer" instance=ExtResource( 1 )]
 position = Vector2( 616, 448 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="WorldLayer" instance=ExtResource( 2 )]
 position = Vector2( 120, 472 )
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="WorldLayer"]
 margin_left = 20.0
 margin_top = 141.0
 margin_right = 460.0
@@ -346,7 +349,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Meters" type="Label" parent="."]
+[node name="Meters" type="Label" parent="WorldLayer"]
 margin_left = 145.0
 margin_top = 186.0
 margin_right = 337.0
@@ -363,12 +366,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tap" type="Sprite" parent="."]
+[node name="Tap" type="Sprite" parent="WorldLayer"]
 material = SubResource( 11 )
 position = Vector2( 240, 300 )
 texture = ExtResource( 23 )
 
-[node name="friendName" type="RichTextLabel" parent="."]
+[node name="friendName" type="RichTextLabel" parent="WorldLayer"]
 margin_left = 90.0
 margin_top = 80.0
 margin_right = 360.0
@@ -382,7 +385,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="friendScore" type="RichTextLabel" parent="."]
+[node name="friendScore" type="RichTextLabel" parent="WorldLayer"]
 margin_left = 264.0
 margin_top = 80.0
 margin_right = 400.0
@@ -396,26 +399,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="toFriendScore" type="TextureProgress" parent="."]
+[node name="toFriendScore" type="TextureProgress" parent="WorldLayer"]
 anchor_right = 1.0
 margin_left = 84.0
 margin_top = 34.0
-margin_right = 399.0
+margin_right = -81.0
 margin_bottom = 69.0
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
 texture_progress_offset = Vector2( -1, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SfXmuted" type="Sprite" parent="."]
+[node name="SfXmuted" type="Sprite" parent="WorldLayer"]
 visible = false
 position = Vector2( 439.534, 51.24 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 20 )
 
-[node name="SfXunmuted" type="Sprite" parent="."]
+[node name="SfXunmuted" type="Sprite" parent="WorldLayer"]
 position = Vector2( 413, 24 )
 texture = ExtResource( 7 )
 centered = false
+
+[node name="Exit" type="Sprite" parent="WorldLayer"]
+position = Vector2( 18, 24 )
+texture = ExtResource( 18 )
+centered = false
+
+[node name="FriendBeat" type="Sprite" parent="WorldLayer"]
+position = Vector2( 242.152, -150 )
+scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 36 )
+
+[node name="Label" type="Label" parent="WorldLayer/FriendBeat"]
+margin_left = -192.784
+margin_top = 60.0
+margin_right = 193.216
+margin_bottom = 91.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "you beat"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="WorldLayer/FriendBeat"]
+margin_left = -192.784
+margin_top = 100.0
+margin_right = 193.216
+margin_bottom = 131.0
+custom_colors/font_color = Color( 0.992157, 0.00784314, 0.564706, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "donny"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SFX" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -427,11 +471,6 @@ toggle_mode = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Exit" type="Sprite" parent="."]
-position = Vector2( 18, 24 )
-texture = ExtResource( 18 )
-centered = false
 
 [node name="EXIT" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -446,39 +485,6 @@ position = Vector2( -152, 440 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -48, 24 )
 shape = SubResource( 1 )
-
-[node name="FriendBeat" type="Sprite" parent="."]
-position = Vector2( 242.152, -150 )
-scale = Vector2( 0.85, 0.85 )
-texture = ExtResource( 36 )
-
-[node name="Label" type="Label" parent="FriendBeat"]
-margin_left = -192.784
-margin_top = 60.0
-margin_right = 193.216
-margin_bottom = 91.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 8 )
-text = "you beat"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="FriendBeat"]
-margin_left = -192.784
-margin_top = 100.0
-margin_right = 193.216
-margin_bottom = 131.0
-custom_colors/font_color = Color( 0.992157, 0.00784314, 0.564706, 1 )
-custom_fonts/font = SubResource( 9 )
-text = "donny"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
