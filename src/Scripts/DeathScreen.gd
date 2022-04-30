@@ -36,6 +36,7 @@ func _on_SHARE_button_down():
 func _on_RETRY_button_down():
 	hideScreen()
 	emit_signal("button_pressed", "res://src/Scenes/World.tscn")
+	Global.track_event("Retry")
 
 
 func _on_MENU_button_down():
