@@ -2,24 +2,23 @@ extends StaticBody2D
 
 var Speed = -4.0
 var powerUpChance = 0.0
-var PUthreshold = 0.5
+var PUthreshold = 0.50
 
 var glidePU = preload("res://src/Scenes/GlidePower.tscn")
-#var coinPU = preload("")
+var parolPU = preload("res://src/Scenes/Parol.tscn")
 
 func powerup_chance():
 	powerUpChance = randf()
-	if powerUpChance >= PUthreshold and Global.hasPU == false:
-		var choice = randi() % 3
+	if powerUpChance >= PUthreshold:
+		var choice = randi() % 6
 		if choice == 0:
 			var glideInst = glidePU.instance()
 			glideInst.position = Vector2(0, -20)
 			self.add_child(glideInst)
-		elif choice == 1:
-			#var coinInst = coinPU.instance()
-			pass
-		elif choice == 2:
-			pass
+		else:
+			var parolInst = parolPU.instance()
+			parolInst.position = Vector2(0, (randi()%6 + 1) * -30)
+			self.add_child(parolInst)
 		
 
 func _physics_process(delta):

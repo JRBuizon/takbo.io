@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal toggleChicken(state)
+signal parolGet()
 
 onready var collision = $PlayerColl
 onready var hitBox = $PlayerHitBox
@@ -27,12 +29,15 @@ onready var PUTimer = $PUTimer
 var glide = false
 
 func powerUPStart(PUname):
-	Global.hasPU = true
 	#apply powerups here
-	if PUname == "Glide":
-		glide = true
+	if PUname == "Parol":
+		emit_signal("parolGet")
 	
-	PUTimer.start()
+	if PUname == "Glide":
+		Global.hasPU = true
+		glide = true
+		PUTimer.start()
+	
 
 func _ready():
 	audio = AudioStreamPlayer.new()
@@ -47,6 +52,8 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 func playerDies():
+	jumpTDown = 0.2
+	fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 	var willYoda = randf() #0-1
 	if willYoda > 0.98:
 		audio.volume_db = -30
@@ -80,6 +87,8 @@ func _physics_process(delta):
 	motion.y  += det_grav() * delta
 	if alive:
 		if floorCast.is_colliding() or is_on_floor():
+			if glide and not Global.Leni:
+				emit_signal("toggleChicken", true)
 			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
 				if glide:
@@ -94,14 +103,19 @@ func _physics_process(delta):
 			elif motion.y > 0 and not jumpTDown == 1.5:
 				animation.play("Falling")
 			elif motion.y > 0 and jumpTDown == 1.5:
+				emit_signal("toggleChicken", false)
 				animation.play("Gliding")
 			
 			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
 				motion.y = jumpVelo/2
 
 		if Input.is_action_just_released("tap"):
-				jumpTDown = 0.2
-				fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
+			if glide and Global.hasPU and not Global.Leni:
+				emit_signal("toggleChicken", true)
+#			elif not glide and not Global.Leni:
+#				emit_signal("toggleChicken", false)
+			jumpTDown = 0.2
+			fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
@@ -111,6 +125,10 @@ func _physics_process(delta):
 
 func _on_PUTimer_timeout():
 	#Get rid of powerup here
+	
 	Global.hasPU = false
 	glide = false
+	
+	yield(get_tree().create_timer(1), "timeout")
+	emit_signal("toggleChicken", false)
 	pass

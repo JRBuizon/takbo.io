@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/Scenes/Platform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
@@ -23,7 +23,10 @@
 [ext_resource path="res://src/Scenes/ConfirmExitScreen.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/Assets/foreground.png" type="Texture" id=22]
 [ext_resource path="res://src/Assets/Tap.png" type="Texture" id=23]
+[ext_resource path="res://src/Scenes/Chicken.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_boldital.otf" type="DynamicFontData" id=25]
+[ext_resource path="res://src/Assets/Progressbar/PUBarFill.png" type="Texture" id=26]
+[ext_resource path="res://src/Assets/Progressbar/PUBar.png" type="Texture" id=27]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_ital.otf" type="DynamicFontData" id=35]
 [ext_resource path="res://src/Assets/Backgrounds/confirmExitScreen.png" type="Texture" id=36]
 
@@ -332,6 +335,9 @@ position = Vector2( 616, 448 )
 [node name="Player" parent="WorldLayer" instance=ExtResource( 2 )]
 position = Vector2( 120, 472 )
 
+[node name="Chicken" parent="WorldLayer" instance=ExtResource( 24 )]
+position = Vector2( 32, 488 )
+
 [node name="Score" type="Label" parent="WorldLayer"]
 margin_left = 20.0
 margin_top = 141.0
@@ -408,6 +414,22 @@ margin_bottom = 69.0
 texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 19 )
 texture_progress_offset = Vector2( -1, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PUtimer" type="TextureProgress" parent="WorldLayer"]
+anchor_right = 1.0
+margin_left = 27.0
+margin_top = 96.0
+margin_right = -418.0
+margin_bottom = 280.0
+max_value = 7.0
+value = 7.0
+texture_over = ExtResource( 27 )
+texture_progress = ExtResource( 26 )
+texture_progress_offset = Vector2( 1.5, 8 )
+fill_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -509,10 +531,14 @@ position = Vector2( 240, 312 )
 position = Vector2( 240, 392 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="CanvasLayer"]
+visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )
 
+[connection signal="parolGet" from="WorldLayer/Player" to="." method="_on_Player_parolGet"]
+[connection signal="toggleChicken" from="WorldLayer/Player" to="." method="_on_Player_toggleChicken"]
+[connection signal="timeout" from="WorldLayer/Player/PUTimer" to="." method="_on_PUTimer_timeout"]
 [connection signal="toggled" from="SFX" to="." method="_on_SFX_toggled"]
 [connection signal="button_down" from="EXIT" to="." method="_on_EXIT_button_down"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
@@ -522,5 +548,6 @@ texture = ExtResource( 5 )
 [connection signal="button_down" from="CanvasLayer/ConfirmExitScreen/CANCEL" to="." method="_on_CANCEL_button_down"]
 [connection signal="button_pressed" from="CanvasLayer/DeathScreen" to="." method="_on_DeathScreen_button_pressed"]
 
+[editable path="WorldLayer/Player"]
 [editable path="CanvasLayer/ConfirmExitScreen"]
 [editable path="CanvasLayer/DeathScreen"]

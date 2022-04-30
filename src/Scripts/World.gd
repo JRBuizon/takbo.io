@@ -51,6 +51,7 @@ const lowestPossible = 544
 var gameStart = false
 var gameEnd = false
 var friendBeat = false
+var powerUpJustSpawned = false
 
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
@@ -63,6 +64,7 @@ var score_to_beat = int(Global.friendScore) if Global.friendName else Global.hig
 var audio: AudioStreamPlayer
 
 func _ready():
+	$WorldLayer/PUtimer.visible = false
 	Global.hasPU = false
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
@@ -102,9 +104,9 @@ func _process(delta):
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	crowd.motion_offset.x += -800 * delta
 	
-	print(player.jumpTDown)
+#	print(player.jumpTDown)
 #	print("Has Glide: " + str(player.glide))
-	print("Has PU: " + str(Global.hasPU))
+#	print("Has PU: " + str(Global.hasPU))
 	#print(Performance.get_monitor(Performance.TIME_FPS)) 
 	
 	#score_to_beat used to be here!!!! moved it to vars up above since we dont want it to continuously redefine itself
@@ -116,11 +118,12 @@ func _process(delta):
 			Global.play_music(music_new_record)
 			$FriendBeatTimer.start()
 			
-		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
-			Global.play_music(music_harder)
+#		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
+#			Global.play_music(music_harder)
 		
 	time += delta * 2
 	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
+	$WorldLayer/PUtimer.rect_position.y += sin(time)
 	
 
 func _physics_process(delta):
@@ -130,10 +133,14 @@ func _physics_process(delta):
 	
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
+		$WorldLayer/PUtimer.visible = Global.hasPU
+		$WorldLayer/PUtimer.set_value(player.PUTimer.time_left)
+	
 		if Global.friendName and not scoreText > int(Global.friendScore):
 			progressBar.set_value(scoreText)
 		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
+		
 			
 		if (int(displayText)%100) == 0 and not audio.playing and displayText > 99:
 			audio.stream = mSfx
@@ -169,6 +176,8 @@ func rand_ylevel():
 		return 448
 
 func player_dies():
+	$WorldLayer/PUtimer.visible = false
+	$WorldLayer/Chicken.active = false
 	if displayText > Global.highscore:
 		Global.highscore = displayText
 	Global.score = displayText
@@ -183,13 +192,26 @@ func randomizeParallax():
 	return randomX
 	
 func player_picked_up_powerup(PUname):
+	animation.stop()
+	audio.stream = mSfx
+	audio.play()
 	player.powerUPStart(PUname)
+	if PUname == "Glide":
+		$WorldLayer/PUtimer.visible = true
+		Global.play_music(music_harder)
+		if Global.Leni == false:
+			$WorldLayer/Chicken.active = true
+
+	
 	
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
 		area.get_parent().position = Vector2(620, rand_ylevel())
-		if gameStart:
+		if gameStart and not powerUpJustSpawned:
 			area.get_parent().powerup_chance()
+			powerUpJustSpawned = true
+			yield(get_tree().create_timer(0.5), "timeout")
+			powerUpJustSpawned = false
 
 func _on_DeathScreen_button_pressed(scene_path):
 	audio.stream = buttonSfx
@@ -252,3 +274,16 @@ func _on_FriendBeatTimer_timeout():
 	else:
 		tween.interpolate_property($WorldLayer/FriendBeat, "position:y", -30.0, -150.0, 2.0, 10, Tween.EASE_IN)
 		tween.start()
+
+
+func _on_Player_toggleChicken(state):
+	$WorldLayer/Chicken.active = state
+
+
+func _on_Player_parolGet():
+	animation.play("pointsUp")
+	scoreText += 50
+
+
+func _on_PUTimer_timeout():
+	Global.play_music(music_start)
