@@ -196,7 +196,8 @@ func player_picked_up_powerup(PUname):
 	audio.stream = mSfx
 	audio.play()
 	player.powerUPStart(PUname)
-	if PUname == "Glide":
+	if PUname == "Glide" or PUname == "Bike":
+		$WorldLayer/PUtimer.set_sprite(PUname)
 		$WorldLayer/PUtimer.visible = true
 		Global.play_music(music_harder)
 		if Global.Leni == false:
