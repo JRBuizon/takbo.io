@@ -51,6 +51,7 @@ const lowestPossible = 544
 var gameStart = false
 var gameEnd = false
 var friendBeat = false
+var hasBeatScore = false
 var hasHeld = false
 
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
@@ -103,16 +104,10 @@ func _process(delta):
 	DTNear.motion_offset.x += NEAR_SPEED * delta
 	DTCars.motion_offset.x += CARS_SPEED * delta
 	crowd.motion_offset.x += -800 * delta
-	
-#	print(player.jumpTDown)
-#	print("Has Glide: " + str(player.glide))
-#	print("Has PU: " + str(Global.hasPU))
-	#print(Performance.get_monitor(Performance.TIME_FPS)) 
-	
-	#score_to_beat used to be here!!!! moved it to vars up above since we dont want it to continuously redefine itself
 
-	if not gameEnd:
-		if displayText == score_to_beat and score_to_beat > 0:
+	if not gameEnd and not hasBeatScore:
+		if displayText >= score_to_beat and score_to_beat > 0:
+			hasBeatScore = true
 			tween.interpolate_property($WorldLayer/FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
 			Global.play_music(music_new_record)
@@ -135,6 +130,7 @@ func _process(delta):
 			progressBar.set_value(scoreText)
 		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
+			
 	displayText = floor(scoreText)
 	score.text = str(displayText)
 	
