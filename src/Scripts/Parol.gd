@@ -21,5 +21,5 @@ func _on_ParolHitBox_area_entered(area):
 		$AnimationPlayer.play("Collect")
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	self.queue_free()

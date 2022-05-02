@@ -200,7 +200,7 @@ func player_picked_up_powerup(PUname):
 	if PUname == "Glide":
 		if not hasHeld:
 			$WorldLayer/Hold.visible = true
-		$WorldLayer/PUtimer.set_sprite(PUname)
+		$WorldLayer/PUtimer.set_sprite()
 		$WorldLayer/PUtimer.visible = true
 		Global.play_music(music_harder)
 		if not Global.Leni:
@@ -225,7 +225,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		get_tree().change_scene(scenePath)
 
 
-func _on_SFX_toggled(button_pressed):
+func _on_SFX_toggled(_button_pressed):
 	audio.stream = buttonSfx
 	audio.play()
 	Global.toggle_mute()
@@ -282,7 +282,6 @@ func _on_Player_toggleChicken(state):
 
 
 func _on_Player_parolGet():
-	animation.play("pointsUp")
 	scoreText += 50
 
 

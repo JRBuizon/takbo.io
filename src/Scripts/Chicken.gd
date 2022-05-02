@@ -18,7 +18,7 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 
-func _process(delta):
+func _process(_delta):
 	if active:
 		$Sprite.visible = true
 	else:

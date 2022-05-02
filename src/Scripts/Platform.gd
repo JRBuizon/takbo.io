@@ -14,13 +14,13 @@ func powerup_chance():
 		if choice == 0:
 			var glideInst = glidePU.instance()
 			glideInst.position = Vector2(0, -20)
-			self.add_child(glideInst)
+			self.call_deferred("add_child", glideInst)
 		else:
 			var parolInst = parolPU.instance()
 			parolInst.position = Vector2(0, (randi()%6 + 1) * -30)
-			self.add_child(parolInst)
+			self.call_deferred("add_child", parolInst)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += Vector2(-4.0, 0.0)
 
 func _on_PlatHitBox_area_entered(area):

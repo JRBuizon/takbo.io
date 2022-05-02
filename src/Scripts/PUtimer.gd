@@ -1,6 +1,6 @@
 extends TextureProgress
 
-func set_sprite(PUname):
+func set_sprite():
 	if Global.Leni:
 		$Sprite.visible = true
 		$Sprite2.visible = false
