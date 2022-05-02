@@ -2,14 +2,14 @@ extends StaticBody2D
 
 var Speed = -4.0
 var powerUpChance = 0.0
-var PUthreshold = 0.50
+var PUthreshold = 0.80
 
 var glidePU = preload("res://src/Scenes/GlidePower.tscn")
 var parolPU = preload("res://src/Scenes/Parol.tscn")
 
 func powerup_chance():
 	powerUpChance = randf()
-	if powerUpChance >= PUthreshold:
+	if powerUpChance >= PUthreshold and get_child_count() == 3:
 		var choice = randi() % 5
 		if choice == 0:
 			var glideInst = glidePU.instance()
