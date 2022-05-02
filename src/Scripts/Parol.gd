@@ -14,7 +14,7 @@ func _process(delta):
 	$Sprite.rotation_degrees = amplitude * sin(time)
 	self.position.y += amplitude/20 * sin(time)
 
-func _on_Area2D_area_entered(area):
+func _on_ParolHitBox_area_entered(area):
 	if area.name == "PlayerHitBox":
 		get_parent().get_parent().get_parent().call_deferred("player_picked_up_powerup", "Parol")
 		

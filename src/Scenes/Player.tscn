@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Characters/LeniSS.png" type="Texture" id=2]
 [ext_resource path="res://src/Assets/Characters/KikoSS.png" type="Texture" id=3]
-[ext_resource path="res://src/Assets/Characters/motorcycleSS.png" type="Texture" id=4]
 
 [sub_resource type="Shader" id=11]
 code = "shader_type canvas_item;
@@ -67,37 +66,6 @@ shader = SubResource( 13 )
 shader_param/width = 0.75
 shader_param/outline_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="Shader" id=16]
-code = "shader_type canvas_item;
- 
-uniform float width;
-uniform vec4 outline_color : hint_color;
- 
-void fragment()
-{
-    vec2 size = (vec2(width) * TEXTURE_PIXEL_SIZE);
-   
-    vec4 sprite_color = texture(TEXTURE, UV);
-   
-    float alpha = sprite_color.a;
-    alpha += texture(TEXTURE, UV + vec2(0.0, -size.y)).a;
-    alpha += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
-    alpha += texture(TEXTURE, UV + vec2(size.x, 0.0)).a;
-    alpha += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
-    alpha += texture(TEXTURE, UV + vec2(0.0, size.y)).a;
-    alpha += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
-    alpha += texture(TEXTURE, UV + vec2(-size.x, 0.0)).a;
-    alpha += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
-   
-    vec3 final_color = mix(outline_color.rgb, sprite_color.rgb, sprite_color.a);
-    COLOR = vec4(final_color, clamp(alpha, 0.0, 1.0));
-}"
-
-[sub_resource type="ShaderMaterial" id=17]
-shader = SubResource( 16 )
-shader_param/width = 0.75
-shader_param/outline_color = Color( 1, 1, 1, 1 )
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5, 4 )
 
@@ -133,18 +101,6 @@ resource_name = "Drive"
 length = 0.3
 loop = true
 step = 0.075
-tracks/0/type = "value"
-tracks/0/path = NodePath("Bike:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.075, 0.15, 0.225 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Falling"
@@ -266,18 +222,6 @@ tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Bike:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=9]
 resource_name = "Run"
@@ -323,14 +267,6 @@ position = Vector2( 2, -32 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 hframes = 14
-
-[node name="Bike" type="Sprite" parent="."]
-visible = false
-material = SubResource( 17 )
-position = Vector2( 2, -44 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 4 )
-hframes = 4
 
 [node name="PlayerColl" type="CollisionShape2D" parent="."]
 position = Vector2( 4.5, 12 )

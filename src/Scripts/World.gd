@@ -51,7 +51,7 @@ const lowestPossible = 544
 var gameStart = false
 var gameEnd = false
 var friendBeat = false
-var powerUpJustSpawned = false
+var hasHeld = false
 
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
@@ -120,36 +120,37 @@ func _process(delta):
 			
 #		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
 #			Global.play_music(music_harder)
-		
-	time += delta * 2
-	tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
-	$WorldLayer/PUtimer.rect_position.y += sin(time)
-	
-
-func _physics_process(delta):
-	if not gameStart and Input.is_action_just_pressed("tap"):
+	if not gameStart:
+		time += delta * 2
+		tap.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
+		if Input.is_action_just_pressed("tap"):
 			tap.visible = false
 			gameStart = true
-	
+	#$WorldLayer/PUtimer.rect_position.y += sin(time)
 	if gameStart and not gameEnd:
 		scoreText += delta * 7
-		$WorldLayer/PUtimer.visible = Global.hasPU
 		$WorldLayer/PUtimer.set_value(player.PUTimer.time_left)
 	
 		if Global.friendName and not scoreText > int(Global.friendScore):
 			progressBar.set_value(scoreText)
 		elif not Global.friendName and not scoreText > int(Global.highscore):
 			progressBar.set_value(scoreText)
-		
-			
-		if (int(displayText)%100) == 0 and not audio.playing and displayText > 99:
-			audio.stream = mSfx
-			audio.play()
-
 	displayText = floor(scoreText)
 	score.text = str(displayText)
 	
-		
+	if $WorldLayer/Hold.visible and not hasHeld:
+		time += delta * 2
+		$WorldLayer/Hold.scale = Vector2(amplitude * sin(time) + 1.3, amplitude * sin(time) + 1.3)
+		if player.motion.y > 0 and player.jumpTDown == 1.5:
+			hasHeld = true
+			$WorldLayer/Hold.visible = false
+	
+
+#func _physics_process(delta):
+#		if (int(displayText)%100) == 0 and not audio.playing and displayText > 99:
+#			audio.stream = mSfx
+#			audio.play()
+
 func rand_ylevel():
 	if gameStart:
 		#Randomizes Y Level based on a randi from -3 to 3 multiplied by snapHeight
@@ -196,11 +197,13 @@ func player_picked_up_powerup(PUname):
 	audio.stream = mSfx
 	audio.play()
 	player.powerUPStart(PUname)
-	if PUname == "Glide" or PUname == "Bike":
+	if PUname == "Glide":
+		if not hasHeld:
+			$WorldLayer/Hold.visible = true
 		$WorldLayer/PUtimer.set_sprite(PUname)
 		$WorldLayer/PUtimer.visible = true
 		Global.play_music(music_harder)
-		if Global.Leni == false:
+		if not Global.Leni:
 			$WorldLayer/Chicken.active = true
 
 	
@@ -208,11 +211,8 @@ func player_picked_up_powerup(PUname):
 func _on_Area2D_area_entered(area):
 	if area.name == "PlatHitBox":
 		area.get_parent().position = Vector2(620, rand_ylevel())
-		if gameStart and not powerUpJustSpawned:
+		if gameStart:
 			area.get_parent().powerup_chance()
-			powerUpJustSpawned = true
-			yield(get_tree().create_timer(0.5), "timeout")
-			powerUpJustSpawned = false
 
 func _on_DeathScreen_button_pressed(scene_path):
 	audio.stream = buttonSfx
@@ -287,4 +287,5 @@ func _on_Player_parolGet():
 
 
 func _on_PUTimer_timeout():
+	$WorldLayer/PUtimer.visible = false
 	Global.play_music(music_start)

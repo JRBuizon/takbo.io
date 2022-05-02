@@ -27,7 +27,6 @@ var audio: AudioStreamPlayer
 
 onready var PUTimer = $PUTimer
 var glide = false
-var bike = false
 
 func powerUPStart(PUname):
 	#apply powerups here
@@ -37,14 +36,6 @@ func powerUPStart(PUname):
 	if PUname == "Glide":
 		Global.hasPU = true
 		glide = true
-		PUTimer.start()
-	
-	if PUname == "Bike":
-		Global.hasPU = true
-		$KikoSprite.visible = false
-		$LeniSprite.visible = false
-		$Bike.visible = true
-		bike = true
 		PUTimer.start()
 	
 
@@ -98,10 +89,7 @@ func _physics_process(delta):
 		if floorCast.is_colliding() or is_on_floor():
 			if glide and not Global.Leni:
 				emit_signal("toggleChicken", true)
-			if not bike:
-				animation.play("Run")
-			else:
-				animation.play("Drive")
+			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
 				if glide:
 					jumpTDown = 1.5
@@ -110,11 +98,11 @@ func _physics_process(delta):
 				audio.play()
 				motion.y = jumpVelo
 		else:
-			if motion.y < 0 and not bike:
+			if motion.y < 0:
 				animation.play("Jump")
-			elif motion.y > 0 and not jumpTDown == 1.5 and not bike:
+			elif motion.y > 0 and not jumpTDown == 1.5:
 				animation.play("Falling")
-			elif motion.y > 0 and jumpTDown == 1.5 and not bike:
+			elif motion.y > 0 and jumpTDown == 1.5:
 				emit_signal("toggleChicken", false)
 				animation.play("Gliding")
 			
@@ -140,15 +128,6 @@ func _on_PUTimer_timeout():
 	
 	Global.hasPU = false
 	glide = false
-	bike = false
-	$Bike.visible = false
-	if Global.Leni:
-		$LeniSprite.visible = true #CHANGE THIS BACK TO TRUE AFTER TESTING CHICKEN
-		$KikoSprite.visible = false
-	else:
-		$LeniSprite.visible = false
-		$KikoSprite.visible = true
-	
 	yield(get_tree().create_timer(1), "timeout")
 	emit_signal("toggleChicken", false)
 	pass
