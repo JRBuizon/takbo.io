@@ -63,7 +63,7 @@ func _on_STAR_button_down():
 	scenePath = "res://src/Scenes/ShareScreen.tscn"
 
 
-func _on_SFX_toggled(button_pressed):
+func _on_SFX_toggled(_button_pressed):
 	audio.play()
 	Global.toggle_mute()
 	sfxM.visible = Global.is_music_muted()

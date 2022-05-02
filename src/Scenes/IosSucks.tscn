@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Assets/Backgrounds/Background.png" type="Texture" id=1]
-[ext_resource path="res://IosSucks.gd" type="Script" id=2]
+[ext_resource path="res://src/Scripts/IosSucks.gd" type="Script" id=2]
 [ext_resource path="res://src/Assets/SplashPageLogo.png" type="Texture" id=3]
 [ext_resource path="res://src/Assets/Fonts/BackIssuesBB_ital.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/Assets/Updated.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 25
@@ -17,7 +18,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="TakboLogo" type="Sprite" parent="."]
-position = Vector2( 252, 372 )
+position = Vector2( 252, 340 )
 texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
@@ -31,3 +32,7 @@ text = "Tap to continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Updated" type="Sprite" parent="."]
+position = Vector2( 240, 580 )
+texture = ExtResource( 5 )
