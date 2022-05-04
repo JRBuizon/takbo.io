@@ -70,11 +70,11 @@ func _ready():
 	Global.hasPU = false
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
-	audio.volume_db = -10
+	audio.volume_db = 0
 	if Global.Character == Global.Gab:
-		Global.music_player.volume_db = 5
+		Global.music_player.volume_db = 0
 	else:
-		Global.music_player.volume_db = -10
+		Global.music_player.volume_db = Global.MUSIC_VOLUME
 		
 	add_child(audio)
 	audio.pause_mode = Node.PAUSE_MODE_PROCESS

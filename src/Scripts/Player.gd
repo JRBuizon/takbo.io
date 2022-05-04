@@ -43,7 +43,7 @@ func powerUPStart(PUname):
 func _ready():
 	$GabSprite.material.set_shader_param("is_rainbow", false)
 	audio = AudioStreamPlayer.new()
-	audio.volume_db = -10
+	audio.volume_db = 0
 	add_child(audio)
 	collision.disabled = false
 	hitBox.monitoring = true

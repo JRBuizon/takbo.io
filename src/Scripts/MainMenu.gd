@@ -27,6 +27,7 @@ func _ready():
 	sfxU.visible = not Global.is_music_muted()
 	
 	highscoreText.set_bbcode("HIGHSCORE: " + str(Global.highscore) + "m")
+	Global.music_player.volume_db = Global.MUSIC_VOLUME
 	Global.play_music(main_menu_music)
 	
 
