@@ -7,10 +7,13 @@ var amplitude = 20
 func _ready():
 	if Global.Character == Global.Leni:
 		$Ribbon.frame = 0
+		$Ribbon.material.set_shader_param("is_rainbow", false)
 	elif Global.Character == Global.Kiko:
 		$Ribbon.frame = 1
+		$Ribbon.material.set_shader_param("is_rainbow", false)
 	elif Global.Character == Global.Gab:
 		$Ribbon.frame = 4
+		$Ribbon.material.set_shader_param("is_rainbow", true)
 		
 func _process(delta):
 	time += delta * speed
