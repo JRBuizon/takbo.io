@@ -71,6 +71,8 @@ func _ready():
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
+	if Global.Character == Global.Gab:
+		audio.volume_db = 0
 	add_child(audio)
 	audio.pause_mode = Node.PAUSE_MODE_PROCESS
 	
@@ -114,7 +116,8 @@ func _process(delta):
 			hasBeatScore = true
 			tween.interpolate_property($WorldLayer/FriendBeat, "position:y", -150.0, -30.0, 2.0, 10, Tween.EASE_OUT)
 			tween.start()
-			Global.play_music(music_new_record)
+			if Global.Character != Global.Gab:
+				Global.play_music(music_new_record)
 			$FriendBeatTimer.start()
 			
 #		elif displayText < score_to_beat and displayText == Global.HARD_MODE_THRESHOLD:
