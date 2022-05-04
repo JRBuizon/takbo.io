@@ -34,12 +34,14 @@ func powerUPStart(PUname):
 		emit_signal("parolGet")
 	
 	if PUname == "Glide":
+		$GabSprite.material.set_shader_param("is_rainbow", true)
 		Global.hasPU = true
 		glide = true
 		PUTimer.start()
 	
 
 func _ready():
+	$GabSprite.material.set_shader_param("is_rainbow", false)
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
 	add_child(audio)
@@ -52,6 +54,7 @@ func det_grav() -> float:
 	return jumpGrav if motion.y < 0.0 else fallGrav
 
 func playerDies():
+	$GabSprite.material.set_shader_param("is_rainbow", false)
 	jumpTDown = 0.2
 	fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
 	var willYoda = randf() #0-1
@@ -130,7 +133,7 @@ func _physics_process(delta):
 
 func _on_PUTimer_timeout():
 	#Get rid of powerup here
-	
+	$GabSprite.material.set_shader_param("is_rainbow", false)
 	Global.hasPU = false
 	glide = false
 	yield(get_tree().create_timer(1), "timeout")
