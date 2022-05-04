@@ -70,11 +70,7 @@ func _ready():
 	Global.hasPU = false
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
-	audio.volume_db = 0
-	if Global.Character == Global.Gab:
-		Global.music_player.volume_db = 0
-	else:
-		Global.music_player.volume_db = Global.MUSIC_VOLUME
+	audio.volume_db = -10
 		
 	add_child(audio)
 	audio.pause_mode = Node.PAUSE_MODE_PROCESS
@@ -98,8 +94,10 @@ func _ready():
 	animation.play("FadeIn")
 	
 	if Global.Character == Global.Gab:
+		Global.music_player.volume_db = -10
 		Global.play_music(music_gab)
 	else:
+		Global.music_player.volume_db = Global.MUSIC_VOLUME		
 		Global.play_music(music_start)
 	
 	# Checks the current state of the music player
