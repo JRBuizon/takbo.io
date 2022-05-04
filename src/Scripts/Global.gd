@@ -7,7 +7,15 @@ const MUSIC_BUS = 1 # "BGM"
 
 const Encryption = preload("res://src/Utils/encryption.gd")
 var highscore = 0 setget setHighscore
-var Leni = true
+
+enum {
+	Leni = 0,
+	Kiko = 1,
+	Gab = 2,
+}
+
+var Character = Leni
+
 const filePath = "user://highscore.data"
 
 var hasPU = false

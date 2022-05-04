@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gabv_song.mp3-6d135494f07f246af5cec7b18d3c268f.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/gabv_song.mp3"
+dest_files=[ "res://.import/gabv_song.mp3-6d135494f07f246af5cec7b18d3c268f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

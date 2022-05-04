@@ -5,10 +5,12 @@ var speed = 3
 var amplitude = 20
 
 func _ready():
-	if Global.Leni:
+	if Global.Character == Global.Leni:
 		$Sprite.frame = 2
-	else:
+	elif Global.Character == Global.Kiko:
 		$Sprite.frame = 3
+	else: 
+		pass
 func _process(delta):
 	time += delta * speed
 	$Sprite.rotation_degrees = amplitude * sin(time)

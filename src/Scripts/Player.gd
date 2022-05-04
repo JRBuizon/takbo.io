@@ -75,19 +75,21 @@ func playerDies():
 	pass
 
 func setSprite():
-	if Global.Leni:
+	if Global.Character == Global.Leni:
 		$LeniSprite.visible = true #CHANGE THIS BACK TO TRUE AFTER TESTING CHICKEN
 		$KikoSprite.visible = false
-	else:
+	elif Global.Character == Global.Kiko:
 		$LeniSprite.visible = false
 		$KikoSprite.visible = true
+	else:
+		pass
 	
 
 func _physics_process(delta):
 	motion.y  += det_grav() * delta
 	if alive:
 		if floorCast.is_colliding() or is_on_floor():
-			if glide and not Global.Leni:
+			if glide and Global.Character == Global.Kiko:
 				emit_signal("toggleChicken", true)
 			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
@@ -110,7 +112,7 @@ func _physics_process(delta):
 				motion.y = jumpVelo/2
 
 		if Input.is_action_just_released("tap"):
-			if glide and Global.hasPU and not Global.Leni:
+			if glide and Global.hasPU and Global.Character == Global.Kiko:
 				emit_signal("toggleChicken", true)
 #			elif not glide and not Global.Leni:
 #				emit_signal("toggleChicken", false)

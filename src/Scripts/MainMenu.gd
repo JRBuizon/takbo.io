@@ -37,7 +37,7 @@ func _process(delta):
 
 func _on_KIKO_button_down():
 	audio.play()
-	Global.Leni = false
+	Global.Character = Global.Kiko
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
 	Global.track_event("PickKiko")
@@ -50,7 +50,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_LENI_button_down():
 	audio.play()
-	Global.Leni = true
+	Global.Character = Global.Leni
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
 	Global.track_event("PickLeni")

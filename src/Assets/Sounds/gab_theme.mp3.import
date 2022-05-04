@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gab_theme.mp3-fe2fabfb40dbbdbccfb203683e42cff1.mp3str"
+
+[deps]
+
+source_file="res://src/Assets/Sounds/gab_theme.mp3"
+dest_files=[ "res://.import/gab_theme.mp3-fe2fabfb40dbbdbccfb203683e42cff1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

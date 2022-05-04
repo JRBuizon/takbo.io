@@ -54,6 +54,7 @@ var friendBeat = false
 var hasBeatScore = false
 var hasHeld = false
 
+onready var music_gab = preload("res://src/Assets/Sounds/gab_theme.mp3")
 onready var music_start = preload("res://src/Assets/Sounds/music_start.mp3")
 onready var music_harder = preload("res://src/Assets/Sounds/music_harder.mp3")
 onready var music_new_record = preload("res://src/Assets/Sounds/music_new_record.mp3")
@@ -199,7 +200,7 @@ func player_picked_up_powerup(PUname):
 		$WorldLayer/PUtimer.set_sprite()
 		$WorldLayer/PUtimer.visible = true
 		Global.play_music(music_harder)
-		if not Global.Leni:
+		if Global.Character == Global.Kiko:
 			$WorldLayer/Chicken.active = true
 
 	

@@ -1,9 +1,11 @@
 extends TextureProgress
 
 func set_sprite():
-	if Global.Leni:
+	if Global.Character == Global.Leni:
 		$Sprite.visible = true
 		$Sprite2.visible = false
-	elif not Global.Leni:
+	elif Global.Character == Global.Kiko:
 		$Sprite.visible = false
 		$Sprite2.visible = true
+	else: 
+		pass
