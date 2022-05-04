@@ -92,7 +92,10 @@ func _ready():
 	parallax.set_scroll_base_offset(Vector2(randomizeParallax(), 0))
 	animation.play("FadeIn")
 	
-	Global.play_music(music_start)
+	if Global.Character == Global.Gab:
+		Global.play_music(music_gab)
+	else:
+		Global.play_music(music_start)
 	
 	# Checks the current state of the music player
 	sfxM.visible = Global.is_music_muted()
@@ -199,7 +202,8 @@ func player_picked_up_powerup(PUname):
 			$WorldLayer/Hold.visible = true
 		$WorldLayer/PUtimer.set_sprite()
 		$WorldLayer/PUtimer.visible = true
-		Global.play_music(music_harder)
+		if Global.Character != Global.Gab:
+			Global.play_music(music_harder)
 		if Global.Character == Global.Kiko:
 			$WorldLayer/Chicken.active = true
 
@@ -284,4 +288,7 @@ func _on_Player_parolGet():
 
 func _on_PUTimer_timeout():
 	$WorldLayer/PUtimer.visible = false
-	Global.play_music(music_start)
+	if Global.Character != Global.Gab:
+		Global.play_music(music_start)
+#	else:
+#		Global.play_music(music_start)
