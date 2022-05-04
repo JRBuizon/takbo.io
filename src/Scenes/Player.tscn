@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Characters/LeniSS.png" type="Texture" id=2]
@@ -144,6 +144,21 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "FrontFlip"
+tracks/0/type = "value"
+tracks/0/path = NodePath("GabSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -330,6 +345,7 @@ texture = ExtResource( 2 )
 hframes = 14
 
 [node name="KikoSprite" type="Sprite" parent="."]
+visible = false
 material = SubResource( 17 )
 position = Vector2( 2, -32 )
 scale = Vector2( 3, 3 )
@@ -337,12 +353,11 @@ texture = ExtResource( 3 )
 hframes = 14
 
 [node name="GabSprite" type="Sprite" parent="."]
-visible = false
 material = ExtResource( 5 )
 position = Vector2( 2, -32 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
-hframes = 15
+hframes = 16
 
 [node name="PlayerColl" type="CollisionShape2D" parent="."]
 position = Vector2( 4.5, 12 )
@@ -363,6 +378,7 @@ cast_to = Vector2( 0, 20 )
 autoplay = "Run"
 anims/Dizzy = SubResource( 6 )
 anims/Falling = SubResource( 7 )
+anims/FrontFlip = SubResource( 18 )
 anims/Gliding = SubResource( 15 )
 anims/Jump = SubResource( 10 )
 anims/RESET = SubResource( 4 )

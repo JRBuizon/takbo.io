@@ -33,6 +33,8 @@ func _ready():
 func _process(delta):
 	time += delta * speed
 	logo.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
+	$Gtabl.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
+	$Lrkp.scale = Vector2(amplitude * sin(time) + 1, amplitude * sin(time) + 1)
 
 
 func _on_KIKO_button_down():

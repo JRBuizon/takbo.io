@@ -31,8 +31,6 @@ var glide = false
 func powerUPStart(PUname):
 	#apply powerups here
 	if PUname == "Parol":
-		$Tween.interpolate_property($GabSprite, "rotation_degrees", 0.0, 360.0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		$Tween.start()
 		emit_signal("parolGet")
 	
 	if PUname == "Glide":
@@ -101,6 +99,13 @@ func _physics_process(delta):
 				emit_signal("toggleChicken", true)
 			animation.play("Run")
 			if Input.is_action_just_pressed("tap"):
+				if Global.Character == Global.Gab:
+					var choice = randi()%2
+					if choice == 0:
+						$Tween.interpolate_property($GabSprite, "rotation_degrees", 0.0, -360.0, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					else:
+						$Tween.interpolate_property($GabSprite, "rotation_degrees", 0.0, 360.0, 0.4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					$Tween.start()
 				if glide:
 					jumpTDown = 1.5
 					fallGrav = ((-2.0 * jumpHeight) / (jumpTDown * jumpTDown)) * -1
@@ -108,13 +113,19 @@ func _physics_process(delta):
 				audio.play()
 				motion.y = jumpVelo
 		else:
-			if motion.y < 0:
+			if motion.y < 0 and Global.Character != Global.Gab:
 				animation.play("Jump")
 			elif motion.y > 0 and not jumpTDown == 1.5:
 				animation.play("Falling")
 			elif motion.y > 0 and jumpTDown == 1.5:
 				emit_signal("toggleChicken", false)
 				animation.play("Gliding")
+			elif Global.Character == Global.Gab:
+				var choice = randi()%2
+				if choice == 1:
+					animation.play("Jump")
+				else:
+					animation.play("FrontFlip")
 			
 			if Input.is_action_just_released("tap") and motion.y < jumpVelo/2:
 				motion.y = jumpVelo/2
