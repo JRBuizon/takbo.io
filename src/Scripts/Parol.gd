@@ -11,6 +11,7 @@ func _ready():
 		$Sprite.frame = 3
 	else: 
 		pass
+
 func _process(delta):
 	time += delta * speed
 	$Sprite.rotation_degrees = amplitude * sin(time)

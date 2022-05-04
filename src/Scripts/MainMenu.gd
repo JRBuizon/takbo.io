@@ -54,7 +54,13 @@ func _on_LENI_button_down():
 	animation.play("FadeOut")
 	scenePath = "res://src/Scenes/World.tscn"
 	Global.track_event("PickLeni")
-
+	
+func _on_GAB_button_down():
+	audio.play()
+	Global.Character = Global.Gab
+	animation.play("FadeOut")
+	scenePath = "res://src/Scenes/World.tscn"
+	Global.track_event("PickGab")
 
 func _on_STAR_button_down():
 	audio.play()
