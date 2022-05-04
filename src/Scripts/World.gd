@@ -73,6 +73,9 @@ func _ready():
 	audio.volume_db = -10
 	if Global.Character == Global.Gab:
 		Global.music_player.volume_db = 5
+	else:
+		Global.music_player.volume_db = -10
+		
 	add_child(audio)
 	audio.pause_mode = Node.PAUSE_MODE_PROCESS
 	
