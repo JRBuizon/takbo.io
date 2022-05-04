@@ -31,6 +31,8 @@ var glide = false
 func powerUPStart(PUname):
 	#apply powerups here
 	if PUname == "Parol":
+		$Tween.interpolate_property($GabSprite, "rotation_degrees", 0.0, 360.0, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
 		emit_signal("parolGet")
 	
 	if PUname == "Glide":
