@@ -71,8 +71,6 @@ func _ready():
 	#jump and death sfx
 	audio = AudioStreamPlayer.new()
 	audio.volume_db = -10
-	if Global.Character == Global.Gab:
-		audio.volume_db = 0
 	add_child(audio)
 	audio.pause_mode = Node.PAUSE_MODE_PROCESS
 	
