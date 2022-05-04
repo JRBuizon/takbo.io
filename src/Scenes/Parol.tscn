@@ -221,7 +221,7 @@ __meta__ = {
 material = SubResource( 2 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
-hframes = 4
+hframes = 5
 frame = 3
 
 [node name="Label" type="Label" parent="."]

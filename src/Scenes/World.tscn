@@ -512,14 +512,24 @@ material = SubResource( 15 )
 position = Vector2( 17.849, -5 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 28 )
-hframes = 4
+hframes = 5
 
 [node name="Sprite2" type="Sprite" parent="WorldLayer/PUtimer"]
+visible = false
 material = SubResource( 17 )
 position = Vector2( 10.196, -39.254 )
 scale = Vector2( 3.7, 3.7 )
 texture = ExtResource( 29 )
 hframes = 7
+
+[node name="Sprite3" type="Sprite" parent="WorldLayer/PUtimer"]
+material = SubResource( 15 )
+position = Vector2( 21, -4.685 )
+rotation = 0.523599
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 28 )
+hframes = 5
+frame = 4
 
 [node name="SfXmuted" type="Sprite" parent="WorldLayer"]
 visible = false
@@ -618,7 +628,6 @@ position = Vector2( 240, 312 )
 position = Vector2( 240, 392 )
 
 [node name="TransitionPlaceholder" type="Sprite" parent="CanvasLayer"]
-visible = false
 position = Vector2( 245, 360 )
 scale = Vector2( 31.875, 47.5 )
 texture = ExtResource( 5 )

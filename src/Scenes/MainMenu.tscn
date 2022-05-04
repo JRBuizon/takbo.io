@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/Assets/Backgrounds/Comic Frame.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://src/Assets/Buttons/SFXunmuted.png" type="Texture" id=12]
 [ext_resource path="res://src/Assets/Buttons/Star.png" type="Texture" id=13]
 [ext_resource path="res://src/Assets/Buttons/Info.png" type="Texture" id=14]
+[ext_resource path="res://src/Assets/GTABL.png" type="Texture" id=15]
+[ext_resource path="res://src/Assets/LRKP.png" type="Texture" id=16]
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
@@ -257,6 +259,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Gtabl" type="Sprite" parent="."]
+position = Vector2( 57, 583 )
+texture = ExtResource( 15 )
+
+[node name="Lrkp" type="Sprite" parent="."]
+position = Vector2( 425, 357 )
+texture = ExtResource( 16 )
+
+[node name="GAB" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 13.0
+margin_top = 541.0
+margin_right = 97.0
+margin_bottom = 619.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PickRunner" type="RichTextLabel" parent="."]
 margin_left = 96.0
 margin_top = 280.0
@@ -306,5 +326,6 @@ anims/RESET = SubResource( 2 )
 [connection signal="button_down" from="STAR" to="." method="_on_STAR_button_down"]
 [connection signal="button_down" from="LENI" to="." method="_on_LENI_button_down"]
 [connection signal="button_down" from="KIKO" to="." method="_on_KIKO_button_down"]
+[connection signal="pressed" from="GAB" to="." method="_on_GAB_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

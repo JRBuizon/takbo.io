@@ -82,3 +82,11 @@ func _on_AnimationPlayer_animation_started(anim_name):
 
 func _on_INFO_pressed():
 	JavaScript.eval('window.location.replace("https://takbo.io/info")')
+
+
+func _on_GAB_pressed():
+	audio.play()
+	Global.Character = Global.Gab
+	animation.play("FadeOut")
+	scenePath = "res://src/Scenes/World.tscn"
+	Global.track_event("PickGab")

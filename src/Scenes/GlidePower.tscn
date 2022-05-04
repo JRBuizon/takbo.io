@@ -45,7 +45,7 @@ script = ExtResource( 1 )
 material = SubResource( 3 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
-hframes = 4
+hframes = 5
 
 [node name="Area2D" type="Area2D" parent="."]
 

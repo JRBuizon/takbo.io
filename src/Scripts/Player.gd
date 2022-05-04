@@ -78,12 +78,15 @@ func setSprite():
 	if Global.Character == Global.Leni:
 		$LeniSprite.visible = true #CHANGE THIS BACK TO TRUE AFTER TESTING CHICKEN
 		$KikoSprite.visible = false
+		$GabSprite.visible = false
 	elif Global.Character == Global.Kiko:
 		$LeniSprite.visible = false
 		$KikoSprite.visible = true
-	else:
-		pass
-	
+		$GabSprite.visible = false
+	elif Global.Character == Global.Gab:
+		$LeniSprite.visible = false
+		$KikoSprite.visible = false
+		$GabSprite.visible = true
 
 func _physics_process(delta):
 	motion.y  += det_grav() * delta

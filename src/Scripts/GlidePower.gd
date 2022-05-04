@@ -9,8 +9,8 @@ func _ready():
 		$Ribbon.frame = 0
 	elif Global.Character == Global.Kiko:
 		$Ribbon.frame = 1
-	else:
-		pass
+	elif Global.Character == Global.Gab:
+		$Ribbon.frame = 4
 		
 func _process(delta):
 	time += delta * speed
